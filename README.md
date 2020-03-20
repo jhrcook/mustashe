@@ -15,7 +15,11 @@ status](https://ci.appveyor.com/api/projects/status/github/jhrcook/stashR?branch
 coverage](https://codecov.io/gh/jhrcook/stashR/branch/master/graph/badge.svg)](https://codecov.io/gh/jhrcook/stashR?branch=master)
 <!-- badges: end -->
 
-The goal of stashR is to …
+The goal of ‘stashR’ is to save time on long-running computations by
+storing and reloading the resulting object after the first run. The next
+time the computation is run, instead of evaluating the code, the stashed
+object is loaded. ‘stashr’ is great for storing intermediate objects in
+an analysis.
 
 ## Installation
 
@@ -26,41 +30,113 @@ You can install the released version of stashR from
 install.packages("stashR")
 ```
 
-And the development version from [GitHub](https://github.com/) with:
+And the development version from
+[GitHub](https://github.com/jhrcook/stashR) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("jhrcook/stashR")
 ```
 
-## Example
+## Loading ‘stashr’
 
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-# library(stashR)
-```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+The ‘stashR’ package is loaded like any other, using the `library()`
+function.
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+library(stashR)
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date.
+## Basic example
 
-You can also embed plots, for example:
+Below is a simple example of how to use the `stash()` function from
+‘stashR’.
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+Let’s say, for part of an analysis, we are running a long simulation to
+generate random data `rnd_vals`. This is mocked below using the
+`Sys.sleep()` function. We can time this process using the ‘tictoc’
+library.
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub\!
+``` r
+tictoc::tic("random simulation.")
+stash("rnd_vals", {
+    Sys.sleep(3)
+    rnd_vals <- rnorm(1e5)
+})
+#> Stashing object.
+tictoc::toc()
+#> random simulation.: 3.298 sec elapsed
+```
+
+Now, if we come back tomorrow and continue working on the same analysis,
+the second time this process is run the code is not evaluated because
+the code passed to `stash()` has not changed. Instead, the random values
+`rnd_vals` is loaded.
+
+``` r
+tictoc::tic("random simulation.")
+stash("rnd_vals", {
+    Sys.sleep(3)
+    rnd_vals <- rnorm(1e5)
+})
+#> Loading stashed object.
+tictoc::toc()
+#> random simulation.: 0.049 sec elapsed
+```
+
+## Dependencies
+
+A common problem with storing intermediates is that they have
+dependencies that can change. If a dependency changes, then we want the
+stashed value to be updated. This is accomplished by passing the names
+of the dependencies to the `depends_on` argument.
+
+For instance, let’s say we are calculating some value `foo` using `x`.
+(For the following example, I will use a print statement to indicate
+when the code is evaluated.)
+
+``` r
+x <- 100
+
+stash("foo", depends_on = "x", {
+    print("Calculating `foo` using `x`.")
+    foo <- x + 1
+})
+#> Stashing object.
+#> [1] "Calculating `foo` using `x`."
+
+foo
+#> [1] 101
+```
+
+Now if `x` is not changed, then the code for `foo` does not get
+re-evaluated.
+
+``` r
+x <- 100
+
+stash("foo", depends_on = "x", {
+    print("Calculating `foo` using `x`.")
+    foo <- x + 1
+})
+#> Loading stashed object.
+
+foo
+#> [1] 101
+```
+
+But if `x` does change, then `foo` get’s re-evaluated.
+
+``` r
+x <- 200
+
+stash("foo", depends_on = "x", {
+    print("Calculating `foo` using `x`.")
+    foo <- x + 1
+})
+#> Updating stash.
+#> [1] "Calculating `foo` using `x`."
+
+foo
+#> [1] 201
+```

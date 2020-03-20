@@ -14,4 +14,14 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Suggests: 
-    covr
+    covr,
+    spelling,
+    testthat (>= 2.1.0),
+    tictoc
+Language: en-US
+Imports:
+    formatR,
+    readr,
+    digest,
+    tibble
+RoxygenNote: 7.1.0
