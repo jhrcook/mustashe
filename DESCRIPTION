@@ -1,11 +1,17 @@
 Package: stashR
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Title: Stash and Load Objects in R
+Version: 0.0.0.9000
+Authors@R: person(c("Joshua", "H"), "Cook", email = "joshuacook0023@gmail.com",
+    role = c("aut", "cre"),
+    comment = c(ORCID = "0000-0001-9815-6879"))
+https: //github.com/jhrcook/stashR https://jhrcook.github.io/stashR/
+Description: A simple system for saving and loading objects in R. Long running 
+    computations can be stashed after the first run and then reloaded the next
+    time. Dependencies can be added to ensure that a computation is re-run if
+    any of its dependencies or inputs have changed.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
+Suggests: 
+    covr
