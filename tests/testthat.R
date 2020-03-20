@@ -1,4 +1,4 @@
 library(testthat)
-library(stashR)
+library(mustasher)
 
-test_check("stashR")
+test_check("mustasher")

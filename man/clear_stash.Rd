@@ -7,7 +7,7 @@
 clear_stash()
 }
 \description{
-Clears the hidden '.stashR' directory
+Clears the hidden '.mustasher' directory
 }
 \examples{
 clear_stash()

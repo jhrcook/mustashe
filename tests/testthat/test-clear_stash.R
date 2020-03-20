@@ -1,5 +1,5 @@
 test_that("the stash gets cleared", {
-    target_dir <- ".stashR"
+    target_dir <- ".mustasher"
     if (!dir.exists(target_dir)) {
         dir.create(target_dir)
         on.exit(unlink(target_dir))

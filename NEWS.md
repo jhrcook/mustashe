@@ -1,3 +1,3 @@
-# stashR 0.1.0
+# mustasher 0.1.0
 
-* The first release of 'stashR'.
+* The first release of 'mustasher'.

@@ -9,5 +9,5 @@
 ^docs$
 ^pkgdown$
 
-^.stashR$
+^.mustasher$
 ^cran-comments.md$
