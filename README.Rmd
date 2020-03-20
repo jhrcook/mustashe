@@ -11,6 +11,8 @@ knitr::opts_chunk$set(
     fig.path = "man/figures/README-",
     out.width = "100%"
 )
+
+stashR::clear_stash()
 ```
 
 # stashR
@@ -28,7 +30,7 @@ The next time the computation is run, instead of evaluating the code, the stashe
 
 ## Installation
 
-You can install the released version of stashR from [CRAN](https://CRAN.R-project.org) with:
+You can install the released version of 'stashR' from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("stashR")
@@ -40,7 +42,7 @@ And the development version from [GitHub](https://github.com/jhrcook/stashR) wit
 # install.packages("devtools")
 devtools::install_github("jhrcook/stashR")
 ```
-## Loading 'stashr'
+## Loading 'stashR'
 
 The 'stashR' package is loaded like any other, using the `library()` function.
 
@@ -57,7 +59,7 @@ This is mocked below using the `Sys.sleep()` function.
 We can time this process using the 'tictoc' library.
 
 ```{r}
-tictoc::tic("random simulation.")
+tictoc::tic("random simulation")
 stash("rnd_vals", {
     Sys.sleep(3)
     rnd_vals <- rnorm(1e5)
@@ -69,7 +71,7 @@ Now, if we come back tomorrow and continue working on the same analysis, the sec
 Instead, the random values `rnd_vals` is loaded.
 
 ```{r}
-tictoc::tic("random simulation.")
+tictoc::tic("random simulation")
 stash("rnd_vals", {
     Sys.sleep(3)
     rnd_vals <- rnorm(1e5)

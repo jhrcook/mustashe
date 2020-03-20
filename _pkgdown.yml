@@ -1,1 +1,37 @@
 destination: docs
+
+template:
+  params:
+    bootswatch: flatly
+
+navbar:
+  structure:
+    left:
+    - home
+    - reference
+    right:
+    - news
+    - github
+    - twitter
+  components:
+    home:
+      icon: fa-home fa-lg
+      href: index.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    news:
+      text: Versions
+      href: news/index.html
+    github:
+      icon: fa-github fa-lg
+      href: https://github.com/jhrcook/stashR
+    twitter:
+      icon: fab fa-twitter fa-lg
+      href: https://twitter.com/JoshDoesa
+
+reference:
+- title: All functions
+  contents:
+  - '`stash`'
+  - '`clear_stash`'

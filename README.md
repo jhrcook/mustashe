@@ -23,7 +23,7 @@ an analysis.
 
 ## Installation
 
-You can install the released version of stashR from
+You can install the released version of ‘stashR’ from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
@@ -38,7 +38,7 @@ And the development version from
 devtools::install_github("jhrcook/stashR")
 ```
 
-## Loading ‘stashr’
+## Loading ‘stashR’
 
 The ‘stashR’ package is loaded like any other, using the `library()`
 function.
@@ -58,14 +58,14 @@ generate random data `rnd_vals`. This is mocked below using the
 library.
 
 ``` r
-tictoc::tic("random simulation.")
+tictoc::tic("random simulation")
 stash("rnd_vals", {
     Sys.sleep(3)
     rnd_vals <- rnorm(1e5)
 })
 #> Stashing object.
 tictoc::toc()
-#> random simulation.: 3.298 sec elapsed
+#> random simulation: 3.717 sec elapsed
 ```
 
 Now, if we come back tomorrow and continue working on the same analysis,
@@ -74,14 +74,14 @@ the code passed to `stash()` has not changed. Instead, the random values
 `rnd_vals` is loaded.
 
 ``` r
-tictoc::tic("random simulation.")
+tictoc::tic("random simulation")
 stash("rnd_vals", {
     Sys.sleep(3)
     rnd_vals <- rnorm(1e5)
 })
 #> Loading stashed object.
 tictoc::toc()
-#> random simulation.: 0.049 sec elapsed
+#> random simulation: 0.042 sec elapsed
 ```
 
 ## Dependencies

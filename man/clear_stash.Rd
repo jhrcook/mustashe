@@ -9,3 +9,7 @@ clear_stash()
 \description{
 Clears the hidden '.stashR' directory
 }
+\examples{
+clear_stash()
+
+}

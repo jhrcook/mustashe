@@ -53,5 +53,6 @@ test_that("stashing works", {
 
     clear_stash()
     rm(list = c("a", "b"), envir = .GlobalEnv)
+    if (dir.exists(".stashR")) unlink(".stashR", recursive = TRUE)
 
 })
