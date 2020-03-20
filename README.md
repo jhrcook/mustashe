@@ -18,7 +18,7 @@ coverage](https://codecov.io/gh/jhrcook/stashR/branch/master/graph/badge.svg)](h
 The goal of ‘stashR’ is to save time on long-running computations by
 storing and reloading the resulting object after the first run. The next
 time the computation is run, instead of evaluating the code, the stashed
-object is loaded. ‘stashr’ is great for storing intermediate objects in
+object is loaded. ‘stashR’ is great for storing intermediate objects in
 an analysis.
 
 ## Installation
@@ -65,7 +65,7 @@ stash("rnd_vals", {
 })
 #> Stashing object.
 tictoc::toc()
-#> random simulation: 3.717 sec elapsed
+#> random simulation: 3.677 sec elapsed
 ```
 
 Now, if we come back tomorrow and continue working on the same analysis,
@@ -81,7 +81,7 @@ stash("rnd_vals", {
 })
 #> Loading stashed object.
 tictoc::toc()
-#> random simulation: 0.042 sec elapsed
+#> random simulation: 0.079 sec elapsed
 ```
 
 ## Dependencies
@@ -125,7 +125,7 @@ foo
 #> [1] 101
 ```
 
-But if `x` does change, then `foo` get’s re-evaluated.
+But if `x` does change, then `foo` gets re-evaluated.
 
 ``` r
 x <- 200
@@ -140,3 +140,13 @@ stash("foo", depends_on = "x", {
 foo
 #> [1] 201
 ```
+
+-----
+
+### Attirubiton
+
+The inspiration for this package came from the `cache()` feature in the
+[‘ProjectTemplate’](http://projecttemplate.net/index.html) package.
+While the functionality and implementation are a bit different, this
+would have been far more difficult to do without referencing the source
+code from ‘ProjectTemplate’.

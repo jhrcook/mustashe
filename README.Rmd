@@ -26,7 +26,7 @@ stashR::clear_stash()
 
 The goal of 'stashR' is to save time on long-running computations by storing and reloading the resulting object after the first run.
 The next time the computation is run, instead of evaluating the code, the stashed object is loaded.
-'stashr' is great for storing intermediate objects in an analysis.
+'stashR' is great for storing intermediate objects in an analysis.
 
 ## Installation
 
@@ -112,7 +112,7 @@ stash("foo", depends_on = "x", {
 foo
 ```
 
-But if `x` does change, then `foo` get's re-evaluated.
+But if `x` does change, then `foo` gets re-evaluated.
 
 ```{r}
 x <- 200
@@ -124,3 +124,10 @@ stash("foo", depends_on = "x", {
 
 foo
 ```
+
+---
+
+### Attirubiton
+
+The inspiration for this package came from the `cache()` feature in the ['ProjectTemplate'](http://projecttemplate.net/index.html) package.
+While the functionality and implementation are a bit different, this would have been far more difficult to do without referencing the source code from 'ProjectTemplate'.
