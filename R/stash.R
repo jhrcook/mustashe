@@ -192,4 +192,4 @@ check_stash_dir <- function() {
 
 # The environment where all code is evaluated and variables assigned.
 .TargetEnv <- .GlobalEnv
-.stash_dir <- ".mustasher"
+.stash_dir <- ".mustashe"

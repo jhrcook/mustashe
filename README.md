@@ -1,56 +1,56 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# mustasher
+# mustashe
 
 <!-- badges: start -->
 
 [![CRAN
-status](https://www.r-pkg.org/badges/version/mustasher)](https://CRAN.R-project.org/package=mustasher)
+status](https://www.r-pkg.org/badges/version/mustashe)](https://CRAN.R-project.org/package=mustashe)
 [![Travis build
-status](https://travis-ci.org/jhrcook/mustasher.svg?branch=master)](https://travis-ci.org/jhrcook/mustasher)
+status](https://travis-ci.org/jhrcook/mustashe.svg?branch=master)](https://travis-ci.org/jhrcook/mustashe)
 [![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/jhrcook/mustasher?branch=master&svg=true)](https://ci.appveyor.com/project/jhrcook/mustasher)
+status](https://ci.appveyor.com/api/projects/status/github/jhrcook/mustashe?branch=master&svg=true)](https://ci.appveyor.com/project/jhrcook/mustashe)
 [![Codecov test
-coverage](https://codecov.io/gh/jhrcook/mustasher/branch/master/graph/badge.svg)](https://codecov.io/gh/jhrcook/mustasher?branch=master)
+coverage](https://codecov.io/gh/jhrcook/mustashe/branch/master/graph/badge.svg)](https://codecov.io/gh/jhrcook/mustashe?branch=master)
 <!-- badges: end -->
 
-The goal of ‘mustasher’ is to save time on long-running computations by
+The goal of ‘mustashe’ is to save time on long-running computations by
 storing and reloading the resulting object after the first run. The next
 time the computation is run, instead of evaluating the code, the stashed
-object is loaded. ‘mustasher’ is great for storing intermediate objects
+object is loaded. ‘mustashe’ is great for storing intermediate objects
 in an analysis.
 
 ## Installation
 
-You can install the released version of ‘mustasher’ from
+You can install the released version of ‘mustashe’ from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("mustasher")
+install.packages("mustashe")
 ```
 
 And the development version from
-[GitHub](https://github.com/jhrcook/mustasher) with:
+[GitHub](https://github.com/jhrcook/mustashe) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("jhrcook/mustasher")
+devtools::install_github("jhrcook/mustashe")
 ```
 
-## Loading ‘mustasher’
+## Loading ‘mustashe’
 
-The ‘mustasher’ package is loaded like any other, using the `library()`
+The ‘mustashe’ package is loaded like any other, using the `library()`
 function.
 
 ``` r
-library(mustasher)
+library(mustashe)
 ```
 
 ## Basic example
 
 Below is a simple example of how to use the `stash()` function from
-‘mustasher’.
+‘mustashe’.
 
 Let’s say, for part of an analysis, we are running a long simulation to
 generate random data `rnd_vals`. This is mocked below using the
@@ -65,7 +65,7 @@ stash("rnd_vals", {
 })
 #> Stashing object.
 tictoc::toc()
-#> random simulation: 3.828 sec elapsed
+#> random simulation: 3.717 sec elapsed
 ```
 
 Now, if we come back tomorrow and continue working on the same analysis,
@@ -81,7 +81,7 @@ stash("rnd_vals", {
 })
 #> Loading stashed object.
 tictoc::toc()
-#> random simulation: 0.061 sec elapsed
+#> random simulation: 0.065 sec elapsed
 ```
 
 ## Dependencies

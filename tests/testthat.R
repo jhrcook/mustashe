@@ -1,4 +1,4 @@
 library(testthat)
-library(mustasher)
+library(mustashe)
 
-test_check("mustasher")
+test_check("mustashe")
