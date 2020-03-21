@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 mustashe::clear_stash()
 ```
 
-# mustashe
+# mustashe <a href="https://jhrcook.github.io/mustashe/index.html"> <img src="man/figures/logo.png" align="right" alt="" width="120" /> </a>
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/mustashe)](https://CRAN.R-project.org/package=mustashe)

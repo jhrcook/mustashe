@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# mustashe
+# mustashe <a href="https://jhrcook.github.io/mustashe/index.html"> <img src="man/figures/logo.png" align="right" alt="" width="120" /> </a>
 
 <!-- badges: start -->
 
@@ -67,7 +67,7 @@ stash("rnd_vals", {
 })
 #> Stashing object.
 tictoc::toc()
-#> random simulation: 3.632 sec elapsed
+#> random simulation: 3.752 sec elapsed
 ```
 
 Now, if we come back tomorrow and continue working on the same analysis,
@@ -83,7 +83,7 @@ stash("rnd_vals", {
 })
 #> Loading stashed object.
 tictoc::toc()
-#> random simulation: 0.054 sec elapsed
+#> random simulation: 0.138 sec elapsed
 ```
 
 ## Dependencies
