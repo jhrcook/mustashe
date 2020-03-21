@@ -7,6 +7,8 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/mustashe)](https://CRAN.R-project.org/package=mustashe)
+[![R build
+status](https://github.com/jhrcook/mustashe/workflows/R-CMD-check/badge.svg)](https://github.com/jhrcook/mustashe/actions)
 [![Travis build
 status](https://travis-ci.org/jhrcook/mustashe.svg?branch=master)](https://travis-ci.org/jhrcook/mustashe)
 [![AppVeyor build
@@ -65,7 +67,7 @@ stash("rnd_vals", {
 })
 #> Stashing object.
 tictoc::toc()
-#> random simulation: 3.717 sec elapsed
+#> random simulation: 3.632 sec elapsed
 ```
 
 Now, if we come back tomorrow and continue working on the same analysis,
@@ -81,7 +83,7 @@ stash("rnd_vals", {
 })
 #> Loading stashed object.
 tictoc::toc()
-#> random simulation: 0.065 sec elapsed
+#> random simulation: 0.054 sec elapsed
 ```
 
 ## Dependencies

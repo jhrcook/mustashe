@@ -2,7 +2,7 @@
 % Please edit documentation in R/stash.R
 \name{stash}
 \alias{stash}
-\title{Stash an object.}
+\title{Stash an object}
 \usage{
 stash(var, code, depends_on = NULL)
 }

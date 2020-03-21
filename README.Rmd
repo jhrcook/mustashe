@@ -19,6 +19,7 @@ mustashe::clear_stash()
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/mustashe)](https://CRAN.R-project.org/package=mustashe)
+[![R build status](https://github.com/jhrcook/mustashe/workflows/R-CMD-check/badge.svg)](https://github.com/jhrcook/mustashe/actions)
 [![Travis build status](https://travis-ci.org/jhrcook/mustashe.svg?branch=master)](https://travis-ci.org/jhrcook/mustashe)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/jhrcook/mustashe?branch=master&svg=true)](https://ci.appveyor.com/project/jhrcook/mustashe)
 [![Codecov test coverage](https://codecov.io/gh/jhrcook/mustashe/branch/master/graph/badge.svg)](https://codecov.io/gh/jhrcook/mustashe?branch=master)

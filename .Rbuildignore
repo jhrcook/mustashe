@@ -11,3 +11,4 @@
 
 ^.mustashe$
 ^cran-comments.md$
+^\.github$

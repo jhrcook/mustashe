@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Clear the stash — clear_stash • mustashe</title>
+<title>mustashe: Stash and Load Objects in R — mustashe • mustashe</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,11 @@
 
 
 
-<meta property="og:title" content="Clear the stash — clear_stash" />
-<meta property="og:description" content="Clears the hidden '.mustashe' directory." />
+<meta property="og:title" content="mustashe: Stash and Load Objects in R — mustashe" />
+<meta property="og:description" content="A simple system for saving and loading objects in R. Long running
+computations can be stashed after the first run and then reloaded the next
+time. Dependencies can be added to ensure that a computation is re-run if
+any of its dependencies or inputs have changed." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -114,27 +117,25 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Clear the stash</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jhrcook/mustashe/blob/master/R/clear_stash.R'><code>R/clear_stash.R</code></a></small>
-    <div class="hidden name"><code>clear_stash.Rd</code></div>
+    <h1>mustashe: Stash and Load Objects in R</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jhrcook/mustashe/blob/master/R/mustashe.R'><code>R/mustashe.R</code></a></small>
+    <div class="hidden name"><code>mustashe.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Clears the hidden '.mustashe' directory.</p>
+    <p>A simple system for saving and loading objects in R. Long running
+computations can be stashed after the first run and then reloaded the next
+time. Dependencies can be added to ensure that a computation is re-run if
+any of its dependencies or inputs have changed.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>clear_stash</span>()</pre>
 
 
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>clear_stash</span>()</div><div class='output co'>#&gt; <span class='message'>Clearing stash.</span></div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

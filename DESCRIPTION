@@ -5,7 +5,8 @@ Version: 0.1.0
 Authors@R: person(c("Joshua", "H"), "Cook", email = "joshuacook0023@gmail.com",
     role = c("aut", "cre"),
     comment = c(ORCID = "0000-0001-9815-6879"))
-https: //github.com/jhrcook/mustashe https://jhrcook.github.io/mustashe/
+URL: https://github.com/jhrcook/mustashe https://jhrcook.github.io/mustashe/
+BugReports: https://github.com/jhrcook/mustashe/issues
 Description: A simple system for saving and loading objects in R. Long running 
     computations can be stashed after the first run and then reloaded the next
     time. Dependencies can be added to ensure that a computation is re-run if

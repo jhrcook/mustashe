@@ -2,3 +2,4 @@
 
 export(clear_stash)
 export(stash)
+export(unstash)
