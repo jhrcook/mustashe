@@ -12,16 +12,14 @@
 #' @return Returns \code{NULL} (invisibly).
 #'
 #' @examples
-#' \dontrun{
 #' # A value that is used to create `rnd_vals`.
-#' x <- 1e6
+#' x <<- 1e6  # The `<<-` is not normally required, just for this example.
 #'
 #' # Stash the results of the comuption of `rnd_vals`.
 #' stash("rnd_vals", depends_on = "x", {
 #'     # Some long running computation.
 #'     rnd_vals <- rnorm(x)
 #' })
-#' }
 #'
 #' @export stash
 stash <- function(var, code, depends_on = NULL) {

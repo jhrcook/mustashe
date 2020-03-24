@@ -7,14 +7,12 @@
 #' @return Returns \code{NULL} (invisibly).
 #'
 #' @examples
-#' \dontrun{
 #' stash("x",
 #' {
 #'     x <- 1
 #' })
 #'
 #' unstash("x")
-#' }
 #'
 #' @export unstash
 unstash <- function(var) {

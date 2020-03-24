@@ -16,13 +16,11 @@ Returns \code{NULL} (invisibly).
 Remove an object from the stash.
 }
 \examples{
-\dontrun{
 stash("x",
 {
     x <- 1
 })
 
 unstash("x")
-}
 
 }
