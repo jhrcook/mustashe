@@ -1,6 +1,6 @@
 Package: mustashe
 Type: Package
-Title: Stash and Load Objects in R
+Title: Stash and Load Objects
 Version: 0.1.0
 Authors@R: person(c("Joshua", "H"), "Cook", email = "joshuacook0023@gmail.com",
     role = c("aut", "cre"),
