@@ -15,7 +15,7 @@ stash(var, code, depends_on = NULL)
 to these objects will cause the re-running of the code, next time.}
 }
 \value{
-\code{NULL}
+Returns \code{NULL} (invisibly).
 }
 \description{
 Stash an object after the first time is is created and re-load it the next

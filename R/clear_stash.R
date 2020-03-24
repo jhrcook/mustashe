@@ -2,6 +2,8 @@
 #'
 #' Clears the hidden '.mustashe' directory.
 #'
+#' @return Returns \code{NULL} (invisibly).
+#'
 #' @examples
 #' clear_stash()
 #'

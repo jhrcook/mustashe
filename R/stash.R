@@ -9,7 +9,7 @@
 #' @param depends_on A vector of other objects that this one depends on. Changes
 #'   to these objects will cause the re-running of the code, next time.
 #'
-#' @return \code{NULL}
+#' @return Returns \code{NULL} (invisibly).
 #'
 #' @examples
 #' \dontrun{

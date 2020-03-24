@@ -10,7 +10,7 @@ unstash(var)
 \item{var}{The name or a vector of names of objects to remove.}
 }
 \value{
-\code{NULL}
+Returns \code{NULL} (invisibly).
 }
 \description{
 Remove an object from the stash.

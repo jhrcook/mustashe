@@ -4,7 +4,7 @@
 #'
 #' @param var The name or a vector of names of objects to remove.
 #'
-#' @return \code{NULL}
+#' @return Returns \code{NULL} (invisibly).
 #'
 #' @examples
 #' \dontrun{
