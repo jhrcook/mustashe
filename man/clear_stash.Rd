@@ -6,6 +6,9 @@
 \usage{
 clear_stash()
 }
+\value{
+Returns \code{NULL} (invisibly).
+}
 \description{
 Clears the hidden '.mustashe' directory.
 }

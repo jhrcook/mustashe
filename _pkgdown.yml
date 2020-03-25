@@ -9,6 +9,7 @@ navbar:
     left:
     - home
     - reference
+    - articles
     right:
     - news
     - github
@@ -20,6 +21,13 @@ navbar:
     reference:
       text: Reference
       href: reference/index.html
+    articles:
+      text: Articles
+      menu:
+      - text: Getting Started
+        href: articles/getting-started.html
+      - text: How 'mustashe' works
+        href: articles/how-mustashe-works.html
     news:
       text: Versions
       href: news/index.html

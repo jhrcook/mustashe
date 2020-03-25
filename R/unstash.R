@@ -4,17 +4,15 @@
 #'
 #' @param var The name or a vector of names of objects to remove.
 #'
-#' @return \code{NULL}
+#' @return Returns \code{NULL} (invisibly).
 #'
 #' @examples
-#' \dontrun{
 #' stash("x",
 #' {
 #'     x <- 1
 #' })
 #'
 #' unstash("x")
-#' }
 #'
 #' @export unstash
 unstash <- function(var) {
