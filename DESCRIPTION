@@ -18,7 +18,9 @@ Suggests:
     covr (>= 3.3.0),
     spelling (>= 2.1),
     testthat (>= 2.1.0),
-    tictoc (>= 1.0)
+    tictoc (>= 1.0),
+    knitr,
+    rmarkdown
 Language: en-US
 Imports:
     formatR (>= 1.7),
@@ -26,3 +28,4 @@ Imports:
     digest (>= 0.6.0),
     tibble (>= 2.1.0)
 RoxygenNote: 7.1.0
+VignetteBuilder: knitr
