@@ -115,7 +115,7 @@
 <a href="#basic-example" class="anchor"></a>Basic example</h2>
 <p>Below is a breif example outlining the use of the primary function from the package, <code><a href="../reference/stash.html">stash()</a></code>. First we must load the ‘mustashe’ library.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(mustashe)</span></code></pre></div>
-<p>Say we are performing a long-running computation (simulated here using <code><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep()</a></code> to pause for a few seconds) that produces the object named <code>x</code>. The name of the object to stash <code>"x"</code> and the code itself are passed to <code><a href="../reference/stash.html">stash()</a></code> as follows. (I used the package <a href="https://cran.r-project.org/web/packages/tictoc/index.html">‘tictoc’</a> to time the execution of the code.)</p>
+<p>Say we are performing a long-running computation (simulated here using <code><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep()</a></code> to pause for a few seconds) that produces the object named <code>x</code>. The name of the object to stash <code>"x"</code> and the code itself are passed to <code><a href="../reference/stash.html">stash()</a></code> as follows. (I used the package <a href="https://CRAN.R-project.org/package=tictoc">‘tictoc’</a> to time the execution of the code.)</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">tic</span>(<span class="st">"long-running computation"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2"></a></span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="kw"><a href="../reference/stash.html">stash</a></span>(<span class="st">"x"</span>, {</span>
@@ -125,7 +125,7 @@
 <span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt; Stashing object.</span></span>
 <span id="cb3-8"><a href="#cb3-8"></a></span>
 <span id="cb3-9"><a href="#cb3-9"></a><span class="kw">toc</span>()</span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; long-running computation: 5.222 sec elapsed</span></span></code></pre></div>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; long-running computation: 5.228 sec elapsed</span></span></code></pre></div>
 <p>‘mustashe’ tells us that the object was stashed, and we can see that <code>x</code> was successfully assigned the value 5.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>x</span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt; [1] 5</span></span></code></pre></div>
@@ -139,12 +139,12 @@
 <span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt; Loading stashed object.</span></span>
 <span id="cb5-8"><a href="#cb5-8"></a></span>
 <span id="cb5-9"><a href="#cb5-9"></a><span class="kw">toc</span>()</span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#&gt; long-running computation: 0.035 sec elapsed</span></span></code></pre></div>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#&gt; long-running computation: 0.053 sec elapsed</span></span></code></pre></div>
 <p>That’s the basic use case of ‘mustashe’! Any issues and feedback can be submitted <a href="https://github.com/jhrcook/mustashe/issues">here</a>. Continue reading below for explanations of other useful features of ‘mustashe’.</p>
 <div id="why-not-use-projecttemplates-cache-function" class="section level3">
 <h3 class="hasAnchor">
 <a href="#why-not-use-projecttemplates-cache-function" class="anchor"></a>Why not use ’ProjectTemplate’s <code>cache()</code> function?</h3>
-<p>Originally I tried to use the <code>cache()</code> function from ‘ProjectTemplate’, but ran into a few problems.</p>
+<p>Originally I tried to use the <code>cache()</code> function from <a href="https://CRAN.R-project.org/package=ProjectTemplate">‘ProjectTemplate’</a>, but ran into a few problems.</p>
 <p>The first was, to use it without modification, I would need to be using the ‘ProjectTemplate’ system for my whole analysis project. It first checks if all of the expected directories and components are in place, throwing an error when they are not.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>ProjectTemplate<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/ProjectTemplate/man/cache.html">cache</a></span>(<span class="st">"x"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2"></a></span>
@@ -176,7 +176,7 @@
 <span id="cb7-5"><a href="#cb7-5"></a>})</span>
 <span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; Stashing object.</span></span>
 <span id="cb7-7"><a href="#cb7-7"></a><span class="kw">toc</span>()</span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt; 3.018 sec elapsed</span></span></code></pre></div>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt; 3.014 sec elapsed</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">tic</span>()</span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="kw"><a href="../reference/stash.html">stash</a></span>(<span class="st">"a"</span>, {</span>
 <span id="cb8-3"><a href="#cb8-3"></a>  <span class="kw"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span>(<span class="dv">3</span>)</span>
@@ -184,7 +184,7 @@
 <span id="cb8-5"><a href="#cb8-5"></a>})</span>
 <span id="cb8-6"><a href="#cb8-6"></a><span class="co">#&gt; Updating stash.</span></span>
 <span id="cb8-7"><a href="#cb8-7"></a><span class="kw">toc</span>()</span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="co">#&gt; 3.017 sec elapsed</span></span></code></pre></div>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="co">#&gt; 3.011 sec elapsed</span></span></code></pre></div>
 <p><strong>However, ‘mustashe’ is insensitive to changes in comments and other style-based adjustments to the code.</strong> In the next example, a comment has been added, but we see that the object is loaded from the stash.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw"><a href="../reference/stash.html">stash</a></span>(<span class="st">"a"</span>, {</span>
 <span id="cb9-2"><a href="#cb9-2"></a>  <span class="kw"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span>(<span class="dv">3</span>)</span>

@@ -35,7 +35,7 @@ library(mustashe)
 
 Say we are performing a long-running computation (simulated here using `Sys.sleep()` to pause for a few seconds) that produces the object named `x`.
 The name of the object to stash `"x"` and the code itself are passed to `stash()` as follows.
-(I used the package ['tictoc'](https://cran.r-project.org/web/packages/tictoc/index.html) to time the execution of the code.)
+(I used the package ['tictoc'](https://CRAN.R-project.org/package=tictoc) to time the execution of the code.)
 
 ```{r}
 tic("long-running computation")
@@ -75,7 +75,7 @@ Continue reading below for explanations of other useful features of 'mustashe'.
 
 ### Why not use 'ProjectTemplate's `cache()` function?
 
-Originally I tried to use the `cache()` function from 'ProjectTemplate', but ran into a few problems.
+Originally I tried to use the `cache()` function from ['ProjectTemplate'](https://CRAN.R-project.org/package=ProjectTemplate), but ran into a few problems.
 
 The first was, to use it without modification, I would need to be using the 'ProjectTemplate' system for my whole analysis project. It first checks if all of the expected directories and components are in place, throwing an error when they are not.
 

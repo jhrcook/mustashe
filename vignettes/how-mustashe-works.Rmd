@@ -94,7 +94,7 @@ Paired with `substitute()`, it returns a string of the unevaluated code.
 deparse(substitute(x <- 1))
 ```
 
-With the code now as a string, it is formatted using the `tidy_source()` function from ['formatR'](https://cran.r-project.org/web/packages/formatR/index.html).
+With the code now as a string, it is formatted using the `tidy_source()` function from ['formatR'](https://CRAN.R-project.org/package=formatR).
 An internal function in 'mustashe', `format_code()` handles this process:
 
 ```{r}
@@ -129,7 +129,7 @@ format_code(("x <- 2  # a comment"))
 
 The hash table is a two-column table with the name and hash value of the code and any (optional) dependencies.
 
-The hashing is handled by the ['digest'](https://cran.r-project.org/web/packages/digest/index.html) package.
+The hashing is handled by the ['digest'](https://CRAN.R-project.org/package=digest) package.
 It takes a value and reproducibly produces a unique hash value.
 
 ```{r}
