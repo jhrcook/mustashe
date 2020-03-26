@@ -134,7 +134,7 @@
 <span id="cb4-5"><a href="#cb4-5"></a>})</span>
 <span id="cb4-6"><a href="#cb4-6"></a><span class="co">#&gt; Stashing object.</span></span>
 <span id="cb4-7"><a href="#cb4-7"></a>tictoc<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span>()</span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="co">#&gt; random simulation: 3.752 sec elapsed</span></span></code></pre></div>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co">#&gt; random simulation: 3.382 sec elapsed</span></span></code></pre></div>
 <p>Now, if we come back tomorrow and continue working on the same analysis, the second time this process is run the code is not evaluated because the code passed to <code><a href="reference/stash.html">stash()</a></code> has not changed. Instead, the random values <code>rnd_vals</code> is loaded.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>tictoc<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span>(<span class="st">"random simulation"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="kw"><a href="reference/stash.html">stash</a></span>(<span class="st">"rnd_vals"</span>, {</span>
@@ -143,7 +143,7 @@
 <span id="cb5-5"><a href="#cb5-5"></a>})</span>
 <span id="cb5-6"><a href="#cb5-6"></a><span class="co">#&gt; Loading stashed object.</span></span>
 <span id="cb5-7"><a href="#cb5-7"></a>tictoc<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span>()</span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt; random simulation: 0.138 sec elapsed</span></span></code></pre></div>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt; random simulation: 0.053 sec elapsed</span></span></code></pre></div>
 </div>
 <div id="dependencies" class="section level2">
 <h2 class="hasAnchor">
@@ -185,9 +185,9 @@
 <span id="cb8-10"><a href="#cb8-10"></a>foo</span>
 <span id="cb8-11"><a href="#cb8-11"></a><span class="co">#&gt; [1] 201</span></span></code></pre></div>
 <hr>
-<div id="attirubiton" class="section level3">
+<div id="attribution" class="section level3">
 <h3 class="hasAnchor">
-<a href="#attirubiton" class="anchor"></a>Attirubiton</h3>
+<a href="#attribution" class="anchor"></a>Attribution</h3>
 <p>The inspiration for this package came from the <code>cache()</code> feature in the <a href="http://projecttemplate.net/index.html">‘ProjectTemplate’</a> package. While the functionality and implementation are a bit different, this would have been far more difficult to do without referencing the source code from ‘ProjectTemplate’.</p>
 </div>
 </div>

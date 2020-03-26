@@ -67,7 +67,7 @@ stash("rnd_vals", {
 })
 #> Stashing object.
 tictoc::toc()
-#> random simulation: 3.752 sec elapsed
+#> random simulation: 3.382 sec elapsed
 ```
 
 Now, if we come back tomorrow and continue working on the same analysis,
@@ -83,7 +83,7 @@ stash("rnd_vals", {
 })
 #> Loading stashed object.
 tictoc::toc()
-#> random simulation: 0.138 sec elapsed
+#> random simulation: 0.053 sec elapsed
 ```
 
 ## Dependencies
@@ -145,7 +145,7 @@ foo
 
 -----
 
-### Attirubiton
+### Attribution
 
 The inspiration for this package came from the `cache()` feature in the
 [‘ProjectTemplate’](http://projecttemplate.net/index.html) package.

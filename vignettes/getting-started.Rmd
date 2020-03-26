@@ -26,7 +26,7 @@ In other words, the first time a chunk of code is evaluated, the output can be *
 
 ## Basic example
 
-Below is a breif example outlining the use of the primary function from the package, `stash()`.
+Below is a brief example outlining the use of the primary function from the package, `stash()`.
 First we must load the 'mustashe' library.
 
 ```{r}
@@ -93,7 +93,7 @@ I did this and thought it was working: on the first pass it would cache the resu
 However, in a new session of R, it would not just load from the cache, but, instead, evaluate the code and cache the results.
 After a bit of exploring the `cache()` source code, I realized the problem was that 'ProjectTemplate' compares the current value of the object to be cached with the object that is cached.
 Of course, this requires the object to be in the environment already, which it is in a 'ProjectTemplate' system after running `load.project()` because that loads the cache (lazily) into the R environment.
-I do not want this behaviour, and thus the caching system used by 'ProjectTemplate' was insufficient for my needs.
+I do not want this behavior, and thus the caching system used by 'ProjectTemplate' was insufficient for my needs.
 
 That said, I *heavily* relied upon the code for `cache()` when creating `stash()`.
 This would have been far more difficult to do without reference to 'ProjectTemplate'.
@@ -103,7 +103,7 @@ This would have been far more difficult to do without reference to 'ProjectTempl
 
 There are two major features of the `stash()` function from 'mustashe' not covered in the basic example above:
 
-1. 'mustashe' "remembers" the code passed to `stash()` and will re-evalute the code if it has changed.
+1. 'mustashe' "remembers" the code passed to `stash()` and will re-evaluate the code if it has changed.
 2. Dependencies can be explicitly linked to the stashed object so that the code is re-evaluated if the dependencies change.
 
 These two features are demonstrated below.
@@ -157,8 +157,8 @@ a=runif(  10  )      # Another comment
 
 ### Dependencies
 
-Dependencies can be explcitly linked to an object to make sure that if they change, the stashed object is re-evaluated.
-"Dependency" in this case could refer to data frames that are used to create another (e.g. summarising a data frame's columns), inputs to a function, etc.
+Dependencies can be explicitly linked to an object to make sure that if they change, the stashed object is re-evaluated.
+"Dependency" in this case could refer to data frames that are used to create another (e.g. summarizing a data frame's columns), inputs to a function, etc.
 
 The following demonstrates this with a simple example where `x` is used to calculate `y`.
 By passing `"x"` to the `depends_on` argument, when the value of `x` is changed, the code to create `y` is re-evaluated
