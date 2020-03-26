@@ -16,11 +16,13 @@ Returns \code{NULL} (invisibly).
 Remove an object from the stash.
 }
 \examples{
+\donttest{
 stash("x",
 {
     x <- 1
 })
 
 unstash("x")
+}
 
 }

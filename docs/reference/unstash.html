@@ -162,11 +162,13 @@
     <p>Returns <code>NULL</code> (invisibly).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='stash.html'>stash</a></span>(<span class='st'>"x"</span>,
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='fu'><a href='stash.html'>stash</a></span>(<span class='st'>"x"</span>,
 {
     <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>
 })</div><div class='output co'>#&gt; <span class='message'>Stashing object.</span></div><div class='input'>
-<span class='fu'>unstash</span>(<span class='st'>"x"</span>)</div><div class='output co'>#&gt; <span class='message'>Unstashing 'x'.</span></div><div class='input'>
+<span class='fu'>unstash</span>(<span class='st'>"x"</span>)</div><div class='output co'>#&gt; <span class='message'>Unstashing 'x'.</span></div><div class='input'># }
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

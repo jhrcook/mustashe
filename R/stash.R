@@ -12,6 +12,7 @@
 #' @return Returns \code{NULL} (invisibly).
 #'
 #' @examples
+#' \donttest{
 #' # A value that is used to create `rnd_vals`.
 #' x <<- 1e6  # The `<<-` is not normally required, just for this example.
 #'
@@ -20,6 +21,7 @@
 #'     # Some long running computation.
 #'     rnd_vals <- rnorm(x)
 #' })
+#' }
 #'
 #' @export stash
 stash <- function(var, code, depends_on = NULL) {

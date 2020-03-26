@@ -125,7 +125,7 @@
 <span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt; Stashing object.</span></span>
 <span id="cb3-8"><a href="#cb3-8"></a></span>
 <span id="cb3-9"><a href="#cb3-9"></a><span class="kw">toc</span>()</span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; long-running computation: 5.57 sec elapsed</span></span></code></pre></div>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; long-running computation: 5.35 sec elapsed</span></span></code></pre></div>
 <p>‘mustashe’ tells us that the object was stashed, and we can see that <code>x</code> was successfully assigned the value 5.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>x</span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt; [1] 5</span></span></code></pre></div>
@@ -139,7 +139,7 @@
 <span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt; Loading stashed object.</span></span>
 <span id="cb5-8"><a href="#cb5-8"></a></span>
 <span id="cb5-9"><a href="#cb5-9"></a><span class="kw">toc</span>()</span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#&gt; long-running computation: 0.063 sec elapsed</span></span></code></pre></div>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#&gt; long-running computation: 0.038 sec elapsed</span></span></code></pre></div>
 <p>That’s the basic use case of ‘mustashe’! Any issues and feedback can be submitted <a href="https://github.com/jhrcook/mustashe/issues">here</a>. Continue reading below for explanations of other useful features of ‘mustashe’.</p>
 <div id="why-not-use-projecttemplates-cache-function" class="section level3">
 <h3 class="hasAnchor">
@@ -176,7 +176,7 @@
 <span id="cb7-5"><a href="#cb7-5"></a>})</span>
 <span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; Stashing object.</span></span>
 <span id="cb7-7"><a href="#cb7-7"></a><span class="kw">toc</span>()</span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt; 3.01 sec elapsed</span></span></code></pre></div>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt; 3.018 sec elapsed</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">tic</span>()</span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="kw"><a href="../reference/stash.html">stash</a></span>(<span class="st">"a"</span>, {</span>
 <span id="cb8-3"><a href="#cb8-3"></a>  <span class="kw"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span>(<span class="dv">3</span>)</span>
@@ -184,7 +184,7 @@
 <span id="cb8-5"><a href="#cb8-5"></a>})</span>
 <span id="cb8-6"><a href="#cb8-6"></a><span class="co">#&gt; Updating stash.</span></span>
 <span id="cb8-7"><a href="#cb8-7"></a><span class="kw">toc</span>()</span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="co">#&gt; 3.018 sec elapsed</span></span></code></pre></div>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="co">#&gt; 3.013 sec elapsed</span></span></code></pre></div>
 <p><strong>However, ‘mustashe’ is insensitive to changes in comments and other style-based adjustments to the code.</strong> In the next example, a comment has been added, but we see that the object is loaded from the stash.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw"><a href="../reference/stash.html">stash</a></span>(<span class="st">"a"</span>, {</span>
 <span id="cb9-2"><a href="#cb9-2"></a>  <span class="kw"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span>(<span class="dv">3</span>)</span>

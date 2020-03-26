@@ -23,6 +23,7 @@ time. If the code that generates the object is changed or any of its
 dependencies change, the code is re-evaluated and the new object is stashed.
 }
 \examples{
+\donttest{
 # A value that is used to create `rnd_vals`.
 x <<- 1e6  # The `<<-` is not normally required, just for this example.
 
@@ -31,5 +32,6 @@ stash("rnd_vals", depends_on = "x", {
     # Some long running computation.
     rnd_vals <- rnorm(x)
 })
+}
 
 }

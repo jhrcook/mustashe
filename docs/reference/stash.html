@@ -175,14 +175,16 @@ to these objects will cause the re-running of the code, next time.</p></td>
     <p>Returns <code>NULL</code> (invisibly).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># A value that is used to create `rnd_vals`.</span>
+    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+<span class='co'># A value that is used to create `rnd_vals`.</span>
 <span class='no'>x</span> <span class='kw'>&lt;&lt;-</span> <span class='fl'>1e6</span>  <span class='co'># The `&lt;&lt;-` is not normally required, just for this example.</span>
 
 <span class='co'># Stash the results of the comuption of `rnd_vals`.</span>
 <span class='fu'>stash</span>(<span class='st'>"rnd_vals"</span>, <span class='kw'>depends_on</span> <span class='kw'>=</span> <span class='st'>"x"</span>, {
     <span class='co'># Some long running computation.</span>
     <span class='no'>rnd_vals</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>x</span>)
-})</div><div class='output co'>#&gt; <span class='message'>Stashing object.</span></div><div class='input'>
+})</div><div class='output co'>#&gt; <span class='message'>Stashing object.</span></div><div class='input'># }
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
