@@ -60,59 +60,6 @@ stash <- function(var, code, depends_on = NULL) {
     invisible(NULL)
 }
 
-#' Unstash an object
-#'
-#' Remove an object from the stash.
-#'
-#' @param var The name or a vector of names of objects to remove.
-#'
-#' @return Returns \code{NULL} (invisibly).
-#'
-#' @examples
-#' \donttest{
-#' stash("x",
-#' {
-#'     x <- 1
-#' })
-#'
-#' unstash("x")
-#' }
-#'
-#' @export unstash
-unstash <- function(var) {
-
-    f <- function(v) {
-        if (has_been_stashed(v)) {
-            message(paste0("Unstashing '", v, "'."))
-            file.remove(unlist(stash_filename(v)))
-        } else {
-            message(paste0("No object '", v, "' in stash."))
-        }
-    }
-    lapply(var, f)
-    invisible(NULL)
-}
-
-#' Clear the stash
-#'
-#' Clears the stash directory.
-#'
-#' @return Returns \code{NULL} (invisibly).
-#'
-#' @examples
-#' clear_stash()
-#'
-#' @export clear_stash
-clear_stash <- function() {
-    message("Clearing stash.")
-    file.remove(c(
-        list.files(.stash_dir, full.names = TRUE),
-        list.files(.stash_dir, full.names = TRUE, pattern = "hash$")
-    ))
-    invisible(NULL)
-}
-
-
 # Make a new stash from a variable, code, and hash table.
 new_stash <- function(var, code, hash_tbl) {
     val <- evaluate_code(code)
@@ -243,4 +190,4 @@ check_stash_dir <- function() {
 
 # The environment where all code is evaluated and variables assigned.
 .TargetEnv <- .GlobalEnv
-.stash_dir <- ".mustash"
+.stash_dir <- ".mustashe"
