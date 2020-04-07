@@ -60,6 +60,58 @@ stash <- function(var, code, depends_on = NULL) {
     invisible(NULL)
 }
 
+#' Unstash an object
+#'
+#' Remove an object from the stash.
+#'
+#' @param var The name or a vector of names of objects to remove.
+#'
+#' @return Returns \code{NULL} (invisibly).
+#'
+#' @examples
+#' \donttest{
+#' stash("x",
+#' {
+#'     x <- 1
+#' })
+#'
+#' unstash("x")
+#' }
+#'
+#' @export unstash
+unstash <- function(var) {
+
+    f <- function(v) {
+        if (has_been_stashed(v)) {
+            message(paste0("Unstashing '", v, "'."))
+            file.remove(unlist(stash_filename(v)))
+        } else {
+            message(paste0("No object '", v, "' in stash."))
+        }
+    }
+    lapply(var, f)
+    invisible(NULL)
+}
+
+#' Clear the stash
+#'
+#' Clears the stash directory.
+#'
+#' @return Returns \code{NULL} (invisibly).
+#'
+#' @examples
+#' clear_stash()
+#'
+#' @export clear_stash
+clear_stash <- function() {
+    message("Clearing stash.")
+    file.remove(c(
+        list.files(.stash_dir, full.names = TRUE),
+        list.files(.stash_dir, full.names = TRUE, pattern = "hash$")
+    ))
+    invisible(NULL)
+}
+
 
 # Make a new stash from a variable, code, and hash table.
 new_stash <- function(var, code, hash_tbl) {
@@ -133,30 +185,29 @@ has_been_stashed <- function(var) {
 
 # Retrieve the hash table as a `tibble`.
 get_hash_table <- function(var) {
-    dat <- readr::read_tsv(stash_filename(var)$hash_name, col_types = "cc")
+    dat <- qs::qread(stash_filename(var)$hash_name)
     dat <- tibble::as_tibble(dat)
-    attr(dat, "spec") <- NULL
     return(dat)
 }
 
 
 # Write the hash table to file.
 write_hash_table <- function(var, tbl) {
-    readr::write_tsv(tbl, stash_filename(var)$hash_name)
+    qs::qsave(tbl, stash_filename(var)$hash_name)
 }
 
 
 # Write the value to disk.
 write_val <- function(var, val) {
     path <- stash_filename(var)$data_name
-    saveRDS(val, path)
+    qs::qsave(val, path)
 }
 
 
 # Load in a variable from disk and assign it to the global environment.
 load_variable <- function(var) {
     path <- stash_filename(var)$data_name
-    val <- readRDS(path)
+    val <- qs::qread(path)
     assign_value(var, val)
 }
 
@@ -176,7 +227,7 @@ assign_value <- function(var, val) {
 # Get the file names for staching
 stash_filename <- function(var) {
     return(list(
-        data_name = file.path(.stash_dir, paste0(var, ".rds")),
+        data_name = file.path(.stash_dir, var),
         hash_name = file.path(.stash_dir, paste0(var, ".hash"))
     ))
 }
@@ -184,7 +235,7 @@ stash_filename <- function(var) {
 
 check_stash_dir <- function() {
     if (!dir.exists(.stash_dir)) {
-        dir.create(.stash_dir)
+        dir.create(.stash_dir, recursive = TRUE)
     }
     invisible(NULL)
 }
@@ -192,4 +243,4 @@ check_stash_dir <- function() {
 
 # The environment where all code is evaluated and variables assigned.
 .TargetEnv <- .GlobalEnv
-.stash_dir <- ".mustashe"
+.stash_dir <- ".mustash"
