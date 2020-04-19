@@ -14,6 +14,7 @@ test_that("stashing works", {
     file_time <- function(path) {
          file.info(path)$mtime
     }
+
     old_rds_time <- file_time(file.path(target_dir, "a.rds"))
     old_hash_time <- file_time(file.path(target_dir, "a.hash"))
     Sys.sleep(1.5)
