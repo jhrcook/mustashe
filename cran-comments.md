@@ -1,16 +1,12 @@
 # mustashe
 
-## Resubmission
+## Bug fix and minor version release
 
-This is a resubmission. I have addressed the following comments from the first attempt:
+Brian Ripley reported that the tests for this package failed on the CRAN macOS servers.
+I was unable to reproduce this on my machine running macOS 10.15.2, and it seems like this problem only occured on versions of macOS 10.12 and older.
+We were able able to correct the problem without changing any of the tests or package as it was caused by how the time of last modification was reported for files written and read by the `stash()` function.
 
-1. I omitted the redundant "in R" from the title.
-2. I added "\value" to the documentation of each function.
-3. I replaced the "\dontrun{}" statements with "\donttest{}" in the examples for some of the functions.
-
-I was unable to address the final comment: "Please do not modifiy the .GlobalEnv. This is not allowed by the CRAN policies." I am unable to address this because the purpose of the 'mustashe' project is to load stashed values into the global environment. This functionality is very simillar (in fact, derived from) the `cache()` function in 'ProjectTemplate'. In a personal correspondence with the maintainer of 'ProjectTemplate', I found out that they were gradnfathered in when this policy was created. I am hoping an exception can be made for 'mustashe', too.
-
-I have also added two vignettes to the package to explain how to use it and how it works.
+This is also a minor version release because we have switched to using the 'qs: Quick Serialization of R Objects' package for reading and writing files instead of using RDS files.
 
 
 ## Test environments
