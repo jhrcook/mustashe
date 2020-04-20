@@ -174,7 +174,7 @@ assign_value <- function(var, val) {
 # Get the file names for staching
 stash_filename <- function(var) {
     return(list(
-        data_name = file.path(.stash_dir, var),
+        data_name = file.path(.stash_dir, paste0(var, ".qs")),
         hash_name = file.path(.stash_dir, paste0(var, ".hash"))
     ))
 }
