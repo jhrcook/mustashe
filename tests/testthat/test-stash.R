@@ -14,9 +14,10 @@ test_that("stashing works", {
     file_time <- function(path) {
          file.info(path)$mtime
     }
+  
     old_qs_time <- file_time(file.path(target_dir, "a.qs"))
     old_hash_time <- file_time(file.path(target_dir, "a.hash"))
-    Sys.sleep(0.5)
+    Sys.sleep(1.5)
 
     expect_null(stash("a", { a <- 1 }))
     expect_equal(a, 1)
@@ -40,7 +41,7 @@ test_that("stashing works", {
 
     old_qs_time <- file_time(file.path(target_dir, "a.qs"))
     old_hash_time <- file_time(file.path(target_dir, "a.hash"))
-    Sys.sleep(0.5)
+    Sys.sleep(1.5)
 
     expect_null(stash("a", depends_on = "b", { a <- b + 1 }))
     expect_equal(a, 2)
