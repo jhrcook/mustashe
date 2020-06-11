@@ -42,7 +42,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">mustashe</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2.9000</span>
       </span>
     </div>
 
@@ -135,7 +135,7 @@
 })
 <span class="co">#&gt; Stashing object.</span>
 <span class="kw pkg">tictoc</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span>()
-<span class="co">#&gt; random simulation: 3.382 sec elapsed</span></pre></div>
+<span class="co">#&gt; random simulation: 3.425 sec elapsed</span></pre></div>
 <p>Now, if we come back tomorrow and continue working on the same analysis, the second time this process is run the code is not evaluated because the code passed to <code><a href="reference/stash.html">stash()</a></code> has not changed. Instead, the random values <code>rnd_vals</code> is loaded.</p>
 <div class="sourceCode" id="cb5"><pre class="r"><span class="kw pkg">tictoc</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span>(<span class="st">"random simulation"</span>)
 <span class="fu"><a href="reference/stash.html">stash</a></span>(<span class="st">"rnd_vals"</span>, {
@@ -144,7 +144,7 @@
 })
 <span class="co">#&gt; Loading stashed object.</span>
 <span class="kw pkg">tictoc</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span>()
-<span class="co">#&gt; random simulation: 0.053 sec elapsed</span></pre></div>
+<span class="co">#&gt; random simulation: 0.031 sec elapsed</span></pre></div>
 </div>
 <div id="dependencies" class="section level2">
 <h2 class="hasAnchor">
@@ -226,10 +226,12 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://CRAN.R-project.org/package=mustashe"><img src="https://www.r-pkg.org/badges/version/mustashe" alt="CRAN status"></a></li>
+<li><a href="https://cran.r-project.org/package=mustashe"><img src="http://cranlogs.r-pkg.org/badges/grand-total/mustashe" alt="CRAN downloads"></a></li>
 <li><a href="https://github.com/jhrcook/mustashe/actions"><img src="https://github.com/jhrcook/mustashe/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 <li><a href="https://travis-ci.org/jhrcook/mustashe"><img src="https://travis-ci.org/jhrcook/mustashe.svg?branch=master" alt="Travis build status"></a></li>
 <li><a href="https://ci.appveyor.com/project/jhrcook/mustashe"><img src="https://ci.appveyor.com/api/projects/status/github/jhrcook/mustashe?branch=master&amp;svg=true" alt="AppVeyor build status"></a></li>
 <li><a href="https://codecov.io/gh/jhrcook/mustashe?branch=master"><img src="https://codecov.io/gh/jhrcook/mustashe/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3"></a></li>
 </ul>
 </div>
 </div>

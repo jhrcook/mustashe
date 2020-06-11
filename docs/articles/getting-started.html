@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mustashe</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2.9000</span>
       </span>
     </div>
 
@@ -95,7 +95,7 @@
 
       
 
-      </header><script src="getting-started_files/header-attrs-2.1/header-attrs.js"></script><div class="row">
+      </header><script src="getting-started_files/header-attrs-2.2/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting Started</h1>
@@ -125,7 +125,7 @@
 <span class="co">#&gt; Stashing object.</span>
 
 <span class="fu">toc</span>()
-<span class="co">#&gt; long-running computation: 5.334 sec elapsed</span></pre></body></html></div>
+<span class="co">#&gt; long-running computation: 5.352 sec elapsed</span></pre></body></html></div>
 <p>‘mustashe’ tells us that the object was stashed, and we can see that <code>x</code> was successfully assigned the value 5.</p>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">x</span>
 <span class="co">#&gt; [1] 5</span></pre></body></html></div>
@@ -139,14 +139,14 @@
 <span class="co">#&gt; Loading stashed object.</span>
 
 <span class="fu">toc</span>()
-<span class="co">#&gt; long-running computation: 0.014 sec elapsed</span></pre></body></html></div>
+<span class="co">#&gt; long-running computation: 0.011 sec elapsed</span></pre></body></html></div>
 <p>That’s the basic use case of ‘mustashe’! Any issues and feedback can be submitted <a href="https://github.com/jhrcook/mustashe/issues">here</a>. Continue reading below for explanations of other useful features of ‘mustashe’.</p>
 <div id="why-not-use-projecttemplates-cache-function" class="section level3">
 <h3 class="hasAnchor">
 <a href="#why-not-use-projecttemplates-cache-function" class="anchor"></a>Why not use ’ProjectTemplate’s <code>cache()</code> function?</h3>
 <p>Originally I tried to use the <code>cache()</code> function from <a href="https://CRAN.R-project.org/package=ProjectTemplate">‘ProjectTemplate’</a>, but ran into a few problems.</p>
 <p>The first was, to use it without modification, I would need to be using the ‘ProjectTemplate’ system for my whole analysis project. It first checks if all of the expected directories and components are in place, throwing an error when they are not.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="kw pkg">ProjectTemplate</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/ProjectTemplate/man/cache.html">cache</a></span>(<span class="st">"x"</span>)
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="kw pkg">ProjectTemplate</span><span class="kw ns">::</span><span class="fu">cache</span>(<span class="st">"x"</span>)
 
 <span class="co">#&gt; Current Directory: mustashe is not a valid ProjectTemplate directory because one or more mandatory directories are missing.  If you believe you are in a ProjectTemplate directory and seeing this message in error, try running migrate.project().  migrate.project() will ensure the ProjectTemplate structure is consistent with your version of ProjectTemplate.</span>
 <span class="co">#&gt; Change to a valid ProjectTemplate directory and run cache() again.</span>
@@ -176,7 +176,7 @@
 })
 <span class="co">#&gt; Stashing object.</span>
 <span class="fu">toc</span>()
-<span class="co">#&gt; 3.015 sec elapsed</span></pre></body></html></div>
+<span class="co">#&gt; 3.023 sec elapsed</span></pre></body></html></div>
 <div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu">tic</span>()
 <span class="fu"><a href="../reference/stash.html">stash</a></span>(<span class="st">"a"</span>, {
   <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span>(<span class="fl">3</span>)
@@ -184,7 +184,7 @@
 })
 <span class="co">#&gt; Updating stash.</span>
 <span class="fu">toc</span>()
-<span class="co">#&gt; 3.023 sec elapsed</span></pre></body></html></div>
+<span class="co">#&gt; 3.027 sec elapsed</span></pre></body></html></div>
 <p><strong>However, ‘mustashe’ is insensitive to changes in comments and other style-based adjustments to the code.</strong> In the next example, a comment has been added, but we see that the object is loaded from the stash.</p>
 <div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="../reference/stash.html">stash</a></span>(<span class="st">"a"</span>, {
   <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span>(<span class="fl">3</span>)
