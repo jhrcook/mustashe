@@ -68,7 +68,7 @@ library.
     })
     #> Stashing object.
     tictoc::toc()
-    #> random simulation: 3.382 sec elapsed
+    #> random simulation: 3.518 sec elapsed
 
 Now, if we come back tomorrow and continue working on the same analysis,
 the second time this process is run the code is not evaluated because
@@ -82,7 +82,7 @@ the code passed to `stash()` has not changed. Instead, the random values
     })
     #> Loading stashed object.
     tictoc::toc()
-    #> random simulation: 0.014 sec elapsed
+    #> random simulation: 0.021 sec elapsed
 
 Dependencies
 ------------

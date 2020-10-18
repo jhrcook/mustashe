@@ -15,4 +15,6 @@ test_that("the stash gets cleared", {
   expect_message(clear_stash(), "Clearing stash")
   expect_false(any(file.exists(c(qs_file, hash_file))))
   expect_true(file.exists(other_file))
+
+  if (dir.exists(target_dir)) unlink(target_dir, recursive = TRUE)
 })

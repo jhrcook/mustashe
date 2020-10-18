@@ -134,3 +134,7 @@ foo
 
 The inspiration for this package came from the `cache()` feature in the ['ProjectTemplate'](http://projecttemplate.net/index.html) package.
 While the functionality and implementation are a bit different, this would have been far more difficult to do without referencing the source code from 'ProjectTemplate'.
+
+```{r, echo=FALSE}
+unlink(".mustashe", recursive = TRUE)
+```

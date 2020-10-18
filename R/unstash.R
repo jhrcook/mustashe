@@ -13,6 +13,9 @@
 #' })
 #'
 #' unstash("x")
+#'
+#' #' # Remove directory for this example - do not do in real use.
+#' unlink(".mustashe", recursive = TRUE)
 #' }
 #'
 #' @export unstash
