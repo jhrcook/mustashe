@@ -71,7 +71,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="../news/index.html">Versions</a>
+  <a href="../news/index.html">News</a>
 </li>
 <li>
   <a href="https://github.com/jhrcook/stashR">
@@ -125,7 +125,7 @@
 <span class="co">#&gt; Stashing object.</span>
 
 <span class="fu">toc</span>()
-<span class="co">#&gt; long-running computation: 5.359 sec elapsed</span></pre></body></html></div>
+<span class="co">#&gt; long-running computation: 5.396 sec elapsed</span></pre></body></html></div>
 <p>‘mustashe’ tells us that the object was stashed, and we can see that <code>x</code> was successfully assigned the value 5.</p>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">x</span>
 <span class="co">#&gt; [1] 5</span></pre></body></html></div>
@@ -139,7 +139,7 @@
 <span class="co">#&gt; Loading stashed object.</span>
 
 <span class="fu">toc</span>()
-<span class="co">#&gt; long-running computation: 0.017 sec elapsed</span></pre></body></html></div>
+<span class="co">#&gt; long-running computation: 0.015 sec elapsed</span></pre></body></html></div>
 <p>That’s the basic use case of ‘mustashe’! Any issues and feedback can be submitted <a href="https://github.com/jhrcook/mustashe/issues">here</a>. Continue reading below for explanations of other useful features of ‘mustashe’.</p>
 <div id="why-not-use-projecttemplates-cache-function" class="section level3">
 <h3 class="hasAnchor">
@@ -176,7 +176,7 @@
 })
 <span class="co">#&gt; Stashing object.</span>
 <span class="fu">toc</span>()
-<span class="co">#&gt; 3.017 sec elapsed</span></pre></body></html></div>
+<span class="co">#&gt; 3.021 sec elapsed</span></pre></body></html></div>
 <div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu">tic</span>()
 <span class="fu"><a href="../reference/stash.html">stash</a></span>(<span class="st">"a"</span>, {
   <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span>(<span class="fl">3</span>)
@@ -247,8 +247,20 @@
 <span class="co">#&gt; Unstashing 'a'.</span></pre></body></html></div>
 <div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="../reference/clear_stash.html">clear_stash</a></span>()
 <span class="co">#&gt; Clearing stash.</span></pre></body></html></div>
-<hr>
 </div>
+</div>
+<div id="using-here-to-create-file-paths" class="section level2">
+<h2 class="hasAnchor">
+<a href="#using-here-to-create-file-paths" class="anchor"></a>Using <a href="https://here.r-lib.org">‘here’</a> to create file paths</h2>
+<p>The <a href="https://here.r-lib.org">‘here’</a> package is useful for handling file paths in R projects, particularly when using an RStudio project. The main function, <code><a href="https://rdrr.io/pkg/here/man/here.html">here::here()</a></code>, can be used to create the file path for stashing an object by calling <code><a href="../reference/use_here.html">use_here()</a></code>.</p>
+<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu"><a href="../reference/use_here.html">use_here</a></span>()
+<span class="co">#&gt; The global option "mustashe.here" has been set `TRUE`.</span>
+<span class="co">#&gt; Add `mustashe::use_here(silent = TRUE)` to you're '.Rprofile'</span>
+<span class="co">#&gt;   to have it set automatically in the future.</span></pre></body></html></div>
+<p>This behavior can be turned off, too.</p>
+<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="fu"><a href="../reference/dont_use_here.html">dont_use_here</a></span>()
+<span class="co">#&gt; No longer using `here::here()` for creating stash file paths.</span></pre></body></html></div>
+<hr>
 <div id="contact" class="section level3">
 <h3 class="hasAnchor">
 <a href="#contact" class="anchor"></a>Contact</h3>

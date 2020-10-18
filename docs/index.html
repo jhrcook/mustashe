@@ -75,7 +75,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="news/index.html">Versions</a>
+  <a href="news/index.html">News</a>
 </li>
 <li>
   <a href="https://github.com/jhrcook/stashR">
@@ -135,7 +135,7 @@
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>})</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="co">#&gt; Stashing object.</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>tictoc<span class="op">::</span><span class="kw">toc</span>()</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="co">#&gt; random simulation: 3.357 sec elapsed</span></span></code></pre></div>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="co">#&gt; random simulation: 3.319 sec elapsed</span></span></code></pre></div>
 <p>Now, if we come back tomorrow and continue working on the same analysis, the second time this process is run the code is not evaluated because the code passed to <code><a href="reference/stash.html">stash()</a></code> has not changed. Instead, the random values <code>rnd_vals</code> is loaded.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>tictoc<span class="op">::</span><span class="kw">tic</span>(<span class="st">"random simulation"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">stash</span>(<span class="st">"rnd_vals"</span>, {</span>
@@ -144,7 +144,7 @@
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>})</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="co">#&gt; Loading stashed object.</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a>tictoc<span class="op">::</span><span class="kw">toc</span>()</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="co">#&gt; random simulation: 0.016 sec elapsed</span></span></code></pre></div>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="co">#&gt; random simulation: 0.012 sec elapsed</span></span></code></pre></div>
 </div>
 <div id="dependencies" class="section level2">
 <h2 class="hasAnchor">
@@ -185,6 +185,18 @@
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a></span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a>foo</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a><span class="co">#&gt; [1] 201</span></span></code></pre></div>
+</div>
+<div id="using-here-to-create-file-paths" class="section level2">
+<h2 class="hasAnchor">
+<a href="#using-here-to-create-file-paths" class="anchor"></a>Using <a href="https://here.r-lib.org">‘here’</a> to create file paths</h2>
+<p>The <a href="https://here.r-lib.org">‘here’</a> package is useful for handling file paths in R projects, particularly when using an RStudio project. The main function, <code><a href="https://rdrr.io/pkg/here/man/here.html">here::here()</a></code>, can be used to create the file path for stashing an object by calling <code><a href="reference/use_here.html">use_here()</a></code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">use_here</span>()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="co">#&gt; The global option "mustashe.here" has been set `TRUE`.</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="co">#&gt; Add `mustashe::use_here(silent = TRUE)` to you're '.Rprofile'</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="co">#&gt;   to have it set automatically in the future.</span></span></code></pre></div>
+<p>This behavior can be turned off, too.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">dont_use_here</span>()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="co">#&gt; No longer using `here::here()` for creating stash file paths.</span></span></code></pre></div>
 <hr>
 <div id="attribution" class="section level3">
 <h3 class="hasAnchor">

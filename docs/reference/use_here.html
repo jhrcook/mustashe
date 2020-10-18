@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • mustashe</title>
+<title>Use the 'here' package when writing stashes to file — use_here • mustashe</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,12 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Use the 'here' package when writing stashes to file — use_here" />
+<meta property="og:description" content="Sets an option that tells stash() to write the stashed objects to a
+path created using the here::here() function from the
+'here' package: &quot;The 'here' package creates
+paths relative to the top-level directory.&quot; It is particularly useful when
+using an RStudio project." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -66,7 +71,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -139,54 +144,51 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/jhrcook/mustashe/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Use the 'here' package when writing stashes to file</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jhrcook/mustashe/blob/master/R/use_here.R'><code>R/use_here.R</code></a></small>
+    <div class="hidden name"><code>use_here.Rd</code></div>
     </div>
 
-    <div id="mustashe-013" class="section level1">
-<h1 class="page-header" data-toc-text="0.1.3">
-<a href="#mustashe-013" class="anchor"></a>mustashe 0.1.3<small> Unreleased </small>
-</h1>
-<ul>
-<li>An error is raised if the ‘.mustashe’ directory cannot be created (<a href='https://github.com/jhrcook/mustashe/issues/9'>#9</a>).</li>
-<li>Add an option to use the <a href="https://CRAN.R-project.org/package=here">‘here’</a> package for creating file paths for stashed objects.</li>
-<li>Minor fixes for CRAN package checking process.</li>
-</ul>
-</div>
-    <div id="mustashe-012" class="section level1">
-<h1 class="page-header" data-toc-text="0.1.2">
-<a href="#mustashe-012" class="anchor"></a>mustashe 0.1.2<small> 2020-04-21 </small>
-</h1>
-<ul>
-<li>Jimmy changed the reading and writing system from the base R RDS system to using the <a href="https://CRAN.R-project.org/package=qs">‘qs: Quick Serialization of R Objects’</a> package for faster reading and writing.</li>
-<li>Vinay and I fixed a bug that was causing the tests to fail on macOS 10.12 or older.</li>
-</ul>
-</div>
-    <div id="mustashe-011" class="section level1">
-<h1 class="page-header" data-toc-text="0.1.1">
-<a href="#mustashe-011" class="anchor"></a>mustashe 0.1.1<small> 2020-03-28 </small>
-</h1>
-<ul>
-<li>A minor release with not functional changes, only changes to documentation.</li>
-<li>Two vignettes were added to help getting started with ‘mustashe’ and explain how it works.</li>
-</ul>
-</div>
-    <div id="mustashe-010" class="section level1">
-<h1 class="page-header" data-toc-text="0.1.0">
-<a href="#mustashe-010" class="anchor"></a>mustashe 0.1.0<small> Unreleased </small>
-</h1>
-<ul>
-<li>The first release of ‘mustashe’.</li>
-</ul>
-</div>
-  </div>
+    <div class="ref-description">
+    <p>Sets an option that tells <code><a href='stash.html'>stash()</a></code> to write the stashed objects to a
+path created using the <code><a href='https://rdrr.io/pkg/here/man/here.html'>here::here()</a></code> function from the
+<a href='https://here.r-lib.org'>'here'</a> package: "The 'here' package creates
+paths relative to the top-level directory." It is particularly useful when
+using an RStudio project.</p>
+    </div>
 
+    <pre class="usage"><span class='fu'>use_here</span>(<span class='kw'>silent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>silent</th>
+      <td><p>A logical to silence the message from the function. (default
+<code>FALSE</code>)</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Returns <code>NULL</code> (invisibly).</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Add <code>mustashe::use_here(silent = TRUE)</code> to your '.Rprofile' or
+<code>setup</code> code block in an R Markdown to set this feature automatically in
+the future.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>use_here</span>()</div><div class='output co'>#&gt; <span class='message'>The global option "mustashe.here" has been set `TRUE`.</span>
+#&gt; <span class='message'>Add `mustashe::use_here(silent = TRUE)` to you're '.Rprofile'</span>
+#&gt; <span class='message'>  to have it set automatically in the future.</span></div><div class='input'>
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
 
 
