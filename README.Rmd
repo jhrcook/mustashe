@@ -6,10 +6,10 @@ output: github_document
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-    collapse = TRUE,
-    comment = "#>",
-    fig.path = "man/figures/README-",
-    out.width = "100%"
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
 )
 
 mustashe::clear_stash()
@@ -64,8 +64,8 @@ We can time this process using the 'tictoc' library.
 ```{r}
 tictoc::tic("random simulation")
 stash("rnd_vals", {
-    Sys.sleep(3)
-    rnd_vals <- rnorm(1e5)
+  Sys.sleep(3)
+  rnd_vals <- rnorm(1e5)
 })
 tictoc::toc()
 ```
@@ -76,8 +76,8 @@ Instead, the random values `rnd_vals` is loaded.
 ```{r}
 tictoc::tic("random simulation")
 stash("rnd_vals", {
-    Sys.sleep(3)
-    rnd_vals <- rnorm(1e5)
+  Sys.sleep(3)
+  rnd_vals <- rnorm(1e5)
 })
 tictoc::toc()
 ```
@@ -95,8 +95,8 @@ For instance, let's say we are calculating some value `foo` using `x`.
 x <- 100
 
 stash("foo", depends_on = "x", {
-    print("Calculating `foo` using `x`.")
-    foo <- x + 1
+  print("Calculating `foo` using `x`.")
+  foo <- x + 1
 })
 
 foo
@@ -108,8 +108,8 @@ Now if `x` is not changed, then the code for `foo` does not get re-evaluated.
 x <- 100
 
 stash("foo", depends_on = "x", {
-    print("Calculating `foo` using `x`.")
-    foo <- x + 1
+  print("Calculating `foo` using `x`.")
+  foo <- x + 1
 })
 
 foo
@@ -121,8 +121,8 @@ But if `x` does change, then `foo` gets re-evaluated.
 x <- 200
 
 stash("foo", depends_on = "x", {
-    print("Calculating `foo` using `x`.")
-    foo <- x + 1
+  print("Calculating `foo` using `x`.")
+  foo <- x + 1
 })
 
 foo

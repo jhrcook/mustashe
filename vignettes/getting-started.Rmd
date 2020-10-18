@@ -147,11 +147,11 @@ And below is the code from a horrible person, but 'mustashe' still loads the obj
 
 ```{r}
 stash("a", {
-        Sys.sleep(    3  )
+  Sys.sleep(3)
 
-    # Here is a comment.
+  # Here is a comment.
 
-a=runif(  10  )      # Another comment
+  a <- runif(10) # Another comment
 })
 ```
 
