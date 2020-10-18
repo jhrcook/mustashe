@@ -176,17 +176,19 @@ assign_value <- function(var, val) {
 
 # Get the file names for staching
 stash_filename <- function(var) {
+  stash_dir <- get_stash_dir()
   return(list(
-    data_name = file.path(.stash_dir, paste0(var, ".qs")),
-    hash_name = file.path(.stash_dir, paste0(var, ".hash"))
+    data_name = file.path(stash_dir, paste0(var, ".qs")),
+    hash_name = file.path(stash_dir, paste0(var, ".hash"))
   ))
 }
 
 
 check_stash_dir <- function() {
-  if (!dir.exists(.stash_dir)) {
+  stash_dir <- get_stash_dir()
+  if (!dir.exists(stash_dir)) {
     tryCatch(
-      dir.create(.stash_dir, showWarnings = TRUE, recursive = TRUE),
+      dir.create(stash_dir, showWarnings = TRUE, recursive = TRUE),
       warning = stash_dir_warning
     )
   }
@@ -195,20 +197,37 @@ check_stash_dir <- function() {
 
 stash_dir_warning <- function(w) {
   warning(w)
-  if (grep("cannot create dir", w) > 0 & grep("Permission denied", w) > 0) {
-    stop_msg <- "
+  # if (grep("cannot create dir", w) > 0 & grep("Permission denied", w) > 0) {
+  if (TRUE) {
+    stop_msg1 <- "
 'mustashe' is unable to create a directory to stash your objects.
-Please create the directory manually using:
+Please create the directory manually using:"
 
-  dir.create(\".mustashe\")
+    stop_msg2 <- paste0("\n  dir.create(", get_stash_dir(), ")")
 
+    stop_msg3 <- "
 If that does not work, please create the directory from the command line and open an issue at:
   https://github.com/jhrcook/mustashe"
+
+    stop_msg <- paste(stop_msg1, stop_msg2, stop_msg3, sep = "\n")
     stop(stop_msg)
   }
 }
 
 
+get_stash_dir <- function() {
+  stash_dir <- ".mustashe"
+
+  use_here_option <- getOption("mustashe.here")
+  # print(use_here_option)
+  if (!is.null(use_here_option)) {
+    if (use_here_option == TRUE) {
+      return(here::here(stash_dir))
+    }
+  }
+  return(stash_dir)
+}
+
 # The environment where all code is evaluated and variables assigned.
 .TargetEnv <- .GlobalEnv
-.stash_dir <- ".mustashe"
+# .stash_dir <- ".mustashe"

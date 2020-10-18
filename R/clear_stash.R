@@ -10,8 +10,8 @@
 clear_stash <- function() {
   message("Clearing stash.")
   file.remove(c(
-    list.files(.stash_dir, full.names = TRUE, pattern = "qs$"),
-    list.files(.stash_dir, full.names = TRUE, pattern = "hash$")
+    list.files(get_stash_dir(), full.names = TRUE, pattern = "qs$"),
+    list.files(get_stash_dir(), full.names = TRUE, pattern = "hash$")
   ))
   invisible(NULL)
 }
