@@ -1,8 +1,8 @@
-pandoc: 2.9.2.1
+pandoc: 2.10.1
 pkgdown: 1.5.1
 pkgdown_sha: ~
 articles:
   getting-started: getting-started.html
   how-mustashe-works: how-mustashe-works.html
-last_built: 2020-06-11T13:15Z
+last_built: 2020-10-18T13:28Z
 
