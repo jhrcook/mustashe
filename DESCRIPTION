@@ -1,7 +1,7 @@
 Type: Package
 Package: mustashe
 Title: Stash and Load Objects
-Version: 0.1.2.9000
+Version: 0.1.3
 Authors@R: 
     c(person(given = c("Joshua", "H"),
             family = "Cook",
@@ -29,7 +29,8 @@ Imports:
     digest (>= 0.6.0),
     formatR (>= 1.7),
     qs (>= 0.21.2),
-    tibble (>= 2.1.0)
+    tibble (>= 2.1.0),
+    here (>= 0.1.0)
 Suggests: 
     covr (>= 3.3.0),
     knitr (>= 1.28),
@@ -42,4 +43,4 @@ VignetteBuilder:
 Encoding: UTF-8
 Language: en-US
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
