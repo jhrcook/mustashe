@@ -8,25 +8,26 @@
 #'
 #' @examples
 #' \donttest{
-#' stash("x",
-#' {
-#'     x <- 1
+#' stash("x", {
+#'   x <- 1
 #' })
 #'
 #' unstash("x")
+#'
+#' #' # Remove directory for this example - do not do in real use.
+#' unlink(".mustashe", recursive = TRUE)
 #' }
 #'
 #' @export unstash
 unstash <- function(var) {
-
-    f <- function(v) {
-        if (has_been_stashed(v)) {
-            message(paste0("Unstashing '", v, "'."))
-            file.remove(unlist(stash_filename(v)))
-        } else {
-            message(paste0("No object '", v, "' in stash."))
-        }
+  f <- function(v) {
+    if (has_been_stashed(v)) {
+      message(paste0("Unstashing '", v, "'."))
+      file.remove(unlist(stash_filename(v)))
+    } else {
+      message(paste0("No object '", v, "' in stash."))
     }
-    lapply(var, f)
-    invisible(NULL)
+  }
+  lapply(var, f)
+  invisible(NULL)
 }

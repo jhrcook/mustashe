@@ -17,12 +17,14 @@ Remove an object from the stash.
 }
 \examples{
 \donttest{
-stash("x",
-{
-    x <- 1
+stash("x", {
+  x <- 1
 })
 
 unstash("x")
+
+#' # Remove directory for this example - do not do in real use.
+unlink(".mustashe", recursive = TRUE)
 }
 
 }

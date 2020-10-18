@@ -14,5 +14,4 @@ Clears the hidden '.mustashe' directory.
 }
 \examples{
 clear_stash()
-
 }

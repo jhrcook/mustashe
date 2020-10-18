@@ -147,11 +147,11 @@ And below is the code from a horrible person, but 'mustashe' still loads the obj
 
 ```{r}
 stash("a", {
-        Sys.sleep(    3  )
+  Sys.sleep(3)
 
-    # Here is a comment.
+  # Here is a comment.
 
-a=runif(  10  )      # Another comment
+  a <- runif(10) # Another comment
 })
 ```
 
@@ -217,9 +217,30 @@ unstash("a")
 clear_stash()
 ```
 
+
+## Using ['here'](https://here.r-lib.org) to create file paths
+
+The ['here'](https://here.r-lib.org) package is useful for handling file paths in R projects, particularly when using an RStudio project.
+The main function, `here::here()`, can be used to create the file path for stashing an object by calling `use_here()`.
+
+```{r}
+use_here()
+```
+
+This behavior can be turned off, too.
+
+```{r}
+dont_use_here()
+```
+
+
 ---
 
 ### Contact
 
 Any issues and feedback  on 'mustashe' can be submitted [here](https://github.com/jhrcook/mustashe/issues).
 I can be reached through the contact form on my [website](https://joshuacook.netlify.com) or on Twitter [\@JoshDoesa](https://twitter.com/JoshDoesa)
+
+```{r, echo=FALSE}
+unlink(".mustashe", recursive = TRUE)
+```
