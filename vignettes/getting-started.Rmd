@@ -217,6 +217,23 @@ unstash("a")
 clear_stash()
 ```
 
+
+## Using ['here'](https://here.r-lib.org) to create file paths
+
+The ['here'](https://here.r-lib.org) package is useful for handling file paths in R projects, particularly when using an RStudio project.
+The main function, `here::here()`, can be used to create the file path for stashing an object by calling `use_here()`.
+
+```{r}
+use_here()
+```
+
+This behavior can be turned off, too.
+
+```{r}
+dont_use_here()
+```
+
+
 ---
 
 ### Contact

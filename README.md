@@ -68,7 +68,7 @@ library.
     })
     #> Stashing object.
     tictoc::toc()
-    #> random simulation: 3.518 sec elapsed
+    #> random simulation: 3.319 sec elapsed
 
 Now, if we come back tomorrow and continue working on the same analysis,
 the second time this process is run the code is not evaluated because
@@ -82,7 +82,7 @@ the code passed to `stash()` has not changed. Instead, the random values
     })
     #> Loading stashed object.
     tictoc::toc()
-    #> random simulation: 0.021 sec elapsed
+    #> random simulation: 0.012 sec elapsed
 
 Dependencies
 ------------
@@ -135,6 +135,24 @@ But if `x` does change, then `foo` gets re-evaluated.
 
     foo
     #> [1] 201
+
+Using [‘here’](https://here.r-lib.org) to create file paths
+-----------------------------------------------------------
+
+The [‘here’](https://here.r-lib.org) package is useful for handling file
+paths in R projects, particularly when using an RStudio project. The
+main function, `here::here()`, can be used to create the file path for
+stashing an object by calling `use_here()`.
+
+    use_here()
+    #> The global option "mustashe.here" has been set `TRUE`.
+    #> Add `mustashe::use_here(silent = TRUE)` to you're '.Rprofile'
+    #>   to have it set automatically in the future.
+
+This behavior can be turned off, too.
+
+    dont_use_here()
+    #> No longer using `here::here()` for creating stash file paths.
 
 ------------------------------------------------------------------------
 
