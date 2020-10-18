@@ -21,6 +21,9 @@
 #'   # Some long running computation.
 #'   rnd_vals <- rnorm(x)
 #' })
+#'
+#' # Remove directory for this example - do not do in real use.
+#' unlink(".mustashe", recursive = TRUE)
 #' }
 #'
 #' @export stash
@@ -182,9 +185,27 @@ stash_filename <- function(var) {
 
 check_stash_dir <- function() {
   if (!dir.exists(.stash_dir)) {
-    dir.create(.stash_dir, recursive = TRUE)
+    tryCatch(
+      dir.create(.stash_dir, showWarnings = TRUE, recursive = TRUE),
+      warning = stash_dir_warning
+    )
   }
   invisible(NULL)
+}
+
+stash_dir_warning <- function(w) {
+  warning(w)
+  if (grep("cannot create dir", w) > 0 & grep("Permission denied", w) > 0) {
+    stop_msg <- "
+'mustashe' is unable to create a directory to stash your objects.
+Please create the directory manually using:
+
+  dir.create(\".mustashe\")
+
+If that does not work, please create the directory from the command line and open an issue at:
+  https://github.com/jhrcook/mustashe"
+    stop(stop_msg)
+  }
 }
 
 
