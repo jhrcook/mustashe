@@ -12,3 +12,6 @@
 ^.mustashe$
 ^cran-comments.md$
 ^\.github$
+
+^.markdownlint.json$
+^.pre-commit-config.yaml$

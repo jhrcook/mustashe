@@ -51,7 +51,7 @@
 <li>
   <a href="index.html">
     <span class="fa fa-home fa-lg"></span>
-     
+
   </a>
 </li>
 <li>
@@ -60,7 +60,7 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     Articles
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
@@ -80,13 +80,13 @@
 <li>
   <a href="https://github.com/jhrcook/stashR">
     <span class="fa fa-github fa-lg"></span>
-     
+
   </a>
 </li>
 <li>
   <a href="https://twitter.com/JoshDoesa">
     <span class="fab fa fab fa-twitter fa-lg"></span>
-     
+
   </a>
 </li>
       </ul>
@@ -97,7 +97,7 @@
 </div>
 <!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="contents col-md-9">
@@ -112,91 +112,101 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the released version of ‘mustashe’ from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">"mustashe"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"mustashe"</span><span class="op">)</span></pre></div>
 <p>And the development version from <a href="https://github.com/jhrcook/mustashe">GitHub</a> with:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co"># install.packages("devtools")</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"jhrcook/mustashe"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="co"># install.packages("devtools")</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"jhrcook/mustashe"</span><span class="op">)</span></pre></div>
 </div>
 <div id="loading-mustashe" class="section level2">
 <h2 class="hasAnchor">
 <a href="#loading-mustashe" class="anchor"></a>Loading ‘mustashe’</h2>
-<p>The ‘mustashe’ package is loaded like any other, using the <code>library()</code> function.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">library</span>(mustashe)</span></code></pre></div>
+<p>The ‘mustashe’ package is loaded like any other, using the <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> function.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jhrcook/mustashe">mustashe</a></span><span class="op">)</span></pre></div>
 </div>
 <div id="basic-example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#basic-example" class="anchor"></a>Basic example</h2>
 <p>Below is a simple example of how to use the <code><a href="reference/stash.html">stash()</a></code> function from ‘mustashe’.</p>
 <p>Let’s say, for part of an analysis, we are running a long simulation to generate random data <code>rnd_vals</code>. This is mocked below using the <code><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep()</a></code> function. We can time this process using the ‘tictoc’ library.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>tictoc<span class="op">::</span><span class="kw">tic</span>(<span class="st">"random simulation"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">stash</span>(<span class="st">"rnd_vals"</span>, {</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>  <span class="kw">Sys.sleep</span>(<span class="dv">3</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>  rnd_vals &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e5</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>})</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="co">#&gt; Stashing object.</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>tictoc<span class="op">::</span><span class="kw">toc</span>()</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="co">#&gt; random simulation: 3.319 sec elapsed</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span><span class="op">(</span><span class="st">"random simulation"</span><span class="op">)</span>
+<span class="fu"><a href="reference/stash.html">stash</a></span><span class="op">(</span><span class="st">"rnd_vals"</span>, <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>
+  <span class="va">rnd_vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1e5</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span>
+<span class="co">#&gt; Stashing object.</span>
+<span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; random simulation: 3.438 sec elapsed</span></pre></div>
 <p>Now, if we come back tomorrow and continue working on the same analysis, the second time this process is run the code is not evaluated because the code passed to <code><a href="reference/stash.html">stash()</a></code> has not changed. Instead, the random values <code>rnd_vals</code> is loaded.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>tictoc<span class="op">::</span><span class="kw">tic</span>(<span class="st">"random simulation"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">stash</span>(<span class="st">"rnd_vals"</span>, {</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>  <span class="kw">Sys.sleep</span>(<span class="dv">3</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>  rnd_vals &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e5</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>})</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="co">#&gt; Loading stashed object.</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a>tictoc<span class="op">::</span><span class="kw">toc</span>()</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="co">#&gt; random simulation: 0.012 sec elapsed</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span><span class="op">(</span><span class="st">"random simulation"</span><span class="op">)</span>
+<span class="fu"><a href="reference/stash.html">stash</a></span><span class="op">(</span><span class="st">"rnd_vals"</span>, <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>
+  <span class="va">rnd_vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1e5</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span>
+<span class="co">#&gt; Loading stashed object.</span>
+<span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; random simulation: 0.019 sec elapsed</span></pre></div>
 </div>
 <div id="dependencies" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dependencies" class="anchor"></a>Dependencies</h2>
 <p>A common problem with storing intermediates is that they have dependencies that can change. If a dependency changes, then we want the stashed value to be updated. This is accomplished by passing the names of the dependencies to the <code>depends_on</code> argument.</p>
 <p>For instance, let’s say we are calculating some value <code>foo</code> using <code>x</code>. (For the following example, I will use a print statement to indicate when the code is evaluated.)</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="dv">100</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="kw">stash</span>(<span class="st">"foo"</span>, <span class="dt">depends_on =</span> <span class="st">"x"</span>, {</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>  <span class="kw">print</span>(<span class="st">"Calculating `foo` using `x`."</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a>  foo &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a>})</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="co">#&gt; Stashing object.</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="co">#&gt; [1] "Calculating `foo` using `x`."</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a>foo</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a><span class="co">#&gt; [1] 101</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">100</span>
+
+<span class="fu"><a href="reference/stash.html">stash</a></span><span class="op">(</span><span class="st">"foo"</span>, depends_on <span class="op">=</span> <span class="st">"x"</span>, <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Calculating `foo` using `x`."</span><span class="op">)</span>
+  <span class="va">foo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">1</span>
+<span class="op">}</span><span class="op">)</span>
+<span class="co">#&gt; Stashing object.</span>
+<span class="co">#&gt; [1] "Calculating `foo` using `x`."</span>
+
+<span class="va">foo</span>
+<span class="co">#&gt; [1] 101</span></pre></div>
 <p>Now if <code>x</code> is not changed, then the code for <code>foo</code> does not get re-evaluated.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="dv">100</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="kw">stash</span>(<span class="st">"foo"</span>, <span class="dt">depends_on =</span> <span class="st">"x"</span>, {</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>  <span class="kw">print</span>(<span class="st">"Calculating `foo` using `x`."</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>  foo &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a>})</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="co">#&gt; Loading stashed object.</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a>foo</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a><span class="co">#&gt; [1] 101</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">100</span>
+
+<span class="fu"><a href="reference/stash.html">stash</a></span><span class="op">(</span><span class="st">"foo"</span>, depends_on <span class="op">=</span> <span class="st">"x"</span>, <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Calculating `foo` using `x`."</span><span class="op">)</span>
+  <span class="va">foo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">1</span>
+<span class="op">}</span><span class="op">)</span>
+<span class="co">#&gt; Loading stashed object.</span>
+
+<span class="va">foo</span>
+<span class="co">#&gt; [1] 101</span></pre></div>
 <p>But if <code>x</code> does change, then <code>foo</code> gets re-evaluated.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="dv">200</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="kw">stash</span>(<span class="st">"foo"</span>, <span class="dt">depends_on =</span> <span class="st">"x"</span>, {</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a>  <span class="kw">print</span>(<span class="st">"Calculating `foo` using `x`."</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a>  foo &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a>})</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a><span class="co">#&gt; Updating stash.</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a><span class="co">#&gt; [1] "Calculating `foo` using `x`."</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a>foo</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a><span class="co">#&gt; [1] 201</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">200</span>
+
+<span class="fu"><a href="reference/stash.html">stash</a></span><span class="op">(</span><span class="st">"foo"</span>, depends_on <span class="op">=</span> <span class="st">"x"</span>, <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Calculating `foo` using `x`."</span><span class="op">)</span>
+  <span class="va">foo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">1</span>
+<span class="op">}</span><span class="op">)</span>
+<span class="co">#&gt; Updating stash.</span>
+<span class="co">#&gt; [1] "Calculating `foo` using `x`."</span>
+
+<span class="va">foo</span>
+<span class="co">#&gt; [1] 201</span></pre></div>
 </div>
 <div id="using-here-to-create-file-paths" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-here-to-create-file-paths" class="anchor"></a>Using <a href="https://here.r-lib.org">‘here’</a> to create file paths</h2>
 <p>The <a href="https://here.r-lib.org">‘here’</a> package is useful for handling file paths in R projects, particularly when using an RStudio project. The main function, <code><a href="https://rdrr.io/pkg/here/man/here.html">here::here()</a></code>, can be used to create the file path for stashing an object by calling <code><a href="reference/use_here.html">use_here()</a></code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">use_here</span>()</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="co">#&gt; The global option "mustashe.here" has been set `TRUE`.</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="co">#&gt; Add `mustashe::use_here(silent = TRUE)` to you're '.Rprofile'</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a><span class="co">#&gt;   to have it set automatically in the future.</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="fu"><a href="reference/use_here.html">use_here</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; The global option "mustashe.here" has been set `TRUE`.</span>
+<span class="co">#&gt; Add `mustashe::use_here(silent = TRUE)` to you're '.Rprofile'</span>
+<span class="co">#&gt;   to have it set automatically in the future.</span></pre></div>
 <p>This behavior can be turned off, too.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">dont_use_here</span>()</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="co">#&gt; No longer using `here::here()` for creating stash file paths.</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="fu"><a href="reference/dont_use_here.html">dont_use_here</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; No longer using `here::here()` for creating stash file paths.</span></pre></div>
 <hr>
 <div id="attribution" class="section level3">
 <h3 class="hasAnchor">
@@ -255,13 +265,13 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
 </div>
 
-  
+
 
 
   </body>

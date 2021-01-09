@@ -27,5 +27,4 @@ the future.
 }
 \examples{
 use_here()
-
 }

@@ -17,7 +17,6 @@
 #'
 #' @examples
 #' use_here()
-#'
 #' @export use_here
 use_here <- function(silent = FALSE) {
   option_name <- "mustashe.here"
@@ -26,7 +25,8 @@ use_here <- function(silent = FALSE) {
     msg <- list(
       paste0("The global option \"", option_name, "\" has been set `TRUE`."),
       "Add `mustashe::use_here(silent = TRUE)` to you're '.Rprofile'",
-      "  to have it set automatically in the future.")
+      "  to have it set automatically in the future."
+    )
     message(paste(msg, collapse = "\n"))
   }
   invisible(NULL)
@@ -46,7 +46,6 @@ use_here <- function(silent = FALSE) {
 #'
 #' @examples
 #' dont_use_here()
-#'
 #' @export dont_use_here
 dont_use_here <- function(silent = FALSE) {
   set_use_here(FALSE)

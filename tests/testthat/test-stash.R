@@ -1,6 +1,5 @@
 test_that("stashing works", {
   stash_filename("x")
-  # use_here(silent = TRUE)
   dont_use_here(silent = TRUE)
   target_dir <- get_stash_dir()
 
@@ -75,7 +74,7 @@ test_that("stashing works", {
   if (dir.exists(target_dir)) unlink(target_dir, recursive = TRUE)
 })
 
-
+# nolint start
 # test_that("Can stash functions as dependencies", {
 #     target_dir <- ".mustashe"
 #
@@ -145,3 +144,4 @@ test_that("stashing works", {
 #     if (dir.exists(target_dir)) unlink(target_dir, recursive = TRUE)
 #
 # })
+# nolint end

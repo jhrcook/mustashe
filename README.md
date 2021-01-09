@@ -1,8 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-mustashe <a href="https://jhrcook.github.io/mustashe/index.html"> <img src="man/figures/logo.png" align="right" alt="" width="120" /> </a>
-==========================================================================================================================================
+# mustashe <a href="https://jhrcook.github.io/mustashe/index.html"> <img src="man/figures/logo.png" align="right" alt="" width="120" /> </a>
 
 <!-- badges: start -->
 
@@ -28,30 +27,33 @@ time the computation is run, instead of evaluating the code, the stashed
 object is loaded. ‘mustashe’ is great for storing intermediate objects
 in an analysis.
 
-Installation
-------------
+## Installation
 
 You can install the released version of ‘mustashe’ from
 [CRAN](https://CRAN.R-project.org) with:
 
-    install.packages("mustashe")
+``` r
+install.packages("mustashe")
+```
 
 And the development version from
 [GitHub](https://github.com/jhrcook/mustashe) with:
 
-    # install.packages("devtools")
-    devtools::install_github("jhrcook/mustashe")
+``` r
+# install.packages("devtools")
+devtools::install_github("jhrcook/mustashe")
+```
 
-Loading ‘mustashe’
-------------------
+## Loading ‘mustashe’
 
 The ‘mustashe’ package is loaded like any other, using the `library()`
 function.
 
-    library(mustashe)
+``` r
+library(mustashe)
+```
 
-Basic example
--------------
+## Basic example
 
 Below is a simple example of how to use the `stash()` function from
 ‘mustashe’.
@@ -61,31 +63,34 @@ generate random data `rnd_vals`. This is mocked below using the
 `Sys.sleep()` function. We can time this process using the ‘tictoc’
 library.
 
-    tictoc::tic("random simulation")
-    stash("rnd_vals", {
-      Sys.sleep(3)
-      rnd_vals <- rnorm(1e5)
-    })
-    #> Stashing object.
-    tictoc::toc()
-    #> random simulation: 3.319 sec elapsed
+``` r
+tictoc::tic("random simulation")
+stash("rnd_vals", {
+  Sys.sleep(3)
+  rnd_vals <- rnorm(1e5)
+})
+#> Stashing object.
+tictoc::toc()
+#> random simulation: 3.481 sec elapsed
+```
 
 Now, if we come back tomorrow and continue working on the same analysis,
 the second time this process is run the code is not evaluated because
 the code passed to `stash()` has not changed. Instead, the random values
 `rnd_vals` is loaded.
 
-    tictoc::tic("random simulation")
-    stash("rnd_vals", {
-      Sys.sleep(3)
-      rnd_vals <- rnorm(1e5)
-    })
-    #> Loading stashed object.
-    tictoc::toc()
-    #> random simulation: 0.012 sec elapsed
+``` r
+tictoc::tic("random simulation")
+stash("rnd_vals", {
+  Sys.sleep(3)
+  rnd_vals <- rnorm(1e5)
+})
+#> Loading stashed object.
+tictoc::toc()
+#> random simulation: 0.02 sec elapsed
+```
 
-Dependencies
-------------
+## Dependencies
 
 A common problem with storing intermediates is that they have
 dependencies that can change. If a dependency changes, then we want the
@@ -96,63 +101,72 @@ For instance, let’s say we are calculating some value `foo` using `x`.
 (For the following example, I will use a print statement to indicate
 when the code is evaluated.)
 
-    x <- 100
+``` r
+x <- 100
 
-    stash("foo", depends_on = "x", {
-      print("Calculating `foo` using `x`.")
-      foo <- x + 1
-    })
-    #> Stashing object.
-    #> [1] "Calculating `foo` using `x`."
+stash("foo", depends_on = "x", {
+  print("Calculating `foo` using `x`.")
+  foo <- x + 1
+})
+#> Stashing object.
+#> [1] "Calculating `foo` using `x`."
 
-    foo
-    #> [1] 101
+foo
+#> [1] 101
+```
 
 Now if `x` is not changed, then the code for `foo` does not get
 re-evaluated.
 
-    x <- 100
+``` r
+x <- 100
 
-    stash("foo", depends_on = "x", {
-      print("Calculating `foo` using `x`.")
-      foo <- x + 1
-    })
-    #> Loading stashed object.
+stash("foo", depends_on = "x", {
+  print("Calculating `foo` using `x`.")
+  foo <- x + 1
+})
+#> Loading stashed object.
 
-    foo
-    #> [1] 101
+foo
+#> [1] 101
+```
 
 But if `x` does change, then `foo` gets re-evaluated.
 
-    x <- 200
+``` r
+x <- 200
 
-    stash("foo", depends_on = "x", {
-      print("Calculating `foo` using `x`.")
-      foo <- x + 1
-    })
-    #> Updating stash.
-    #> [1] "Calculating `foo` using `x`."
+stash("foo", depends_on = "x", {
+  print("Calculating `foo` using `x`.")
+  foo <- x + 1
+})
+#> Updating stash.
+#> [1] "Calculating `foo` using `x`."
 
-    foo
-    #> [1] 201
+foo
+#> [1] 201
+```
 
-Using [‘here’](https://here.r-lib.org) to create file paths
------------------------------------------------------------
+## Using [‘here’](https://here.r-lib.org) to create file paths
 
 The [‘here’](https://here.r-lib.org) package is useful for handling file
 paths in R projects, particularly when using an RStudio project. The
 main function, `here::here()`, can be used to create the file path for
 stashing an object by calling `use_here()`.
 
-    use_here()
-    #> The global option "mustashe.here" has been set `TRUE`.
-    #> Add `mustashe::use_here(silent = TRUE)` to you're '.Rprofile'
-    #>   to have it set automatically in the future.
+``` r
+use_here()
+#> The global option "mustashe.here" has been set `TRUE`.
+#> Add `mustashe::use_here(silent = TRUE)` to you're '.Rprofile'
+#>   to have it set automatically in the future.
+```
 
 This behavior can be turned off, too.
 
-    dont_use_here()
-    #> No longer using `here::here()` for creating stash file paths.
+``` r
+dont_use_here()
+#> No longer using `here::here()` for creating stash file paths.
+```
 
 ------------------------------------------------------------------------
 

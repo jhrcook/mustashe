@@ -205,9 +205,11 @@ Please create the directory manually using:"
 
     stop_msg2 <- paste0("\n  dir.create(", get_stash_dir(), ")")
 
-    stop_msg3 <- "
-If that does not work, please create the directory from the command line and open an issue at:
-  https://github.com/jhrcook/mustashe"
+    stop_msg3 <- paste0(
+      "If that does not work, please create the directory ",
+      "from the command line and open an issue at: ",
+      "https://github.com/jhrcook/mustashe"
+    )
 
     stop_msg <- paste(stop_msg1, stop_msg2, stop_msg3, sep = "\n")
     stop(stop_msg)
@@ -219,7 +221,6 @@ get_stash_dir <- function() {
   stash_dir <- ".mustashe"
 
   use_here_option <- getOption("mustashe.here")
-  # print(use_here_option)
   if (!is.null(use_here_option)) {
     if (use_here_option == TRUE) {
       return(here::here(stash_dir))
@@ -229,5 +230,6 @@ get_stash_dir <- function() {
 }
 
 # The environment where all code is evaluated and variables assigned.
+# nolint start
 .TargetEnv <- .GlobalEnv
-# .stash_dir <- ".mustashe"
+# nolint end
