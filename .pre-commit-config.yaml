@@ -1,0 +1,27 @@
+repos:
+-   repo: https://github.com/lorenzwalthert/precommit
+    rev: v0.1.3
+    hooks:
+    -   id: no-browser-statement
+    -   id: lintr
+    -   id: style-files
+        args: [--style_pkg=styler, --style_fun=tidyverse_style]
+    -   id: parsable-R
+    -   id: readme-rmd-rendered
+    -   id: deps-in-desc
+    -   id: roxygenize
+-   repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.26.0
+    hooks:
+    -   id: markdownlint
+        args: [--fix]
+        exclude: "^LICENSE.md$"
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.4.0
+    hooks:
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+        exclude: "docs/"
+    -   id: trailing-whitespace
+    -   id: check-added-large-files
+        args: ["--maxkb=80000"]

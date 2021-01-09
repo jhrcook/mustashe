@@ -20,5 +20,4 @@ stashed objects.
 }
 \examples{
 dont_use_here()
-
 }

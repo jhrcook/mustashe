@@ -25,10 +25,10 @@ I have only added a few more comments for clarification.
 
 ```r
 stash <- function(var, code, depends_on = NULL) {
-    
+
     # Make sure the stashing directory ".mustashe" is available.
     check_stash_dir()
-    
+
     # Deparse and format the code.
     deparsed_code <- deparse(substitute(code))
     formatted_code <- format_code(deparsed_code)
