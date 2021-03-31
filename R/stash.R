@@ -8,6 +8,8 @@
 #' @param code The code to generate the object to be stashed.
 #' @param depends_on A vector of other objects that this one depends on. Changes
 #'   to these objects will cause the re-running of the code, next time.
+#' @param functional If TRUE, return the object rather than setting in the global environment (default FALSE). 
+#' @param verbose Whether to print action statements (default TRUE).
 #'
 #' @return Returns \code{NULL} (invisibly).
 #'
@@ -27,7 +29,7 @@
 #' }
 #'
 #' @export stash
-stash <- function(var, code, depends_on = NULL) {
+stash <- function(var, code, depends_on = NULL, functional = FALSE, verbose = TRUE) {
   check_stash_dir()
 
   deparsed_code <- deparse(substitute(code))
@@ -48,26 +50,31 @@ stash <- function(var, code, depends_on = NULL) {
   if (has_been_stashed(var)) {
     old_hash_tbl <- get_hash_table(var)
     if (hash_tables_are_equivalent(old_hash_tbl, new_hash_tbl)) {
-      message("Loading stashed object.")
-      load_variable(var)
+      if(verbose) message("Loading stashed object.")
+      res <- load_variable(var, functional)
     } else {
-      message("Updating stash.")
-      new_stash(var, formatted_code, new_hash_tbl)
+      if(verbose) message("Updating stash.")
+      res <- new_stash(var, formatted_code, new_hash_tbl, functional)
     }
   } else {
-    message("Stashing object.")
-    new_stash(var, formatted_code, new_hash_tbl)
+    if(verbose) message("Stashing object.")
+    res <- new_stash(var, formatted_code, new_hash_tbl, functional)
   }
-
-  invisible(NULL)
+  
+  invisible(res)
 }
 
 # Make a new stash from a variable, code, and hash table.
-new_stash <- function(var, code, hash_tbl) {
+new_stash <- function(var, code, hash_tbl, functional) {
   val <- evaluate_code(code)
-  assign_value(var, val)
   write_hash_table(var, hash_tbl)
   write_val(var, val)
+  if(functional) {
+    val
+  } else {
+    assign_value(var, val)
+    NULL
+  }
 }
 
 
@@ -155,10 +162,15 @@ write_val <- function(var, val) {
 
 
 # Load in a variable from disk and assign it to the global environment.
-load_variable <- function(var) {
+load_variable <- function(var, functional) {
   path <- stash_filename(var)$data_name
   val <- qs::qread(path)
-  assign_value(var, val)
+  if(functional) {
+    val
+  } else {
+    assign_value(var, val)
+    NULL
+  }
 }
 
 
