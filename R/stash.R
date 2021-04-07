@@ -50,14 +50,14 @@ stash <- function(var, code, depends_on = NULL, functional = FALSE, verbose = TR
   if (has_been_stashed(var)) {
     old_hash_tbl <- get_hash_table(var)
     if (hash_tables_are_equivalent(old_hash_tbl, new_hash_tbl)) {
-      if(verbose) message("Loading stashed object.")
+      if (verbose) { message("Loading stashed object.") }
       res <- load_variable(var, functional)
     } else {
-      if(verbose) message("Updating stash.")
+      if (verbose) { message("Updating stash.") }
       res <- new_stash(var, formatted_code, new_hash_tbl, functional)
     }
   } else {
-    if(verbose) message("Stashing object.")
+    if (verbose) { message("Stashing object.") }
     res <- new_stash(var, formatted_code, new_hash_tbl, functional)
   }
   
@@ -69,11 +69,11 @@ new_stash <- function(var, code, hash_tbl, functional) {
   val <- evaluate_code(code)
   write_hash_table(var, hash_tbl)
   write_val(var, val)
-  if(functional) {
-    val
+  if (functional) {
+    return(val)
   } else {
     assign_value(var, val)
-    NULL
+    return(NULL)
   }
 }
 
@@ -165,11 +165,11 @@ write_val <- function(var, val) {
 load_variable <- function(var, functional) {
   path <- stash_filename(var)$data_name
   val <- qs::qread(path)
-  if(functional) {
-    val
+  if (functional) {
+    return(val)
   } else {
     assign_value(var, val)
-    NULL
+    return(NULL)
   }
 }
 
