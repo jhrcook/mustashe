@@ -74,6 +74,31 @@ test_that("stashing works", {
   if (dir.exists(target_dir)) unlink(target_dir, recursive = TRUE)
 })
 
+
+test_that("stashing works", {
+  stash_filename("x")
+  dont_use_here(silent = TRUE)
+  
+  x <- stash("a", {
+    1
+  }, functional=TRUE)
+  expect_equal(x, 1)
+  
+  x <- stash("a", {
+    1
+  }, functional=TRUE)
+  expect_equal(x, 1)
+  
+  target_dir <- get_stash_dir()
+  expect_true(file.exists(file.path(target_dir, "a.qs")))
+  expect_true(file.exists(file.path(target_dir, "a.hash")))
+  
+  # Clean-up
+  clear_stash()
+  rm(list = c("x"), envir = .GlobalEnv)
+  if (dir.exists(target_dir)) unlink(target_dir, recursive = TRUE)
+})
+
 # nolint start
 # test_that("Can stash functions as dependencies", {
 #     target_dir <- ".mustashe"
