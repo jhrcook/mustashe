@@ -11,10 +11,6 @@ status](https://www.r-pkg.org/badges/version/mustashe)](https://CRAN.R-project.o
 downloads](http://cranlogs.r-pkg.org/badges/grand-total/mustashe)](https://cran.r-project.org/package=mustashe)
 [![R build
 status](https://github.com/jhrcook/mustashe/workflows/R-CMD-check/badge.svg)](https://github.com/jhrcook/mustashe/actions)
-[![Travis build
-status](https://travis-ci.org/jhrcook/mustashe.svg?branch=master)](https://travis-ci.org/jhrcook/mustashe)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/jhrcook/mustashe?branch=master&svg=true)](https://ci.appveyor.com/project/jhrcook/mustashe)
 [![Codecov test
 coverage](https://codecov.io/gh/jhrcook/mustashe/branch/master/graph/badge.svg)](https://codecov.io/gh/jhrcook/mustashe?branch=master)
 [![License: GPL
@@ -71,7 +67,7 @@ stash("rnd_vals", {
 })
 #> Stashing object.
 tictoc::toc()
-#> random simulation: 3.481 sec elapsed
+#> random simulation: 3.638 sec elapsed
 ```
 
 Now, if we come back tomorrow and continue working on the same analysis,
@@ -87,7 +83,7 @@ stash("rnd_vals", {
 })
 #> Loading stashed object.
 tictoc::toc()
-#> random simulation: 0.02 sec elapsed
+#> random simulation: 0.016 sec elapsed
 ```
 
 ## Dependencies
