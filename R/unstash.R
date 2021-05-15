@@ -23,10 +23,14 @@
 unstash <- function(var, verbose = TRUE) {
   f <- function(v) {
     if (has_been_stashed(v)) {
-      if (verbose) { message(paste0("Unstashing '", v, "'.")) }
+      if (verbose) {
+        message(paste0("Unstashing '", v, "'."))
+      }
       file.remove(unlist(stash_filename(v)))
     } else {
-      if (verbose) { message(paste0("No object '", v, "' in stash.")) }
+      if (verbose) {
+        message(paste0("No object '", v, "' in stash."))
+      }
     }
   }
   lapply(var, f)
