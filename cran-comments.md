@@ -15,7 +15,22 @@ May 15, 2021
 
 ## `R CMD check --as-cran` results
 
-There were no ERRORs, WARNINGs, nor NOTEs
+There were no ERRORs nor WARNINGs. There was 1 NOTE about how this package has previously been archived:
+
+```
+* checking CRAN incoming feasibility ... NOTE
+Maintainer: ‘Joshua H Cook <joshuacook0023@gmail.com>’
+
+New submission
+
+Package was archived on CRAN
+
+CRAN repository db overrides:
+  X-CRAN-Comment: Archived on 2021-04-28 as check problems were not
+    corrected in time.
+
+  Suggests: packages not used conditionally.
+```
 
 ## Changes
 
