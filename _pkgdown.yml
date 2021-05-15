@@ -24,7 +24,7 @@ navbar:
     articles:
       text: Articles
       menu:
-      - text: Getting Started
+      - text: Getting started
         href: articles/getting-started.html
       - text: How 'mustashe' works
         href: articles/how-mustashe-works.html
@@ -32,8 +32,8 @@ navbar:
       text: News
       href: news/index.html
     github:
-      icon: fa-github fa-lg
-      href: https://github.com/jhrcook/stashR
+      icon: fab fa-github fa-lg
+      href: https://github.com/jhrcook/mustashe
     twitter:
       icon: fab fa-twitter fa-lg
       href: https://twitter.com/JoshDoesa

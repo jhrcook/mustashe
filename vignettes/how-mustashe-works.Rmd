@@ -2,7 +2,7 @@
 title: "How 'mustashe' works"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{How-it-works}
+  %\VignetteIndexEntry{How 'mustashe' works}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

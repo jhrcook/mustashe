@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mustashe</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4</span>
       </span>
     </div>
 
@@ -46,8 +46,8 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
-
+    <span class="fas fa-home fa-lg"></span>
+     
   </a>
 </li>
 <li>
@@ -56,12 +56,12 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     Articles
-
+     
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/getting-started.html">Getting Started</a>
+      <a href="../articles/getting-started.html">Getting started</a>
     </li>
     <li>
       <a href="../articles/how-mustashe-works.html">How 'mustashe' works</a>
@@ -74,15 +74,15 @@
   <a href="../news/index.html">News</a>
 </li>
 <li>
-  <a href="https://github.com/jhrcook/stashR">
-    <span class="fa fa-github fa-lg"></span>
-
+  <a href="https://github.com/jhrcook/mustashe">
+    <span class="fab fa-github fa-lg"></span>
+     
   </a>
 </li>
 <li>
   <a href="https://twitter.com/JoshDoesa">
-    <span class="fab fa fab fa-twitter fa-lg"></span>
-
+    <span class="fab fa-twitter fa-lg"></span>
+     
   </a>
 </li>
       </ul>
@@ -93,30 +93,29 @@
 </div>
 <!--/.navbar -->
 
+      
 
-
-      </header><script src="how-mustashe-works_files/header-attrs-2.5/header-attrs.js"></script><link href="how-mustashe-works_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="how-mustashe-works_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="how-mustashe-works_files/header-attrs-2.8/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>How ‘mustashe’ works</h1>
-
-
+            
+      
       <small class="dont-index">Source: <a href="https://github.com/jhrcook/mustashe/blob/master/vignettes/how-mustashe-works.Rmd"><code>vignettes/how-mustashe-works.Rmd</code></a></small>
       <div class="hidden name"><code>how-mustashe-works.Rmd</code></div>
 
     </div>
 
-
-
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jhrcook/mustashe">mustashe</a></span><span class="op">)</span></pre></div>
+    
+    
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jhrcook/mustashe">mustashe</a></span><span class="op">)</span></code></pre></div>
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
 <p>The following is the actual code for the <code><a href="../reference/stash.html">stash()</a></code> function, the main function of the ‘mustashe’ package. I have only added a few more comments for clarification.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="va">stash</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">var</span>, <span class="va">code</span>, <span class="va">depends_on</span> <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">stash</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">var</span>, <span class="va">code</span>, <span class="va">depends_on</span> <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">{</span>
 
     <span class="co"># Make sure the stashing directory ".mustashe" is available.</span>
     <span class="fu">check_stash_dir</span><span class="op">(</span><span class="op">)</span>
@@ -154,7 +153,7 @@
     <span class="op">}</span>
 
     <span class="fu"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span>
-<span class="op">}</span></pre></div>
+<span class="op">}</span></code></pre></div>
 <p>Overall, I believe the logic is quite simple. The steps that the <code><a href="../reference/stash.html">stash()</a></code> function follows, further explained in the following sections, are:</p>
 <ol style="list-style-type: decimal">
 <li>Deparse and format the code.</li>
@@ -168,16 +167,16 @@
 <a href="#deparsing-and-formatting-code" class="anchor"></a>Deparsing and formatting code</h2>
 <p>The first step taken by the <code><a href="../reference/stash.html">stash()</a></code> function is to deparse and format the code.</p>
 <p>Deparsing the code means to turn the unevaluated expression into a string. The deparsing is done by passing the code <em>immediately</em> to <code><a href="https://rdrr.io/r/base/substitute.html">substitute()</a></code> and <code><a href="https://rdrr.io/r/base/deparse.html">deparse()</a></code>. This must be done immediately, else the code will be evaluated. The <code><a href="https://rdrr.io/r/base/substitute.html">substitute()</a></code> function “returns the parse tree for the (unevaluated) expression <code>expr</code>, substituting any variables bound in env.”</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">)</span>
-<span class="co">#&gt; x &lt;- 1</span></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">)</span>
+<span class="co">#&gt; x &lt;- 1</span></code></pre></div>
 <p>The <code><a href="https://rdrr.io/r/base/deparse.html">deparse()</a></code> function “Turn[s] unevaluated expressions into character strings.” Paired with <code><a href="https://rdrr.io/r/base/substitute.html">substitute()</a></code>, it returns a string of the unevaluated code.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/deparse.html">deparse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "x &lt;- 1"</span></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/deparse.html">deparse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] "x &lt;- 1"</span></code></pre></div>
 <p>With the code now as a string, it is formatted using the <code>tidy_source()</code> function from <a href="https://CRAN.R-project.org/package=formatR">‘formatR’</a>. An internal function in ‘mustashe’, <code>format_code()</code> handles this process:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">format_code</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">code</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">format_code</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">code</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">fmt_code</span> <span class="op">&lt;-</span> <span class="fu">formatR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/formatR/man/tidy_source.html">tidy_source</a></span><span class="op">(</span>
     text <span class="op">=</span> <span class="va">code</span>,
     comment <span class="op">=</span> <span class="cn">FALSE</span>,
@@ -193,22 +192,22 @@
 <span class="op">}</span>
 
 <span class="fu">format_code</span><span class="op">(</span><span class="st">"x &lt;- 2"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "x &lt;- 2"</span></pre></div>
+<span class="co">#&gt; [1] "x &lt;- 2"</span></code></pre></div>
 <p>The purpose of formatting the code is so any stylistic changes to the <code>code</code> input do not affect the hash table. To demonstrate this, notice how the output from <code>format_code()</code> is the same between the two different code examples.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fu">format_code</span><span class="op">(</span><span class="st">"x=2"</span><span class="op">)</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">format_code</span><span class="op">(</span><span class="st">"x=2"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "x &lt;- 2"</span>
 <span class="fu">format_code</span><span class="op">(</span><span class="op">(</span><span class="st">"x &lt;- 2  # a comment"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "x &lt;- 2"</span></pre></div>
+<span class="co">#&gt; [1] "x &lt;- 2"</span></code></pre></div>
 </div>
 <div id="making-a-hash-table" class="section level2">
 <h2 class="hasAnchor">
 <a href="#making-a-hash-table" class="anchor"></a>Making a hash table</h2>
 <p>The hash table is a two-column table with the name and hash value of the code and any (optional) dependencies.</p>
 <p>The hashing is handled by the <a href="https://CRAN.R-project.org/package=digest">‘digest’</a> package. It takes a value and reproducibly produces a unique hash value.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="fu">digest</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/digest/man/digest.html">digest</a></span><span class="op">(</span><span class="st">"mustashe"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "ac2aad9fdb730500c56009bff6154a7e"</span></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">digest</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/digest/man/digest.html">digest</a></span><span class="op">(</span><span class="st">"mustashe"</span><span class="op">)</span>
+<span class="co">#&gt; [1] "ac2aad9fdb730500c56009bff6154a7e"</span></code></pre></div>
 <p>A hash value is made for the code and for any of the dependencies linked to the object. This process is handled by the <code>make_hash_table(code, depends_on)</code> internal function.</p>
 </div>
 <div id="comparing-hash-tables" class="section level2">
@@ -216,8 +215,8 @@
 <a href="#comparing-hash-tables" class="anchor"></a>Comparing hash tables</h2>
 <p>To tell if the code or dependencies have changed, the new hash table and stashed hashed table are compared. The function underlying this process is <code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code> from base R. This function compares two objects and “If they are different, [a] comparison is still made to some extent, and a report of the differences is returned.”</p>
 <p>Here is an example of using <code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code> to compare two data frames.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="co"># Two data frames with a small difference     *</span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Two data frames with a small difference     *</span>
 <span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>, b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span><span class="op">)</span><span class="op">)</span>
 <span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>, b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span>
 
@@ -227,34 +226,34 @@
 
 <span class="co"># When the two data frmaes are not equivalent.</span>
 <span class="fu"><a href="https://rdrr.io/r/base/all.equal.html">all.equal</a></span><span class="op">(</span><span class="va">df1</span>, <span class="va">df2</span><span class="op">)</span>
-<span class="co">#&gt; [1] "Component \"b\": Mean relative difference: 0.1428571"</span></pre></div>
+<span class="co">#&gt; [1] "Component \"b\": Mean relative difference: 0.1428571"</span></code></pre></div>
 <p>A word of caution, if using <code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code> for a boolean comparison (like in an if-statement), make sure to wrap it with <code>isTRUE</code>, otherwise it will return <code>TRUE</code> or comments on the differences, but not <code>FALSE</code>.</p>
 </div>
 <div id="evaluating-code-and-making-a-stash" class="section level2">
 <h2 class="hasAnchor">
 <a href="#evaluating-code-and-making-a-stash" class="anchor"></a>Evaluating code and making a stash</h2>
 <p>If the hash tables are different, that means the code must be evaluated, the new object be assigned to the desired name (<code>var</code>), and the new hash table and value stashed. This is handled by the internal function <code>new_stash()</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="co"># Make a new stash from a variable, code, and hash table.</span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Make a new stash from a variable, code, and hash table.</span>
 <span class="va">new_stash</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">var</span>, <span class="va">code</span>, <span class="va">hash_tbl</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">val</span> <span class="op">&lt;-</span> <span class="fu">evaluate_code</span><span class="op">(</span><span class="va">code</span><span class="op">)</span>
   <span class="fu">assign_value</span><span class="op">(</span><span class="va">var</span>, <span class="va">val</span><span class="op">)</span>
   <span class="fu">write_hash_table</span><span class="op">(</span><span class="va">var</span>, <span class="va">hash_tbl</span><span class="op">)</span>
   <span class="fu">write_val</span><span class="op">(</span><span class="va">var</span>, <span class="va">val</span><span class="op">)</span>
-<span class="op">}</span></pre></div>
+<span class="op">}</span></code></pre></div>
 <p>The first step is to evaluate the code with the <code>evaluate_code(code)</code> function. It uses the <code><a href="https://rdrr.io/r/base/parse.html">parse()</a></code> and <code><a href="https://rdrr.io/r/base/eval.html">eval()</a></code> functions and returns the resulting value.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="co"># Evaluate the code in a new environment.</span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Evaluate the code in a new environment.</span>
 <span class="va">evaluate_code</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">code</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/base/eval.html">eval</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/parse.html">parse</a></span><span class="op">(</span>text <span class="op">=</span> <span class="va">code</span><span class="op">)</span>, envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">new.env</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="op">}</span></pre></div>
+<span class="op">}</span></code></pre></div>
 <p>This value is then assigned the desired name in the global environment using the internal <code>assign_value(var, val)</code> function, where <code>.TargetEnv</code> is a variable in the package pointing to <code>.GlobalEnv</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="co"># Assign the value `val` to the variable `var`.</span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Assign the value `val` to the variable `var`.</span>
 <span class="va">assign_value</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">var</span>, <span class="va">val</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/base/assign.html">assign</a></span><span class="op">(</span><span class="va">var</span>, <span class="va">val</span>, envir <span class="op">=</span> <span class="va">.TargetEnv</span><span class="op">)</span>
-<span class="op">}</span></pre></div>
-<p>Lastly, the hash table and value are written to file using wrapper functions around <code><a href="https://readr.tidyverse.org/reference/write_delim.html">readr::write_tsv()</a></code> and <code><a href="https://rdrr.io/r/base/readRDS.html">saveRDS()</a></code>.</p>
+<span class="op">}</span></code></pre></div>
+<p>Lastly, the hash table and value are written to file using wrapper functions around <code>readr::write_tsv()</code> and <code><a href="https://rdrr.io/r/base/readRDS.html">saveRDS()</a></code>.</p>
 <hr>
 <div id="contact" class="section level3">
 <h3 class="hasAnchor">
@@ -285,7 +284,7 @@
       </footer>
 </div>
 
-
+  
 
 
   </body>
