@@ -1,0 +1,6 @@
+library(clisymbols)
+library(docopt)
+library(styler)
+library(git2r)
+library(precommit)
+library(lintr)
