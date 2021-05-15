@@ -4,10 +4,12 @@
 \alias{unstash}
 \title{Unstash an object}
 \usage{
-unstash(var)
+unstash(var, verbose = TRUE)
 }
 \arguments{
 \item{var}{The name or a vector of names of objects to remove.}
+
+\item{verbose}{Whether to print action statements (default TRUE).}
 }
 \value{
 Returns \code{NULL} (invisibly).
