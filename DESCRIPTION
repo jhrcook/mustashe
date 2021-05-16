@@ -12,10 +12,14 @@ Authors@R:
              family = "Briggs",
              role = c("ctb"),
              email = "jimmy.briggs@oliverwyman.com"),
-     person(given = "Vinay",
-            family = "Viswanadham",
-            role = c("ctb"),
-            email = "vinayak.vsv@gmail.com"))
+      person(given = "Vinay",
+             family = "Viswanadham",
+             role = c("ctb"),
+             email = "vinayak.vsv@gmail.com"),
+      person(given = "Travers",
+             family = "Ching",
+             role = c("ctb"),
+             email = "traversc@gmail.com"))
 Description: A simple system for saving and loading objects in
     R. Long running computations can be stashed after the first run and
     then reloaded the next time. Dependencies can be added to ensure that
@@ -42,5 +46,4 @@ VignetteBuilder:
     knitr
 Encoding: UTF-8
 Language: en-US
-LazyData: true
 RoxygenNote: 7.1.1

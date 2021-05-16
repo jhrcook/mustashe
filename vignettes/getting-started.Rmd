@@ -1,8 +1,8 @@
 ---
-title: "Getting Started"
+title: "Getting started"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{getting-started}
+  %\VignetteIndexEntry{Getting started}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -239,7 +239,7 @@ dont_use_here()
 ### Contact
 
 Any issues and feedback  on 'mustashe' can be submitted [here](https://github.com/jhrcook/mustashe/issues).
-I can be reached through the contact form on my [website](https://joshuacook.netlify.com) or on Twitter [\@JoshDoesa](https://twitter.com/JoshDoesa)
+I can be reached through the contact form on my [website](https://joshuacook.netlify.app) or on Twitter [\@JoshDoesa](https://twitter.com/JoshDoesa)
 
 ```{r, echo=FALSE}
 unlink(".mustashe", recursive = TRUE)

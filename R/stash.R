@@ -8,7 +8,7 @@
 #' @param code The code to generate the object to be stashed.
 #' @param depends_on A vector of other objects that this one depends on. Changes
 #'   to these objects will cause the re-running of the code, next time.
-#' @param functional If TRUE, return the object rather than setting in the global environment (default FALSE). 
+#' @param functional If TRUE, return the object rather than setting in the global environment (default FALSE).
 #' @param verbose Whether to print action statements (default TRUE).
 #'
 #' @return Returns \code{NULL} (invisibly).
@@ -50,17 +50,23 @@ stash <- function(var, code, depends_on = NULL, functional = FALSE, verbose = TR
   if (has_been_stashed(var)) {
     old_hash_tbl <- get_hash_table(var)
     if (hash_tables_are_equivalent(old_hash_tbl, new_hash_tbl)) {
-      if (verbose) { message("Loading stashed object.") }
+      if (verbose) {
+        message("Loading stashed object.")
+      }
       res <- load_variable(var, functional)
     } else {
-      if (verbose) { message("Updating stash.") }
+      if (verbose) {
+        message("Updating stash.")
+      }
       res <- new_stash(var, formatted_code, new_hash_tbl, functional)
     }
   } else {
-    if (verbose) { message("Stashing object.") }
+    if (verbose) {
+      message("Stashing object.")
+    }
     res <- new_stash(var, formatted_code, new_hash_tbl, functional)
   }
-  
+
   invisible(res)
 }
 

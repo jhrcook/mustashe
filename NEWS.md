@@ -1,3 +1,10 @@
+# mustashe 0.1.4
+
+- Functional and verbose parameters in the 'stash()' function (@traversc).
+- Minor fixes for CRAN package checking process.
+- Tooling changes to add [pre-commit](https://pre-commit.com) and ['renv'](https://CRAN.R-project.org/package=renv) and remove AppVeyor and Travis CI (only using GitHub Actions, now).
+- Add code coverage report CI as a GitHub Action (based on implementation by ['ggplot2'](https://github.com/tidyverse/ggplot2/blob/master/.github/workflows/test-coverage.yaml))
+
 # mustashe 0.1.3
 
 - An error is raised if the '.mustashe' directory cannot be created (#9).
