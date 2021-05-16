@@ -128,7 +128,7 @@
 <span class="co">#&gt; Stashing object.</span>
 
 <span class="fu">toc</span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; long-running computation: 5.442 sec elapsed</span></code></pre></div>
+<span class="co">#&gt; long-running computation: 5.45 sec elapsed</span></code></pre></div>
 <p>‘mustashe’ tells us that the object was stashed, and we can see that <code>x</code> was successfully assigned the value 5.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span>
@@ -144,7 +144,7 @@
 <span class="co">#&gt; Loading stashed object.</span>
 
 <span class="fu">toc</span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; long-running computation: 0.009 sec elapsed</span></code></pre></div>
+<span class="co">#&gt; long-running computation: 0.008 sec elapsed</span></code></pre></div>
 <p>That’s the basic use case of ‘mustashe’! Any issues and feedback can be submitted <a href="https://github.com/jhrcook/mustashe/issues">here</a>. Continue reading below for explanations of other useful features of ‘mustashe’.</p>
 <div id="why-not-use-projecttemplates-cache-function" class="section level3">
 <h3 class="hasAnchor">
@@ -183,7 +183,7 @@
 <span class="op">}</span><span class="op">)</span>
 <span class="co">#&gt; Stashing object.</span>
 <span class="fu">toc</span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; 3.012 sec elapsed</span></code></pre></div>
+<span class="co">#&gt; 3.01 sec elapsed</span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">tic</span><span class="op">(</span><span class="op">)</span>
 <span class="fu"><a href="../reference/stash.html">stash</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="op">{</span>
@@ -192,7 +192,7 @@
 <span class="op">}</span><span class="op">)</span>
 <span class="co">#&gt; Updating stash.</span>
 <span class="fu">toc</span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; 3.011 sec elapsed</span></code></pre></div>
+<span class="co">#&gt; 3.012 sec elapsed</span></code></pre></div>
 <p><strong>However, ‘mustashe’ is insensitive to changes in comments and other style-based adjustments to the code.</strong> In the next example, a comment has been added, but we see that the object is loaded from the stash.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/stash.html">stash</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="op">{</span>
@@ -282,7 +282,7 @@
 <div id="contact" class="section level3">
 <h3 class="hasAnchor">
 <a href="#contact" class="anchor"></a>Contact</h3>
-<p>Any issues and feedback on ‘mustashe’ can be submitted <a href="https://github.com/jhrcook/mustashe/issues">here</a>. I can be reached through the contact form on my <a href="https://joshuacook.netlify.com">website</a> or on Twitter <a href="https://twitter.com/JoshDoesa">@JoshDoesa</a></p>
+<p>Any issues and feedback on ‘mustashe’ can be submitted <a href="https://github.com/jhrcook/mustashe/issues">here</a>. I can be reached through the contact form on my <a href="https://joshuacook.netlify.app">website</a> or on Twitter <a href="https://twitter.com/JoshDoesa">@JoshDoesa</a></p>
 </div>
 </div>
   </div>
