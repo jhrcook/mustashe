@@ -23,6 +23,12 @@ time the computation is run, instead of evaluating the code, the stashed
 object is loaded. ‘mustashe’ is great for storing intermediate objects
 in an analysis.
 
+> Note that the CI currently fails because of an issue with how
+> ‘mustashe’ searches environments for objects and dependencies (Issue
+> [\#20](https://github.com/jhrcook/mustashe/issues/20)). The current
+> process works well for standard use, but users may have issues when
+> calling `stash()` within functions.
+
 ## Installation
 
 You can install the released version of ‘mustashe’ from
@@ -67,7 +73,7 @@ stash("rnd_vals", {
 })
 #> Stashing object.
 tictoc::toc()
-#> random simulation: 3.638 sec elapsed
+#> random simulation: 3.378 sec elapsed
 ```
 
 Now, if we come back tomorrow and continue working on the same analysis,
@@ -83,7 +89,7 @@ stash("rnd_vals", {
 })
 #> Loading stashed object.
 tictoc::toc()
-#> random simulation: 0.016 sec elapsed
+#> random simulation: 0.206 sec elapsed
 ```
 
 ## Dependencies
