@@ -12,6 +12,7 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 
+devtools::install()
 mustashe::clear_stash()
 ```
 
@@ -29,6 +30,9 @@ The goal of 'mustashe' is to save time on long-running computations by storing a
 The next time the computation is run, instead of evaluating the code, the stashed object is loaded.
 'mustashe' is great for storing intermediate objects in an analysis.
 
+> Note that the CI currently fails because of an issue with how 'mustashe' searches environments for objects and dependencies (Issue [#20](https://github.com/jhrcook/mustashe/issues/20)).
+> The current process works well for standard use, but users may have issues when calling `stash()` within functions.
+
 ## Installation
 
 You can install the released version of 'mustashe' from [CRAN](https://CRAN.R-project.org) with:
@@ -43,6 +47,7 @@ And the development version from [GitHub](https://github.com/jhrcook/mustashe) w
 # install.packages("devtools")
 devtools::install_github("jhrcook/mustashe")
 ```
+
 ## Loading 'mustashe'
 
 The 'mustashe' package is loaded like any other, using the `library()` function.

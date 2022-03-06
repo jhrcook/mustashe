@@ -126,7 +126,12 @@ make_hash <- function(vars, env) {
 
   hashes <- c()
   for (var in vars) {
-    hashes <- c(hashes, digest::digest(get(var, envir = env)))
+    obj <- get(var, envir = env)
+    if (is.function(obj) & !is.primitive(obj)) {
+      # For non-primitive functions, replace them with their body before digesting
+      obj <- body(obj)
+    }
+    hashes <- c(hashes, digest::digest(obj))
   }
 
   return(hashes)
