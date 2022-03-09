@@ -4,10 +4,13 @@
 \alias{unstash}
 \title{Unstash an object}
 \usage{
-unstash(var, verbose = TRUE)
+unstash(var, single_var, verbose = TRUE)
 }
 \arguments{
 \item{var}{The name or a vector of names of objects to remove.}
+
+\item{single_var}{Specifies a single name (key) to remove. Use this
+when the object was stashed using an arbitrary object as the key.}
 
 \item{verbose}{Whether to print action statements (default TRUE).}
 }
@@ -15,7 +18,7 @@ unstash(var, verbose = TRUE)
 Returns \code{NULL} (invisibly).
 }
 \description{
-Remove an object from the stash.
+Remove one or more objects from the stash.
 }
 \examples{
 \donttest{
@@ -24,6 +27,9 @@ stash("x", {
 })
 
 unstash("x")
+
+stash(list(letters,cars), {7}, functional=TRUE)
+unstash(single_var=list(letters,cars))
 
 #' # Remove directory for this example - do not do in real use.
 unlink(".mustashe", recursive = TRUE)
