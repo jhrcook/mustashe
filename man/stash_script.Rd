@@ -4,10 +4,13 @@
 \alias{stash_script}
 \title{Source script and stash result}
 \usage{
-stash_script(script_path, verbose = TRUE)
+stash_script(script_path, depends_on = NULL, verbose = TRUE)
 }
 \arguments{
 \item{script_path}{Path (absolute or relative) to the script to source.}
+
+\item{depends_on}{A vector of other objects that this one depends on. Changes
+to these objects will cause the re-running of the code, next time.}
 
 \item{verbose}{Whether to print action statements (default TRUE).}
 }
