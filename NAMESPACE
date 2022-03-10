@@ -3,5 +3,6 @@
 export(clear_stash)
 export(dont_use_here)
 export(stash)
+export(stash_script)
 export(unstash)
 export(use_here)

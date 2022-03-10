@@ -7,7 +7,10 @@
 stash(var, code, depends_on = NULL, functional = FALSE, verbose = TRUE)
 }
 \arguments{
-\item{var}{A variable to stash (as a string).}
+\item{var}{A variable to stash (as a string containing the name of the
+variable). If \code{functional} is FALSE, this must be a string containing
+a valid R variable name. If \code{functional} is TRUE, this can be an
+arbitrary R object.}
 
 \item{code}{The code to generate the object to be stashed.}
 
@@ -20,12 +23,28 @@ global environment (default FALSE).}
 \item{verbose}{Whether to print action statements (default TRUE).}
 }
 \value{
+The resulting object if \code{functional} is TRUE, otherwise NULL
+
 Returns \code{NULL} (invisibly).
 }
 \description{
 Stash an object after the first time is is created and re-load it the next
 time. If the code that generates the object is changed or any of its
 dependencies change, the code is re-evaluated and the new object is stashed.
+}
+\details{
+The \code{var} parameter is used as the key for the stash. Therefore,
+stashing a value using the same var name will overwrite the existing stash,
+even if the new call is made in a different context (environment). To stash
+multiple logically independent values, each of which should be updated
+separately, use separate \code{var}s for each stash.
+
+If \code{functional} is \code{FALSE}, the value of \code{var} is also used to
+determine the name of the variable to which the resulting object should be
+assigned, and it must therefore be a string containing a valid R variable
+name. If \code{functional} is \code{TRUE}, the resulting object is simply
+returned, and there are no restrictions on the value of \code{var}, and it
+can be an arbitrary object.
 }
 \examples{
 \donttest{
@@ -37,6 +56,9 @@ stash("rnd_vals", depends_on = "x", {
   # Some long running computation.
   rnd_vals <- rnorm(x)
 })
+
+# Stash using an arbitrary object as key (only allowed if functional==TRUE)
+stash(list(letters, cars), { 7 }, functional = TRUE)  # styler: off
 
 # Remove directory for this example - do not do in real use.
 unlink(".mustashe", recursive = TRUE)

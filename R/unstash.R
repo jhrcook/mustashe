@@ -1,8 +1,10 @@
 #' Unstash an object
 #'
-#' Remove an object from the stash.
+#' Remove one or more objects from the stash.
 #'
 #' @param var The name or a vector of names of objects to remove.
+#' @param single_var Specifies a single name (key) to remove. Use this
+#'   when the object was stashed using an arbitrary object as the key.
 #' @param verbose Whether to print action statements (default TRUE).
 #'
 #' @return Returns \code{NULL} (invisibly).
@@ -15,13 +17,17 @@
 #'
 #' unstash("x")
 #'
+#' stash(list(letters, cars), { 7 }, functional = TRUE)  # styler: off
+#' unstash(single_var = list(letters, cars))
+#'
 #' #' # Remove directory for this example - do not do in real use.
 #' unlink(".mustashe", recursive = TRUE)
 #' }
 #'
 #' @export unstash
-unstash <- function(var, verbose = TRUE) {
+unstash <- function(var, single_var, verbose = TRUE) {
   f <- function(v) {
+    v <- validate_var(v, functional = TRUE)
     if (has_been_stashed(v)) {
       if (verbose) {
         message(paste0("Unstashing '", v, "'."))
@@ -33,6 +39,14 @@ unstash <- function(var, verbose = TRUE) {
       }
     }
   }
-  lapply(var, f)
+  if (!missing(var)) {
+    lapply(var, f)
+  }
+  if (!missing(single_var)) {
+    f(single_var)
+  }
+  if (missing(var) && missing(single_var)) {
+    stop("all var arguments are missing, nothing to unstash")
+  }
   invisible(NULL)
 }
