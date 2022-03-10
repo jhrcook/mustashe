@@ -39,7 +39,7 @@ test_that("stashing works", {
 
   clear_stash()
 
-  assign("b", 1, envir = .GlobalEnv)
+  b <- 1
   expect_null(stash("a", depends_on = "b", {
     a <- b + 1
   }))
@@ -60,7 +60,7 @@ test_that("stashing works", {
   expect_equal(file_time(file.path(target_dir, "a.qs")), old_qs_time)
   expect_equal(file_time(file.path(target_dir, "a.hash")), old_hash_time)
 
-  assign("b", 2, envir = .GlobalEnv)
+  b <- 2
   expect_null(stash("a", depends_on = "b", {
     a <- b + 1
   }))
@@ -70,7 +70,6 @@ test_that("stashing works", {
 
   # Clean-up
   clear_stash()
-  rm(list = c("a", "b"), envir = .GlobalEnv)
   if (dir.exists(target_dir)) unlink(target_dir, recursive = TRUE)
 })
 

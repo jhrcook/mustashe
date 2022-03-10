@@ -8,7 +8,8 @@
 #' @param code The code to generate the object to be stashed.
 #' @param depends_on A vector of other objects that this one depends on. Changes
 #'   to these objects will cause the re-running of the code, next time.
-#' @param functional If TRUE, return the object rather than setting in the global environment (default FALSE).
+#' @param functional If TRUE, return the object rather than setting in the
+#'   global environment (default FALSE).
 #' @param verbose Whether to print action statements (default TRUE).
 #'
 #' @return Returns \code{NULL} (invisibly).
@@ -38,7 +39,9 @@ stash <- function(var, code, depends_on = NULL, functional = FALSE, verbose = TR
   if (is.null(var)) stop("`var` cannot be NULL")
   if (formatted_code == "NULL") stop("`code` cannot be NULL")
 
-  new_hash_tbl <- make_hash_table(formatted_code, depends_on)
+  # The environment where all code is evaluated and variables assigned.
+  target_env <- parent.frame()
+  new_hash_tbl <- make_hash_table(formatted_code, depends_on, target_env)
 
   # if the variable has been stashed:
   #     if the hash tables are equivalent:
@@ -53,32 +56,34 @@ stash <- function(var, code, depends_on = NULL, functional = FALSE, verbose = TR
       if (verbose) {
         message("Loading stashed object.")
       }
-      res <- load_variable(var, functional)
+      res <- load_variable(var, functional, target_env)
     } else {
       if (verbose) {
         message("Updating stash.")
       }
-      res <- new_stash(var, formatted_code, new_hash_tbl, functional)
+      res <- new_stash(
+        var, formatted_code, new_hash_tbl, functional, target_env
+      )
     }
   } else {
     if (verbose) {
       message("Stashing object.")
     }
-    res <- new_stash(var, formatted_code, new_hash_tbl, functional)
+    res <- new_stash(var, formatted_code, new_hash_tbl, functional, target_env)
   }
 
   invisible(res)
 }
 
 # Make a new stash from a variable, code, and hash table.
-new_stash <- function(var, code, hash_tbl, functional) {
-  val <- evaluate_code(code)
+new_stash <- function(var, code, hash_tbl, functional, target_env) {
+  val <- evaluate_code(code, target_env)
   write_hash_table(var, hash_tbl)
   write_val(var, val)
   if (functional) {
     return(val)
   } else {
-    assign_value(var, val)
+    assign_value(var, val, target_env = target_env)
     return(NULL)
   }
 }
@@ -102,10 +107,10 @@ format_code <- function(code) {
 
 
 # Make a hash table for code and any variables in the dependencies.
-make_hash_table <- function(code, depends_on) {
-  code_hash <- make_hash("code", env = environment())
+make_hash_table <- function(code, depends_on, target_env) {
+  code_hash <- make_hash("code", environment())
   depends_on <- sort(depends_on)
-  dependency_hashes <- make_hash(depends_on, .TargetEnv)
+  dependency_hashes <- make_hash(depends_on, target_env)
   tibble::tibble(
     name = c("CODE", depends_on),
     hash = c(code_hash, dependency_hashes)
@@ -114,21 +119,21 @@ make_hash_table <- function(code, depends_on) {
 
 
 # Make hash of an object.
-make_hash <- function(vars, env) {
+make_hash <- function(vars, target_env) {
   if (is.null(vars)) {
     return(NULL)
   }
 
-  missing <- !unlist(lapply(vars, exists, envir = env))
+  missing <- !unlist(lapply(vars, exists, envir = target_env))
   if (any(missing)) {
     stop("Some dependencies are missing from the environment.")
   }
 
   hashes <- c()
   for (var in vars) {
-    obj <- get(var, envir = env)
+    obj <- get(var, envir = target_env)
     if (is.function(obj) & !is.primitive(obj)) {
-      # For non-primitive functions, replace them with their body before digesting
+      # For non-primitive functions, 'digest' the function body.
       obj <- body(obj)
     }
     hashes <- c(hashes, digest::digest(obj))
@@ -172,28 +177,30 @@ write_val <- function(var, val) {
 }
 
 
-# Load in a variable from disk and assign it to the global environment.
-load_variable <- function(var, functional) {
+# Load in a variable from disk and assign it to the target environment.
+load_variable <- function(var, functional, target_env) {
   path <- stash_filename(var)$data_name
   val <- qs::qread(path)
   if (functional) {
     return(val)
   } else {
-    assign_value(var, val)
+    assign_value(var, val, target_env)
     return(NULL)
   }
 }
 
 
-# Evaluate the code in a new environment.
-evaluate_code <- function(code) {
-  eval(parse(text = code), envir = new.env())
+# Evaluate the code in a new child environment of the target environment.
+# Creating a new child environment isolates the code and prevents
+# inadvertent assignment from polluting the target environment.
+evaluate_code <- function(code, target_env) {
+  eval(parse(text = code), envir = new.env(parent = target_env))
 }
 
 
-# Assign the value `val` to the variable `var`.
-assign_value <- function(var, val) {
-  assign(var, val, envir = .TargetEnv)
+# Assign the value `val` to the variable `var` in the target environment.
+assign_value <- function(var, val, target_env) {
+  assign(var, val, envir = target_env)
 }
 
 
@@ -251,8 +258,3 @@ get_stash_dir <- function() {
   }
   return(stash_dir)
 }
-
-# The environment where all code is evaluated and variables assigned.
-# nolint start
-.TargetEnv <- .GlobalEnv
-# nolint end

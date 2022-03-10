@@ -14,7 +14,8 @@ stash(var, code, depends_on = NULL, functional = FALSE, verbose = TRUE)
 \item{depends_on}{A vector of other objects that this one depends on. Changes
 to these objects will cause the re-running of the code, next time.}
 
-\item{functional}{If TRUE, return the object rather than setting in the global environment (default FALSE).}
+\item{functional}{If TRUE, return the object rather than setting in the
+global environment (default FALSE).}
 
 \item{verbose}{Whether to print action statements (default TRUE).}
 }
