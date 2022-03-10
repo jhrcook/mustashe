@@ -1,9 +1,5 @@
-
-
+# styler: off
 test_that("non-string var names work if functional is specified", {
-
-  # make.names(c("good_var_name","bad-var-name", "bad/file/name"))
-
   # using NULL as var always results in an error
   expect_error(stash(NULL, {1}))
   expect_error(stash(NULL, {1}, functional=TRUE))
@@ -21,5 +17,5 @@ test_that("non-string var names work if functional is specified", {
   expect_equal(stash("bad/file/name", {1}, functional=TRUE), 1)
   expect_equal(stash(c("s_1", "s_2"), {1}, functional=TRUE), 1)
   expect_equal(stash(list(letters, cars), {1}, functional=TRUE), 1)
-
 })
+# styler: on

@@ -4,9 +4,10 @@
 #' time. If the code that generates the object is changed or any of its
 #' dependencies change, the code is re-evaluated and the new object is stashed.
 #'
-#' @param var A variable to stash (as a string containing the name of the variable).
-#'   If \code{functional} is FALSE, this must be a string containing a valid R variable name.
-#'   If \code{functional} is TRUE, this can be an arbitrary R object.
+#' @param var A variable to stash (as a string containing the name of the
+#'   variable). If \code{functional} is FALSE, this must be a string containing
+#'   a valid R variable name. If \code{functional} is TRUE, this can be an
+#'   arbitrary R object.
 #' @param code The code to generate the object to be stashed.
 #' @param depends_on A vector of other objects that this one depends on. Changes
 #'   to these objects will cause the re-running of the code, next time.
@@ -23,12 +24,12 @@
 #' multiple logically independent values, each of which should be updated
 #' separately, use separate \code{var}s for each stash.
 #'
-#' If \code{functional} is FALSE, the value of \code{var} is also used to
+#' If \code{functional} is \code{FALSE}, the value of \code{var} is also used to
 #' determine the name of the variable to which the resulting object should be
 #' assigned, and it must therefore be a string containing a valid R variable
-#' name. If \code{functional} is TRUE, the resulting object is simply returned,
-#' and there are no restrictions on the value of \code{var}, and it can be an
-#' arbitrary object.
+#' name. If \code{functional} is \code{TRUE}, the resulting object is simply
+#' returned, and there are no restrictions on the value of \code{var}, and it
+#' can be an arbitrary object.
 #'
 #' @return Returns \code{NULL} (invisibly).
 #'
@@ -44,14 +45,18 @@
 #' })
 #'
 #' # Stash using an arbitrary object as key (only allowed if functional==TRUE)
-#' stash(list(letters,cars), {7}, functional=TRUE)
+#' stash(list(letters, cars), { 7 }, functional = TRUE)  # styler: off
 #'
 #' # Remove directory for this example - do not do in real use.
 #' unlink(".mustashe", recursive = TRUE)
 #' }
 #'
 #' @export stash
-stash <- function(var, code, depends_on = NULL, functional = FALSE, verbose = TRUE) {
+stash <- function(var,
+                  code,
+                  depends_on = NULL,
+                  functional = FALSE,
+                  verbose = TRUE) {
   check_stash_dir()
 
   deparsed_code <- deparse(substitute(code))
@@ -280,15 +285,16 @@ get_stash_dir <- function() {
   return(stash_dir)
 }
 
-# validate (and in certain circumstances update) the
-# variable/key name used for the stash
+# Validate (and in certain circumstances update) the variable/key name used for
+# the stash.
 validate_var <- function(var, functional) {
-
-  if (is.null(var)) stop("`var` cannot be NULL")
+  if (is.null(var)) {
+    stop("`var` cannot be NULL")
+  }
 
   # valid variable names (which are also valid file names)
   # are returned unchanged
-  if (length(var)==1 && make.names(var)==var) {
+  if (length(var) == 1 && make.names(var) == var) {
     return(var)
   }
 

@@ -1,11 +1,8 @@
-
-
 test_that("stash_script works", {
-
   # init
   set.seed(42) # sampled sequence: "q" "e" "a" "y" "j" "d" ...
   script_name <- tempfile()
-  write("sample(letters,1)", script_name)
+  write("sample(letters, 1)", script_name)
 
   # will be stashed
   x <- stash_script(script_name)
@@ -15,11 +12,10 @@ test_that("stash_script works", {
   x <- stash_script(script_name)
   expect_equal(x, "q")
 
-  # changing file causes restash
-  write("a_var<-5; sample(letters,1)", script_name)
+  # changing file causes re-stash
+  write("a_var <- 5; sample(letters, 1)", script_name)
   x <- stash_script(script_name)
   expect_equal(x, "e")
-
 })
 
 test_that("stash_script correctly handles depends_on", {
@@ -27,7 +23,7 @@ test_that("stash_script correctly handles depends_on", {
   # init
   set.seed(42) # sampled sequence: "q" "e" "a" "y" "j" "d" ...
   script_name <- tempfile()
-  write("sample(letters,1)", script_name)
+  write("sample(letters, 1)", script_name)
 
   # will be stashed
   the_dependency <- "initial value"
@@ -39,7 +35,7 @@ test_that("stash_script correctly handles depends_on", {
   x <- stash_script(script_name, depends_on = "the_dependency")
   expect_equal(x, "q")
 
-  # changing file causes restash
+  # changing file causes re-stash
   the_dependency <- "new value"
   x <- stash_script(script_name, depends_on = "the_dependency")
   expect_equal(x, "e")

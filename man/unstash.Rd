@@ -28,8 +28,8 @@ stash("x", {
 
 unstash("x")
 
-stash(list(letters,cars), {7}, functional=TRUE)
-unstash(single_var=list(letters,cars))
+stash(list(letters, cars), { 7 }, functional = TRUE)  # styler: off
+unstash(single_var = list(letters, cars))
 
 #' # Remove directory for this example - do not do in real use.
 unlink(".mustashe", recursive = TRUE)

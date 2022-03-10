@@ -7,9 +7,10 @@
 stash(var, code, depends_on = NULL, functional = FALSE, verbose = TRUE)
 }
 \arguments{
-\item{var}{A variable to stash (as a string containing the name of the variable).
-If \code{functional} is FALSE, this must be a string containing a valid R variable name.
-If \code{functional} is TRUE, this can be an arbitrary R object.}
+\item{var}{A variable to stash (as a string containing the name of the
+variable). If \code{functional} is FALSE, this must be a string containing
+a valid R variable name. If \code{functional} is TRUE, this can be an
+arbitrary R object.}
 
 \item{code}{The code to generate the object to be stashed.}
 
@@ -38,12 +39,12 @@ even if the new call is made in a different context (environment). To stash
 multiple logically independent values, each of which should be updated
 separately, use separate \code{var}s for each stash.
 
-If \code{functional} is FALSE, the value of \code{var} is also used to
+If \code{functional} is \code{FALSE}, the value of \code{var} is also used to
 determine the name of the variable to which the resulting object should be
 assigned, and it must therefore be a string containing a valid R variable
-name. If \code{functional} is TRUE, the resulting object is simply returned,
-and there are no restrictions on the value of \code{var}, and it can be an
-arbitrary object.
+name. If \code{functional} is \code{TRUE}, the resulting object is simply
+returned, and there are no restrictions on the value of \code{var}, and it
+can be an arbitrary object.
 }
 \examples{
 \donttest{
@@ -57,7 +58,7 @@ stash("rnd_vals", depends_on = "x", {
 })
 
 # Stash using an arbitrary object as key (only allowed if functional==TRUE)
-stash(list(letters,cars), {7}, functional=TRUE)
+stash(list(letters, cars), { 7 }, functional = TRUE)  # styler: off
 
 # Remove directory for this example - do not do in real use.
 unlink(".mustashe", recursive = TRUE)

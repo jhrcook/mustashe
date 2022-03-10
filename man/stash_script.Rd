@@ -10,19 +10,20 @@ stash_script(script_path, depends_on = NULL, verbose = TRUE)
 \item{script_path}{Path (absolute or relative) to the script to source.}
 
 \item{depends_on}{A vector of other objects that this one depends on. Changes
-to these objects will cause the re-running of the code, next time.}
+to these objects will cause the re-running of the code next time.}
 
 \item{verbose}{Whether to print action statements (default TRUE).}
 }
 \value{
 The last line in the script referred to by the script at
-  \code{script_path} is treated as a return value, and is returned and cached.
+  \code{script_path} is treated as a return value, and is returned and
+  cached.
 }
 \description{
-Source R script, only if the result has not already been stashed. The final
+Source a R script, only if the result has not already been stashed. The final
 expression in the script is treated as the return value from the script (as
 per the functionality of \code{source()}, and this value is returned and
-stashed (using  \code{stash()} as the underlying caching mechanism).
+stashed (using \code{stash()} as the underlying caching mechanism).
 }
 \details{
 This function always calls \code{stash()} in functional mode.
@@ -31,6 +32,10 @@ Note that the stashed result is keyed according to the specified path to the
 script without any canonization. The function will therefore not realize that
 an absolute and relative path refer to the same file, and treat them as two
 separate results to cache.
+
+The time of modification is also included in the key of the results so any
+modification to the file will result in the script being re-run on the next
+call.
 }
 \examples{
 script_name <- tempfile()
@@ -40,5 +45,4 @@ x <- stash_script(script_name) # will be cached
 print(x)
 x <- stash_script(script_name) # will use cached data
 print(x)
-
 }
