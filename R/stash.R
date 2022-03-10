@@ -10,7 +10,8 @@
 #' @param code The code to generate the object to be stashed.
 #' @param depends_on A vector of other objects that this one depends on. Changes
 #'   to these objects will cause the re-running of the code, next time.
-#' @param functional If TRUE, return the object rather than setting in the calling environment (default FALSE).
+#' @param functional If TRUE, return the object rather than setting in the
+#'   global environment (default FALSE).
 #' @param verbose Whether to print action statements (default TRUE).
 #'
 #' @return The resulting object if \code{functional} is TRUE, otherwise NULL
@@ -61,7 +62,6 @@ stash <- function(var, code, depends_on = NULL, functional = FALSE, verbose = TR
 
   # The environment where all code is evaluated and variables assigned.
   target_env <- parent.frame()
-
   new_hash_tbl <- make_hash_table(formatted_code, depends_on, target_env)
 
   # if the variable has been stashed:
@@ -82,7 +82,9 @@ stash <- function(var, code, depends_on = NULL, functional = FALSE, verbose = TR
       if (verbose) {
         message("Updating stash.")
       }
-      res <- new_stash(var, formatted_code, new_hash_tbl, functional, target_env)
+      res <- new_stash(
+        var, formatted_code, new_hash_tbl, functional, target_env
+      )
     }
   } else {
     if (verbose) {
@@ -213,7 +215,7 @@ load_variable <- function(var, functional, target_env) {
 # Creating a new child environment isolates the code and prevents
 # inadvertent assignment from polluting the target environment.
 evaluate_code <- function(code, target_env) {
-  eval(parse(text = code), envir = new.env(parent=target_env))
+  eval(parse(text = code), envir = new.env(parent = target_env))
 }
 
 
@@ -277,7 +279,6 @@ get_stash_dir <- function() {
   }
   return(stash_dir)
 }
-
 
 # validate (and in certain circumstances update) the
 # variable/key name used for the stash

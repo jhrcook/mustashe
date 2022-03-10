@@ -9,29 +9,56 @@ test_that("function deps are invalidated when updated", {
   # However, updates to either a functions formals() or body() should trigger a
   # restash.
 
-  verbose=FALSE
+  verbose <- FALSE
   unstash("stash_func")
   set.seed(42)
 
   # Initial stash for reference
-  f <- function(x,y){x-y}
-  result_1 <- stash("stash_func", {sample(1000,1)}, depends_on="f", functional=TRUE)
+  f <- function(x, y) {
+    x - y
+  }
+  result_1 <- stash("stash_func",
+    {
+      sample(1000, 1)
+    },
+    depends_on = "f",
+    functional = TRUE
+  )
 
   # Changing body SHOULD trigger a restash
-  body(f) <- expression({y-x})
-  result_2 <- stash("stash_func", {sample(1000,1)}, depends_on="f", functional=TRUE)
+  body(f) <- expression({
+    y - x
+  })
+  result_2 <- stash("stash_func",
+    {
+      sample(1000, 1)
+    },
+    depends_on = "f",
+    functional = TRUE
+  )
   expect_true(result_1 != result_2)
 
   # Changing formals SHOULD trigger a restash
   formals(f)$y <- 3
-  result_3 <- stash("stash_func", {sample(1000,1)}, depends_on="f", functional=TRUE)
+  result_3 <- stash("stash_func",
+    {
+      sample(1000, 1)
+    },
+    depends_on = "f",
+    functional = TRUE
+  )
   expect_true(result_2 != result_3)
 
   # Changing environement SHOULD NOT trigger a restash
   environment(f) <- new.env()
-  result_4 <- stash("stash_func", {sample(1000,1)}, depends_on="f", functional=TRUE)
+  result_4 <- stash("stash_func",
+    {
+      sample(1000, 1)
+    },
+    depends_on = "f",
+    functional = TRUE
+  )
   expect_equal(result_3, result_4)
-
 })
 
 
