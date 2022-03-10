@@ -133,8 +133,8 @@ make_hash <- function(vars, target_env) {
   for (var in vars) {
     obj <- get(var, envir = target_env)
     if (is.function(obj) & !is.primitive(obj)) {
-      # For non-primitive functions, 'digest' the function body.
-      obj <- body(obj)
+      # For functions, deparse before digesting
+      obj <- deparse(obj)
     }
     hashes <- c(hashes, digest::digest(obj))
   }
