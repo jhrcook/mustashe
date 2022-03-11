@@ -1,6 +1,5 @@
 test_that("stashing works", {
   stash_filename("x")
-  dont_use_here(silent = TRUE)
   target_dir <- get_stash_dir()
 
   expect_error(stash(NULL, NULL), "`var` cannot be NULL")
@@ -76,7 +75,6 @@ test_that("stashing works", {
 
 test_that("stashing works", {
   stash_filename("x")
-  dont_use_here(silent = TRUE)
 
   x <- stash("x",
     {

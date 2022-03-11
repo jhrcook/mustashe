@@ -44,6 +44,5 @@ reference:
   - '`stash`'
   - '`clear_stash`'
   - '`unstash`'
-  - '`use_here`'
-  - '`dont_use_here`'
+  - '`config_mustashe`'
   - '`mustashe`'
