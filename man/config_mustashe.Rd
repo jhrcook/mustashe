@@ -4,9 +4,11 @@
 \alias{config_mustashe}
 \title{Configure default options for 'mustashe'}
 \usage{
-config_mustashe(use_here, verbose, functional)
+config_mustashe(..., use_here, verbose, functional)
 }
 \arguments{
+\item{...}{Arguments passed by position will be ignored.}
+
 \item{use_here}{Use the 'here' package when writing stashes to file. The
 default behavior is to not use 'here.'}
 

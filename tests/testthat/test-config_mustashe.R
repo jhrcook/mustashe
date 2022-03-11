@@ -42,3 +42,7 @@ test_that("configuring `functional` default", {
   config_mustashe(functional = FALSE)
   expect_equal(mustashe_functional(), FALSE)
 })
+
+test_that("warning if try to connfigure with positional arguments", {
+  expect_warning(config_mustashe(TRUE), regexp = "Positional")
+})

@@ -4,6 +4,7 @@
 #' stashing arguments. This function can be added to a .Rprofile to set the
 #' defaults for 'mustashe' in a project.
 #'
+#' @param ... Arguments passed by position will be ignored.
 #' @param use_here Use the 'here' package when writing stashes to file. The
 #'   default behavior is to not use 'here.'
 #' @param verbose The default value of \code{verbose} arguments when stashing or
@@ -16,7 +17,10 @@
 #'   arguments without over-writing previously set options.
 #'
 #' @export config_mustashe
-config_mustashe <- function(use_here, verbose, functional) {
+config_mustashe <- function(..., use_here, verbose, functional) {
+  if (length(list(...)) > 0) {
+    warning("Positional arguments are ignored.")
+  }
   if (!missing(use_here)) {
     options("mustashe.use_here" = use_here)
   }
@@ -31,25 +35,13 @@ config_mustashe <- function(use_here, verbose, functional) {
 
 
 mustashe_use_here <- function() {
-  res <- getOption("mustashe.use_here")
-  if (!is.null(res)) {
-    return(res)
-  }
-  return(FALSE)
+  res <- getOption("mustashe.use_here", default = FALSE)
 }
 
 mustashe_verbose <- function() {
-  res <- getOption("mustashe.verbose")
-  if (!is.null(res)) {
-    return(res)
-  }
-  return(TRUE)
+  res <- getOption("mustashe.verbose", default = TRUE)
 }
 
 mustashe_functional <- function() {
-  res <- getOption("mustashe.functional")
-  if (!is.null(res)) {
-    return(res)
-  }
-  return(FALSE)
+  res <- getOption("mustashe.functional", default = FALSE)
 }
