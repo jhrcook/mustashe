@@ -55,8 +55,10 @@
 stash <- function(var,
                   code,
                   depends_on = NULL,
-                  functional = FALSE,
-                  verbose = TRUE) {
+                  functional = NULL,
+                  verbose = NULL) {
+  if (is.null(functional)) functional <- mustashe_functional()
+  if (is.null(verbose)) verbose <- mustashe_verbose()
   check_stash_dir()
 
   deparsed_code <- deparse(substitute(code))
@@ -275,8 +277,7 @@ Please create the directory manually using:"
 
 get_stash_dir <- function() {
   stash_dir <- ".mustashe"
-
-  use_here_option <- getOption("mustashe.here")
+  use_here_option <- mustashe_use_here()
   if (!is.null(use_here_option)) {
     if (use_here_option == TRUE) {
       return(here::here(stash_dir))
@@ -299,8 +300,8 @@ validate_var <- function(var, functional) {
   }
 
   # for invalid names:
-  #  * stop if functional==TRUE
-  #  * return a digest/hash if functional==TRUE
+  #  * stop if `functional == TRUE`
+  #  * return a digest/hash if `functional == TRUE`
   if (functional) {
     return(digest::digest(var))
   } else {

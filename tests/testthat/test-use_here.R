@@ -1,19 +1,14 @@
-test_that("`stash()` uses the `here::here()` function", {
-  expect_message(
-    use_here(),
-    "global option \"mustashe.here\" has been set `TRUE`"
-  )
-  expect_silent(use_here(silent = TRUE))
-  expect_true(getOption("mustashe.here"))
+test_that("configure stash to use or not use 'here'", {
+  expect_warning(use_here(silent = FALSE), "deprecated")
+  expect_true(mustashe_use_here())
 
-  dont_use_here(silent = TRUE)
-})
+  expect_warning(dont_use_here(silent = FALSE), "deprecated")
+  expect_false(mustashe_use_here())
+
+  expect_warning(use_here(silent = TRUE), "deprecated")
+  expect_true(mustashe_use_here())
 
 
-test_that("`stash()` does not use the `here::here()` function", {
-  expect_message(dont_use_here())
-  expect_silent(dont_use_here(silent = TRUE))
-  expect_false(getOption("mustashe.here"))
-
-  dont_use_here(silent = TRUE)
+  expect_warning(dont_use_here(silent = TRUE), "deprecated")
+  expect_false(mustashe_use_here())
 })

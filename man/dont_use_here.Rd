@@ -18,6 +18,10 @@ Stop using the \code{here::here()} function from the
 \href{https://here.r-lib.org}{'here'} package to create the file paths for
 stashed objects.
 }
+\note{
+This function has been deprecated and the use of the 'here' function
+  should instead be set using \code{config_mustashe(use_here = FALSE)}.
+}
 \examples{
 dont_use_here()
 }

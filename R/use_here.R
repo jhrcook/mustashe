@@ -1,4 +1,4 @@
-#' Use the 'here' package when writing stashes to file
+#' Use the 'here' package when writing stashes to file (deprecated)
 #'
 #' Sets an option that tells \code{stash()} to write the stashed objects to a
 #' path created using the \code{here::here()} function from the
@@ -15,6 +15,9 @@
 #'
 #' @return Returns \code{NULL} (invisibly).
 #'
+#' @note This function has been deprecated and the use of the 'here' function
+#'   should instead be set using \code{config_mustashe(use_here = TRUE)}.
+#'
 #' @examples
 #' use_here()
 #' @export use_here
@@ -29,11 +32,12 @@ use_here <- function(silent = FALSE) {
     )
     message(paste(msg, collapse = "\n"))
   }
+  use_here_deprecation_warning()
   invisible(NULL)
 }
 
 
-#' Stop using the 'here' package when writing stashes to file
+#' Stop using the 'here' package when writing stashes to file (deprecated)
 #'
 #' Stop using the \code{here::here()} function from the
 #' \href{https://here.r-lib.org}{'here'} package to create the file paths for
@@ -44,6 +48,9 @@ use_here <- function(silent = FALSE) {
 #'
 #' @return Returns \code{NULL} (invisibly).
 #'
+#' @note This function has been deprecated and the use of the 'here' function
+#'   should instead be set using \code{config_mustashe(use_here = FALSE)}.
+#'
 #' @examples
 #' dont_use_here()
 #' @export dont_use_here
@@ -52,10 +59,19 @@ dont_use_here <- function(silent = FALSE) {
   if (!silent) {
     message("No longer using `here::here()` for creating stash file paths.")
   }
+  use_here_deprecation_warning()
   invisible(NULL)
+}
+
+use_here_deprecation_warning <- function(use_here) {
+  msg <- paste(
+    "This function is deprecated.",
+    "Use `config_mustashe(use_here = TRUE/FALSE` instead."
+  )
+  warning(msg)
 }
 
 
 set_use_here <- function(val) {
-  options("mustashe.here" = val)
+  config_mustashe(use_here = val)
 }

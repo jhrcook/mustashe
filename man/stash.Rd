@@ -4,7 +4,7 @@
 \alias{stash}
 \title{Stash an object}
 \usage{
-stash(var, code, depends_on = NULL, functional = FALSE, verbose = TRUE)
+stash(var, code, depends_on = NULL, functional = NULL, verbose = NULL)
 }
 \arguments{
 \item{var}{A variable to stash (as a string containing the name of the

@@ -4,7 +4,7 @@
 \alias{clear_stash}
 \title{Clear the stash}
 \usage{
-clear_stash(verbose = TRUE)
+clear_stash(verbose = NULL)
 }
 \arguments{
 \item{verbose}{Whether to print action statements (default TRUE).}

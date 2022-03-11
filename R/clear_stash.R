@@ -9,7 +9,8 @@
 #' @examples
 #' clear_stash()
 #' @export clear_stash
-clear_stash <- function(verbose = TRUE) {
+clear_stash <- function(verbose = NULL) {
+  if (is.null(verbose)) verbose <- mustashe_verbose()
   if (verbose) {
     message("Clearing stash.")
   }

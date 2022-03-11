@@ -4,7 +4,7 @@
 \alias{stash_script}
 \title{Source script and stash result}
 \usage{
-stash_script(script_path, depends_on = NULL, verbose = TRUE)
+stash_script(script_path, depends_on = NULL, verbose = NULL)
 }
 \arguments{
 \item{script_path}{Path (absolute or relative) to the script to source.}

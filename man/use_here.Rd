@@ -2,7 +2,7 @@
 % Please edit documentation in R/use_here.R
 \name{use_here}
 \alias{use_here}
-\title{Use the 'here' package when writing stashes to file}
+\title{Use the 'here' package when writing stashes to file (deprecated)}
 \usage{
 use_here(silent = FALSE)
 }
@@ -24,6 +24,10 @@ using an RStudio project.
 Add \code{mustashe::use_here(silent = TRUE)} to your '.Rprofile' or
 \code{setup} code block in an R Markdown to set this feature automatically in
 the future.
+}
+\note{
+This function has been deprecated and the use of the 'here' function
+  should instead be set using \code{config_mustashe(use_here = TRUE)}.
 }
 \examples{
 use_here()
