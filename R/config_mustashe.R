@@ -7,7 +7,7 @@
 #' @param use_here Use the 'here' package when writing stashes to file. The
 #'   default behavior is to not use 'here.'
 #' @param verbose The default value of \code{verbose} arguments when stashing or
-#'   un-stashing. The default behavior is \code{verbose = TRUE}.
+#'   unstashing. The default behavior is \code{verbose = TRUE}.
 #' @param functional The default value of \code{functional} arguments when
 #'   stashing. The default behavior is \code{functional = FALSE}.
 #'

@@ -224,13 +224,13 @@ The ['here'](https://here.r-lib.org) package is useful for handling file paths i
 The main function, `here::here()`, can be used to create the file path for stashing an object by calling `use_here()`.
 
 ```{r}
-use_here()
+# use_here()
 ```
 
 This behavior can be turned off, too.
 
 ```{r}
-dont_use_here()
+# dont_use_here()
 ```
 
 

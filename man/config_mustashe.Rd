@@ -11,7 +11,7 @@ config_mustashe(use_here, verbose, functional)
 default behavior is to not use 'here.'}
 
 \item{verbose}{The default value of \code{verbose} arguments when stashing or
-un-stashing. The default behavior is \code{verbose = TRUE}.}
+unstashing. The default behavior is \code{verbose = TRUE}.}
 
 \item{functional}{The default value of \code{functional} arguments when
 stashing. The default behavior is \code{functional = FALSE}.}

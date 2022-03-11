@@ -36,7 +36,9 @@
 #' x <- stash_script(script_name) # will use cached data
 #' print(x)
 #' @export
-stash_script <- function(script_path, depends_on = NULL, verbose = TRUE) {
+stash_script <- function(script_path, depends_on = NULL, verbose = NULL) {
+  if (is.null(verbose)) verbose <- mustashe_verbose()
+
   # check input
   if (check_script_path(script_path)) {
     stop("Script name invalid or missing")

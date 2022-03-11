@@ -76,20 +76,11 @@ test_that("stashing works", {
 test_that("stashing works", {
   stash_filename("x")
 
-  x <- stash("x",
-    {
-      1
-    },
-    functional = TRUE
+  x <- stash("x", { 1 }, functional = TRUE  # styler: off
   )
   expect_equal(x, 1)
 
-  x <- stash("x",
-    {
-      1
-    },
-    functional = TRUE
-  )
+  x <- stash("x", { 1 }, functional = TRUE)  # styler: off
   expect_equal(x, 1)
 
   target_dir <- get_stash_dir()
@@ -98,7 +89,6 @@ test_that("stashing works", {
 
   # Clean-up
   clear_stash()
-  # rm(list = c("x"), envir = .GlobalEnv)  # nolint
   if (dir.exists(target_dir)) unlink(target_dir, recursive = TRUE)
 })
 

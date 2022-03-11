@@ -4,7 +4,7 @@
 \alias{unstash}
 \title{Unstash an object}
 \usage{
-unstash(var, single_var, verbose = TRUE)
+unstash(var, single_var, verbose = NULL)
 }
 \arguments{
 \item{var}{The name or a vector of names of objects to remove.}
