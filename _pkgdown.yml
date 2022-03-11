@@ -39,10 +39,20 @@ navbar:
       href: https://twitter.com/JoshDoesa
 
 reference:
-- title: All functions
+- title: Stashing and unstashing
   contents:
   - '`stash`'
-  - '`clear_stash`'
   - '`unstash`'
+  - '`clear_stash`'
+
+- title: Configuration
+  contents:
   - '`config_mustashe`'
-  - '`mustashe`'
+
+- title: Deprecated
+  desc: >
+    The following functions will continue to work for now, but will be removed
+    in a future release of the package.
+  contents:
+  - '`use_here`'
+  - '`dont_use_here`'

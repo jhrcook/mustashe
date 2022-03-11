@@ -2,6 +2,8 @@
 
 export(clear_stash)
 export(config_mustashe)
+export(dont_use_here)
 export(stash)
 export(stash_script)
 export(unstash)
+export(use_here)
