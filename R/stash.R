@@ -275,8 +275,7 @@ Please create the directory manually using:"
 
 get_stash_dir <- function() {
   stash_dir <- ".mustashe"
-
-  use_here_option <- getOption("mustashe.here")
+  use_here_option <- mustashe_use_here()
   if (!is.null(use_here_option)) {
     if (use_here_option == TRUE) {
       return(here::here(stash_dir))

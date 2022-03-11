@@ -1,7 +1,7 @@
 test_that("the correct filenames are retrieved", {
 
   # Without using `here::here()`.
-  dont_use_here(silent = TRUE)
+  config_mustashe(use_here = FALSE)
 
   filenames1 <- stash_filename("josh")
   expect_equal(
@@ -13,7 +13,7 @@ test_that("the correct filenames are retrieved", {
   )
 
   # With using `here::here()`.
-  use_here(silent = TRUE)
+  config_mustashe(use_here = TRUE)
 
   filenames2 <- stash_filename("josh")
   expect_false(filenames1$data_name == filenames2$data_name)
