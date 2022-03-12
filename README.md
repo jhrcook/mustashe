@@ -23,12 +23,6 @@ time the computation is run, instead of evaluating the code, the stashed
 object is loaded. ‘mustashe’ is great for storing intermediate objects
 in an analysis.
 
-> Note that the CI currently fails because of an issue with how
-> ‘mustashe’ searches environments for objects and dependencies (Issue
-> [\#20](https://github.com/jhrcook/mustashe/issues/20)). The current
-> process works well for standard use, but users may have issues when
-> calling `stash()` within functions.
-
 ## Installation
 
 You can install the released version of ‘mustashe’ from
@@ -73,7 +67,7 @@ stash("rnd_vals", {
 })
 #> Stashing object.
 tictoc::toc()
-#> random simulation: 3.378 sec elapsed
+#> random simulation: 3.103 sec elapsed
 ```
 
 Now, if we come back tomorrow and continue working on the same analysis,
@@ -89,7 +83,7 @@ stash("rnd_vals", {
 })
 #> Loading stashed object.
 tictoc::toc()
-#> random simulation: 0.206 sec elapsed
+#> random simulation: 0.144 sec elapsed
 ```
 
 ## Dependencies
@@ -149,28 +143,185 @@ foo
 #> [1] 201
 ```
 
-## Using [‘here’](https://here.r-lib.org) to create file paths
+## Other API features
+
+### Functional interface
+
+In the examples above, `stash()` does not return a value (actually, it
+invisibly returns `NULL`), instead assigning the result of the
+computation to an object named using the `var` argument. Frequently,
+though, a return value is desired. This behavior can be induced by
+setting the argument `functional = TRUE`.
+
+``` r
+b <- stash("b", functional = FALSE, {
+  rnorm(5, 0, 1)
+})
+#> Stashing object.
+b
+#> NULL
+```
+
+``` r
+b <- stash("b", functional = TRUE, {
+  rnorm(5, 0, 1)
+})
+#> Loading stashed object.
+b
+#> [1]  0.26499342  1.83074748 -0.05937826 -0.05320937  0.43790418
+```
+
+### Functions as dependencies
+
+The `stash()` function can take other functions as dependencies. The
+body and formals components of the function object are checked to see if
+they have changed. (More information on the structure of function
+objects in R can be found in Hadley Wickham’s [*Advanced R* - Functions:
+Function
+components](http://adv-r.had.co.nz/Functions.html#function-components).)
+
+As an example, suppose you have a script with the following code. It is
+run, and the value of 5 is stashed for `a` and it is dependent on the
+function `add_x()`.
+
+``` r
+add_x <- function(y, x = 2) {
+  y + x
+}
+
+stash("a", depends_on = "add_x", {
+  a <- add_x(3)
+})
+#> Stashing object.
+a
+#> [1] 5
+```
+
+You continue working and change the function `add_x()` to use the
+default value of 5 instead of 2. This change will cause the code for `a`
+to be re-run and `a` will be assigned the value 8. Note that the code in
+the `code` argument for `stash()` did not change, the code was re-run
+because a dependency changed.
+
+``` r
+add_x <- function(y, x = 5) {
+  y + x
+}
+
+stash("a", depends_on = "add_x", {
+  a <- add_x(3)
+})
+#> Updating stash.
+a
+#> [1] 8
+```
+
+### Using `stash()` in functions
+
+Because of the careful management of R environments, `stash()` can be
+used inside of functions. In the example below, note that the stashed
+object will depend on the value of the `magic_number` object *in the
+function*.
+
+``` r
+magic_number <- 10
+do_data_science <- function() {
+  magic_number <- 5
+  stash("rand_num", depends_on = c("magic_number"), {
+    runif(1, 0, 10)
+  })
+  return(rand_num)
+}
+
+do_data_science()
+#> Stashing object.
+#> [1] 9.094619
+```
+
+Changing the value of the `magic_number` object in the global
+environment will not invalidate the stash.
+
+``` r
+magic_number <- 11
+do_data_science()
+#> Loading stashed object.
+#> [1] 9.094619
+```
+
+### Stashing results of sourcing a R script
+
+It is also possible to stash the results of sourcing and R script. If
+the script changes, it will be re-sourced the next time around. Also,
+the natural behavior of the `source()` function is maintained by
+returning the last evaluated value.
+
+``` r
+# Write a temporary R script.
+temp_script <- tempfile()
+write("print('Script to get 5 letters'); sample(letters, 5)", temp_script)
+
+x <- stash_script(temp_script)
+#> Stashing object.
+#> [1] "Script to get 5 letters"
+x
+#> [1] "d" "t" "l" "o" "u"
+```
+
+``` r
+x2 <- stash_script(temp_script)
+#> Loading stashed object.
+x2
+#> [1] "d" "t" "l" "o" "u"
+```
+
+## Configuration
+
+### Using [‘here’](https://here.r-lib.org) to create file paths
 
 The [‘here’](https://here.r-lib.org) package is useful for handling file
 paths in R projects, particularly when using an RStudio project. The
 main function, `here::here()`, can be used to create the file path for
-stashing an object by calling `use_here()`.
+stashing an object by setting the ‘mustashe’ configuration option with
+the `config_mustashe()` function.
 
 ``` r
-use_here()
-#> The global option "mustashe.here" has been set `TRUE`.
-#> Add `mustashe::use_here(silent = TRUE)` to you're '.Rprofile'
-#>   to have it set automatically in the future.
+config_mustashe(use_here = TRUE)
 ```
 
 This behavior can be turned off, too.
 
 ``` r
-dont_use_here()
-#> No longer using `here::here()` for creating stash file paths.
+config_mustashe(use_here = FALSE)
+```
+
+### Other options
+
+Defaults for the `verbose` and `functional` (see above) arguments of
+stashing functions can also be configured. For example, you can have the
+functions run silently and return the result by default.
+
+``` r
+config_mustashe(verbose = FALSE, functional = TRUE)
 ```
 
 ------------------------------------------------------------------------
+
+## Acknowledgements
+
+### Contributors
+
+I would like to thank the contributors to this package for their
+additions of key features and bug squashing:
+
+-   [vinayakvsv](https://github.com/vinayakvsv) fixed an annoying bug
+    early on in the development of the library.
+-   [jimbrig](https://github.com/jimbrig) replaced the file read/write
+    system with the ‘qs’ library.
+-   [traversc](https://github.com/traversc) introduced the functional
+    API to `stash()`.
+-   [torfason](https://github.com/torfason) upgraded R environment
+    management enabling stashing in functions and linking functions as
+    dependencies to a stashed object. He also created `stash_script()`.
 
 ### Attribution
 
