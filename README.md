@@ -67,7 +67,7 @@ stash("rnd_vals", {
 })
 #> Stashing object.
 tictoc::toc()
-#> random simulation: 3.103 sec elapsed
+#> random simulation: 3.07 sec elapsed
 ```
 
 Now, if we come back tomorrow and continue working on the same analysis,
@@ -83,7 +83,7 @@ stash("rnd_vals", {
 })
 #> Loading stashed object.
 tictoc::toc()
-#> random simulation: 0.144 sec elapsed
+#> random simulation: 0.042 sec elapsed
 ```
 
 ## Dependencies
@@ -330,3 +330,13 @@ The inspiration for this package came from the `cache()` feature in the
 While the functionality and implementation are a bit different, this
 would have been far more difficult to do without referencing the source
 code from ‘ProjectTemplate’.
+
+------------------------------------------------------------------------
+
+### Contact
+
+Any issues and feedback on ‘mustashe’ can be submitted
+[here](https://github.com/jhrcook/mustashe/issues). Alternatively, I can
+be reached through the contact form on my
+[website](https://joshuacook.netlify.app) or on Twitter
+[@JoshDoesa](https://twitter.com/JoshDoesa)
