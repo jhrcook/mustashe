@@ -2,7 +2,7 @@
 % Please edit documentation in R/use_here.R
 \name{dont_use_here}
 \alias{dont_use_here}
-\title{Stop using the 'here' package when writing stashes to file}
+\title{Stop using the 'here' package when writing stashes to file (deprecated)}
 \usage{
 dont_use_here(silent = FALSE)
 }

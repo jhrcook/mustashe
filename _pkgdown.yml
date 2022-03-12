@@ -42,6 +42,7 @@ reference:
 - title: Stashing and unstashing
   contents:
   - '`stash`'
+  - '`stash_script`'
   - '`unstash`'
   - '`clear_stash`'
 
