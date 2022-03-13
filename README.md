@@ -67,7 +67,7 @@ stash("rnd_vals", {
 })
 #> Stashing object.
 tictoc::toc()
-#> random simulation: 3.07 sec elapsed
+#> random simulation: 3.076 sec elapsed
 ```
 
 Now, if we come back tomorrow and continue working on the same analysis,
@@ -83,7 +83,7 @@ stash("rnd_vals", {
 })
 #> Loading stashed object.
 tictoc::toc()
-#> random simulation: 0.042 sec elapsed
+#> random simulation: 0.062 sec elapsed
 ```
 
 ## Dependencies
