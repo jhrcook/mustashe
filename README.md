@@ -14,7 +14,6 @@ downloads](http://cranlogs.r-pkg.org/badges/grand-total/mustashe)](https://cran.
 coverage](https://codecov.io/gh/jhrcook/mustashe/branch/master/graph/badge.svg)](https://codecov.io/gh/jhrcook/mustashe?branch=master)
 [![License: GPL
 v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-
 <!-- badges: end -->
 
 The goal of ‘mustashe’ is to save time on long-running computations by
@@ -67,7 +66,7 @@ stash("rnd_vals", {
 })
 #> Stashing object.
 tictoc::toc()
-#> random simulation: 3.08 sec elapsed
+#> random simulation: 3.095 sec elapsed
 ```
 
 Now, if we come back tomorrow and continue working on the same analysis,
@@ -83,7 +82,7 @@ stash("rnd_vals", {
 })
 #> Loading stashed object.
 tictoc::toc()
-#> random simulation: 0.031 sec elapsed
+#> random simulation: 0.03 sec elapsed
 ```
 
 ## Dependencies
