@@ -1,20 +1,25 @@
 # 'mustashe' 0.1.5
 
-March 13, 2022
+June 12, 2022
 
 ## Test environments
 
-Developed on: macOS Monterey 12.2.1, R 4.1.2
+Developed on: macOS Monterey 12.4 (x86_64-apple-darwin17.0 (64-bit)), R 4.2.0
 
 CI on GitHub Actions:
 
-- macOS 11.6.4 (64-bit), R 4.2.0
-- macOS 11.6.4 (64-bit), R 3.6.3
-- Ubuntu 16.04, R 3.5.3
-- Ubuntu 16.04, R 3.6.3
-- Ubuntu 16.04, R 4.0.5
-- Microsoft Windows Server 2022, 10.0.20348, R 3.6
-- Microsoft Windows Server 2022, 10.0.20348, R 4.0
+- macOS Catalina 10.15.7 (x86_64), R versions
+    - 4.2.0
+- macOS Big Sur 11.6.4 (x86_64), R versions
+    - 4.2.0
+- Ubuntu 20.04.4 LTS (x86_64), R versions:
+    - 4.0.5
+    - 4.1.3
+    - 4.2.0
+- Microsoft Windows Server 2022 (build 20348, 10.0.20348), R versions:
+    - 4.0.5
+    - 4.1.3
+    - 4.2.0
 
 ## `R CMD check --as-cran` results
 
