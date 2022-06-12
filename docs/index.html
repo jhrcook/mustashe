@@ -30,6 +30,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -42,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">mustashe</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.4</span>
       </span>
     </div>
 
@@ -50,7 +52,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -58,7 +60,7 @@
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -78,13 +80,13 @@
   <a href="news/index.html">News</a>
 </li>
 <li>
-  <a href="https://github.com/jhrcook/mustashe">
+  <a href="https://github.com/jhrcook/mustashe" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="https://twitter.com/JoshDoesa">
+  <a href="https://twitter.com/JoshDoesa" class="external-link">
     <span class="fab fa-twitter fa-lg"></span>
      
   </a>
@@ -101,66 +103,84 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="mustashe---" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#mustashe---" class="anchor"></a>mustashe <a href="https://jhrcook.github.io/mustashe/index.html"> <img src="reference/figures/logo.png" align="right" alt="" width="120"></a>
+<div class="section level1">
+<div class="page-header"><h1 id="mustashe---">mustashe <a href="https://jhrcook.github.io/mustashe/index.html" class="external-link">
+<img src="reference/figures/logo.png" align="right" alt="" width="120"></a>
+<a class="anchor" aria-label="anchor" href="#mustashe---"></a>
 </h1></div>
 <!-- badges: start -->
 
-<p>The goal of ‘mustashe’ is to save time on long-running computations by storing and reloading the resulting object after the first run. The next time the computation is run, instead of evaluating the code, the stashed object is loaded. ‘mustashe’ is great for storing intermediate objects in an analysis.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of ‘mustashe’ from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<p>The goal of ‘mustashe’ is to save time on long-running computations
+by storing and reloading the resulting object after the first run. The
+next time the computation is run, instead of evaluating the code, the
+stashed object is loaded. ‘mustashe’ is great for storing intermediate
+objects in an analysis.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the released version of ‘mustashe’ from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"mustashe"</span><span class="op">)</span></code></pre></div>
-<p>And the development version from <a href="https://github.com/jhrcook/mustashe">GitHub</a> with:</p>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"mustashe"</span><span class="op">)</span></code></pre></div>
+<p>And the development version from <a href="https://github.com/jhrcook/mustashe" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"jhrcook/mustashe"</span><span class="op">)</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"jhrcook/mustashe"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="loading-mustashe" class="section level2">
-<h2 class="hasAnchor">
-<a href="#loading-mustashe" class="anchor"></a>Loading ‘mustashe’</h2>
-<p>The ‘mustashe’ package is loaded like any other, using the <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> function.</p>
+<div class="section level2">
+<h2 id="loading-mustashe">Loading ‘mustashe’<a class="anchor" aria-label="anchor" href="#loading-mustashe"></a>
+</h2>
+<p>The ‘mustashe’ package is loaded like any other, using the
+<code><a href="https://rdrr.io/r/base/library.html" class="external-link">library()</a></code> function.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jhrcook/mustashe">mustashe</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jhrcook/mustashe" class="external-link">mustashe</a></span><span class="op">)</span></code></pre></div>
 </div>
-<div id="basic-example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#basic-example" class="anchor"></a>Basic example</h2>
-<p>Below is a simple example of how to use the <code><a href="reference/stash.html">stash()</a></code> function from ‘mustashe’.</p>
-<p>Let’s say, for part of an analysis, we are running a long simulation to generate random data <code>rnd_vals</code>. This is mocked below using the <code><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep()</a></code> function. We can time this process using the ‘tictoc’ library.</p>
+<div class="section level2">
+<h2 id="basic-example">Basic example<a class="anchor" aria-label="anchor" href="#basic-example"></a>
+</h2>
+<p>Below is a simple example of how to use the <code><a href="reference/stash.html">stash()</a></code>
+function from ‘mustashe’.</p>
+<p>Let’s say, for part of an analysis, we are running a long simulation
+to generate random data <code>rnd_vals</code>. This is mocked below
+using the <code><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep()</a></code> function. We can time this process
+using the ‘tictoc’ library.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span><span class="op">(</span><span class="st">"random simulation"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">tic</a></span><span class="op">(</span><span class="st">"random simulation"</span><span class="op">)</span>
 <span class="fu"><a href="reference/stash.html">stash</a></span><span class="op">(</span><span class="st">"rnd_vals"</span>, <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>
-  <span class="va">rnd_vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1e5</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>
+  <span class="va">rnd_vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1e5</span><span class="op">)</span>
 <span class="op">}</span><span class="op">)</span>
 <span class="co">#&gt; Stashing object.</span>
-<span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; random simulation: 3.638 sec elapsed</span></code></pre></div>
-<p>Now, if we come back tomorrow and continue working on the same analysis, the second time this process is run the code is not evaluated because the code passed to <code><a href="reference/stash.html">stash()</a></code> has not changed. Instead, the random values <code>rnd_vals</code> is loaded.</p>
+<span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">toc</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; random simulation: 3.07 sec elapsed</span></code></pre></div>
+<p>Now, if we come back tomorrow and continue working on the same
+analysis, the second time this process is run the code is not evaluated
+because the code passed to <code><a href="reference/stash.html">stash()</a></code> has not changed.
+Instead, the random values <code>rnd_vals</code> is loaded.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span><span class="op">(</span><span class="st">"random simulation"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">tic</a></span><span class="op">(</span><span class="st">"random simulation"</span><span class="op">)</span>
 <span class="fu"><a href="reference/stash.html">stash</a></span><span class="op">(</span><span class="st">"rnd_vals"</span>, <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html">Sys.sleep</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>
-  <span class="va">rnd_vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1e5</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>
+  <span class="va">rnd_vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">1e5</span><span class="op">)</span>
 <span class="op">}</span><span class="op">)</span>
 <span class="co">#&gt; Loading stashed object.</span>
-<span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; random simulation: 0.016 sec elapsed</span></code></pre></div>
+<span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">toc</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; random simulation: 0.042 sec elapsed</span></code></pre></div>
 </div>
-<div id="dependencies" class="section level2">
-<h2 class="hasAnchor">
-<a href="#dependencies" class="anchor"></a>Dependencies</h2>
-<p>A common problem with storing intermediates is that they have dependencies that can change. If a dependency changes, then we want the stashed value to be updated. This is accomplished by passing the names of the dependencies to the <code>depends_on</code> argument.</p>
-<p>For instance, let’s say we are calculating some value <code>foo</code> using <code>x</code>. (For the following example, I will use a print statement to indicate when the code is evaluated.)</p>
+<div class="section level2">
+<h2 id="dependencies">Dependencies<a class="anchor" aria-label="anchor" href="#dependencies"></a>
+</h2>
+<p>A common problem with storing intermediates is that they have
+dependencies that can change. If a dependency changes, then we want the
+stashed value to be updated. This is accomplished by passing the names
+of the dependencies to the <code>depends_on</code> argument.</p>
+<p>For instance, let’s say we are calculating some value
+<code>foo</code> using <code>x</code>. (For the following example, I
+will use a print statement to indicate when the code is evaluated.)</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">100</span>
 
 <span class="fu"><a href="reference/stash.html">stash</a></span><span class="op">(</span><span class="st">"foo"</span>, depends_on <span class="op">=</span> <span class="st">"x"</span>, <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Calculating `foo` using `x`."</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"Calculating `foo` using `x`."</span><span class="op">)</span>
   <span class="va">foo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">1</span>
 <span class="op">}</span><span class="op">)</span>
 <span class="co">#&gt; Stashing object.</span>
@@ -168,24 +188,26 @@
 
 <span class="va">foo</span>
 <span class="co">#&gt; [1] 101</span></code></pre></div>
-<p>Now if <code>x</code> is not changed, then the code for <code>foo</code> does not get re-evaluated.</p>
+<p>Now if <code>x</code> is not changed, then the code for
+<code>foo</code> does not get re-evaluated.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">100</span>
 
 <span class="fu"><a href="reference/stash.html">stash</a></span><span class="op">(</span><span class="st">"foo"</span>, depends_on <span class="op">=</span> <span class="st">"x"</span>, <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Calculating `foo` using `x`."</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"Calculating `foo` using `x`."</span><span class="op">)</span>
   <span class="va">foo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">1</span>
 <span class="op">}</span><span class="op">)</span>
 <span class="co">#&gt; Loading stashed object.</span>
 
 <span class="va">foo</span>
 <span class="co">#&gt; [1] 101</span></code></pre></div>
-<p>But if <code>x</code> does change, then <code>foo</code> gets re-evaluated.</p>
+<p>But if <code>x</code> does change, then <code>foo</code> gets
+re-evaluated.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">200</span>
 
 <span class="fu"><a href="reference/stash.html">stash</a></span><span class="op">(</span><span class="st">"foo"</span>, depends_on <span class="op">=</span> <span class="st">"x"</span>, <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Calculating `foo` using `x`."</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"Calculating `foo` using `x`."</span><span class="op">)</span>
   <span class="va">foo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">1</span>
 <span class="op">}</span><span class="op">)</span>
 <span class="co">#&gt; Updating stash.</span>
@@ -194,24 +216,196 @@
 <span class="va">foo</span>
 <span class="co">#&gt; [1] 201</span></code></pre></div>
 </div>
-<div id="using-here-to-create-file-paths" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-here-to-create-file-paths" class="anchor"></a>Using <a href="https://here.r-lib.org">‘here’</a> to create file paths</h2>
-<p>The <a href="https://here.r-lib.org">‘here’</a> package is useful for handling file paths in R projects, particularly when using an RStudio project. The main function, <code><a href="https://here.r-lib.org//reference/here.html">here::here()</a></code>, can be used to create the file path for stashing an object by calling <code><a href="reference/use_here.html">use_here()</a></code>.</p>
+<div class="section level2">
+<h2 id="other-api-features">Other API features<a class="anchor" aria-label="anchor" href="#other-api-features"></a>
+</h2>
+<div class="section level3">
+<h3 id="functional-interface">Functional interface<a class="anchor" aria-label="anchor" href="#functional-interface"></a>
+</h3>
+<p>In the examples above, <code><a href="reference/stash.html">stash()</a></code> does not return a value
+(actually, it invisibly returns <code>NULL</code>), instead assigning
+the result of the computation to an object named using the
+<code>var</code> argument. Frequently, though, a return value is
+desired. This behavior can be induced by setting the argument
+<code>functional = TRUE</code>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/use_here.html">use_here</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; The global option "mustashe.here" has been set `TRUE`.</span>
-<span class="co">#&gt; Add `mustashe::use_here(silent = TRUE)` to you're '.Rprofile'</span>
-<span class="co">#&gt;   to have it set automatically in the future.</span></code></pre></div>
-<p>This behavior can be turned off, too.</p>
+<code class="sourceCode R"><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/stash.html">stash</a></span><span class="op">(</span><span class="st">"b"</span>, functional <span class="op">=</span> <span class="cn">FALSE</span>, <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span>
+<span class="co">#&gt; Stashing object.</span>
+<span class="va">b</span>
+<span class="co">#&gt; NULL</span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/dont_use_here.html">dont_use_here</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; No longer using `here::here()` for creating stash file paths.</span></code></pre></div>
+<code class="sourceCode R"><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/stash.html">stash</a></span><span class="op">(</span><span class="st">"b"</span>, functional <span class="op">=</span> <span class="cn">TRUE</span>, <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span>
+<span class="co">#&gt; Loading stashed object.</span>
+<span class="va">b</span>
+<span class="co">#&gt; [1]  0.26499342  1.83074748 -0.05937826 -0.05320937  0.43790418</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="functions-as-dependencies">Functions as dependencies<a class="anchor" aria-label="anchor" href="#functions-as-dependencies"></a>
+</h3>
+<p>The <code><a href="reference/stash.html">stash()</a></code> function can take other functions as
+dependencies. The body and formals components of the function object are
+checked to see if they have changed. (More information on the structure
+of function objects in R can be found in Hadley Wickham’s <a href="http://adv-r.had.co.nz/Functions.html#function-components" class="external-link"><em>Advanced
+R</em> - Functions: Function components</a>.)</p>
+<p>As an example, suppose you have a script with the following code. It
+is run, and the value of 5 is stashed for <code>a</code> and it is
+dependent on the function <code>add_x()</code>.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">add_x</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">y</span>, <span class="va">x</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">y</span> <span class="op">+</span> <span class="va">x</span>
+<span class="op">}</span>
+
+<span class="fu"><a href="reference/stash.html">stash</a></span><span class="op">(</span><span class="st">"a"</span>, depends_on <span class="op">=</span> <span class="st">"add_x"</span>, <span class="op">{</span>
+  <span class="va">a</span> <span class="op">&lt;-</span> <span class="fu">add_x</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span>
+<span class="co">#&gt; Stashing object.</span>
+<span class="va">a</span>
+<span class="co">#&gt; [1] 5</span></code></pre></div>
+<p>You continue working and change the function <code>add_x()</code> to
+use the default value of 5 instead of 2. This change will cause the code
+for <code>a</code> to be re-run and <code>a</code> will be assigned the
+value 8. Note that the code in the <code>code</code> argument for
+<code><a href="reference/stash.html">stash()</a></code> did not change, the code was re-run because a
+dependency changed.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">add_x</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">y</span>, <span class="va">x</span> <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">y</span> <span class="op">+</span> <span class="va">x</span>
+<span class="op">}</span>
+
+<span class="fu"><a href="reference/stash.html">stash</a></span><span class="op">(</span><span class="st">"a"</span>, depends_on <span class="op">=</span> <span class="st">"add_x"</span>, <span class="op">{</span>
+  <span class="va">a</span> <span class="op">&lt;-</span> <span class="fu">add_x</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span>
+<span class="co">#&gt; Updating stash.</span>
+<span class="va">a</span>
+<span class="co">#&gt; [1] 8</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="using-stash-in-functions">Using <code>stash()</code> in functions<a class="anchor" aria-label="anchor" href="#using-stash-in-functions"></a>
+</h3>
+<p>Because of the careful management of R environments,
+<code><a href="reference/stash.html">stash()</a></code> can be used inside of functions. In the example
+below, note that the stashed object will depend on the value of the
+<code>magic_number</code> object <em>in the function</em>.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">magic_number</span> <span class="op">&lt;-</span> <span class="fl">10</span>
+<span class="va">do_data_science</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">magic_number</span> <span class="op">&lt;-</span> <span class="fl">5</span>
+  <span class="fu"><a href="reference/stash.html">stash</a></span><span class="op">(</span><span class="st">"rand_num"</span>, depends_on <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"magic_number"</span><span class="op">)</span>, <span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>
+  <span class="op">}</span><span class="op">)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">rand_num</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="fu">do_data_science</span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; Stashing object.</span>
+<span class="co">#&gt; [1] 9.094619</span></code></pre></div>
+<p>Changing the value of the <code>magic_number</code> object in the
+global environment will not invalidate the stash.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">magic_number</span> <span class="op">&lt;-</span> <span class="fl">11</span>
+<span class="fu">do_data_science</span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; Loading stashed object.</span>
+<span class="co">#&gt; [1] 9.094619</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="stashing-results-of-sourcing-a-r-script">Stashing results of sourcing a R script<a class="anchor" aria-label="anchor" href="#stashing-results-of-sourcing-a-r-script"></a>
+</h3>
+<p>It is also possible to stash the results of sourcing and R script. If
+the script changes, it will be re-sourced the next time around. Also,
+the natural behavior of the <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code> function is maintained
+by returning the last evaluated value.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Write a temporary R script.</span>
+<span class="va">temp_script</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/write.html" class="external-link">write</a></span><span class="op">(</span><span class="st">"print('Script to get 5 letters'); sample(letters, 5)"</span>, <span class="va">temp_script</span><span class="op">)</span>
+
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/stash_script.html">stash_script</a></span><span class="op">(</span><span class="va">temp_script</span><span class="op">)</span>
+<span class="co">#&gt; Stashing object.</span>
+<span class="co">#&gt; [1] "Script to get 5 letters"</span>
+<span class="va">x</span>
+<span class="co">#&gt; [1] "d" "t" "l" "o" "u"</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/stash_script.html">stash_script</a></span><span class="op">(</span><span class="va">temp_script</span><span class="op">)</span>
+<span class="co">#&gt; Loading stashed object.</span>
+<span class="va">x2</span>
+<span class="co">#&gt; [1] "d" "t" "l" "o" "u"</span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="configuration">Configuration<a class="anchor" aria-label="anchor" href="#configuration"></a>
+</h2>
+<div class="section level3">
+<h3 id="using-here-to-create-file-paths">Using <a href="https://here.r-lib.org" class="external-link">‘here’</a> to create file
+paths<a class="anchor" aria-label="anchor" href="#using-here-to-create-file-paths"></a>
+</h3>
+<p>The <a href="https://here.r-lib.org" class="external-link">‘here’</a> package is useful for
+handling file paths in R projects, particularly when using an RStudio
+project. The main function, <code><a href="https://here.r-lib.org//reference/here.html" class="external-link">here::here()</a></code>, can be used to
+create the file path for stashing an object by setting the ‘mustashe’
+configuration option with the <code><a href="reference/config_mustashe.html">config_mustashe()</a></code>
+function.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/config_mustashe.html">config_mustashe</a></span><span class="op">(</span>use_here <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<p>This behavior can be turned off, too.</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/config_mustashe.html">config_mustashe</a></span><span class="op">(</span>use_here <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="other-options">Other options<a class="anchor" aria-label="anchor" href="#other-options"></a>
+</h3>
+<p>Defaults for the <code>verbose</code> and <code>functional</code>
+(see above) arguments of stashing functions can also be configured. For
+example, you can have the functions run silently and return the result
+by default.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/config_mustashe.html">config_mustashe</a></span><span class="op">(</span>verbose <span class="op">=</span> <span class="cn">FALSE</span>, functional <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <hr>
-<div id="attribution" class="section level3">
-<h3 class="hasAnchor">
-<a href="#attribution" class="anchor"></a>Attribution</h3>
-<p>The inspiration for this package came from the <code>cache()</code> feature in the <a href="http://projecttemplate.net/index.html">‘ProjectTemplate’</a> package. While the functionality and implementation are a bit different, this would have been far more difficult to do without referencing the source code from ‘ProjectTemplate’.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
+</h2>
+<div class="section level3">
+<h3 id="contributors">Contributors<a class="anchor" aria-label="anchor" href="#contributors"></a>
+</h3>
+<p>I would like to thank the contributors to this package for their
+additions of key features and bug squashing:</p>
+<ul>
+<li>
+<a href="https://github.com/vinayakvsv" class="external-link">vinayakvsv</a> fixed an
+annoying bug early on in the development of the library.</li>
+<li>
+<a href="https://github.com/jimbrig" class="external-link">jimbrig</a> replaced the file
+read/write system with the ‘qs’ library.</li>
+<li>
+<a href="https://github.com/traversc" class="external-link">traversc</a> introduced the
+functional API to <code><a href="reference/stash.html">stash()</a></code>.</li>
+<li>
+<a href="https://github.com/torfason" class="external-link">torfason</a> upgraded R
+environment management enabling stashing in functions and linking
+functions as dependencies to a stashed object. He also created
+<code><a href="reference/stash_script.html">stash_script()</a></code>.</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="attribution">Attribution<a class="anchor" aria-label="anchor" href="#attribution"></a>
+</h3>
+<p>The inspiration for this package came from the <code>cache()</code>
+feature in the <a href="http://projecttemplate.net/index.html" class="external-link">‘ProjectTemplate’</a>
+package. While the functionality and implementation are a bit different,
+this would have been far more difficult to do without referencing the
+source code from ‘ProjectTemplate’.</p>
+<hr>
+</div>
+<div class="section level3">
+<h3 id="contact">Contact<a class="anchor" aria-label="anchor" href="#contact"></a>
+</h3>
+<p>Any issues and feedback on ‘mustashe’ can be submitted <a href="https://github.com/jhrcook/mustashe/issues" class="external-link">here</a>.
+Alternatively, I can be reached through the contact form on my <a href="https://joshuacook.netlify.app" class="external-link">website</a> or on Twitter <a href="https://twitter.com/JoshDoesa" class="external-link">@JoshDoesa</a></p>
 </div>
 </div>
 </div>
@@ -219,51 +413,62 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=mustashe">https://​cloud.r-project.org/​package=mustashe</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/jhrcook/mustashe/">https://​github.com/​jhrcook/​mustashe/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/jhrcook/mustashe/issues">https://​github.com/​jhrcook/​mustashe/​issues</a>
-</li>
-</ul>
-</div>
-<div class="license">
-<h2>License</h2>
-<ul class="list-unstyled">
-<li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></small></li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>Joshua H Cook <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-9815-6879" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li><a href="authors.html">All authors...</a></li>
+<li><a href="https://cloud.r-project.org/package=mustashe" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/jhrcook/mustashe/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/jhrcook/mustashe/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="license">
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://CRAN.R-project.org/package=mustashe"><img src="https://www.r-pkg.org/badges/version/mustashe" alt="CRAN status"></a></li>
-<li><a href="https://cran.r-project.org/package=mustashe"><img src="http://cranlogs.r-pkg.org/badges/grand-total/mustashe" alt="CRAN downloads"></a></li>
-<li><a href="https://github.com/jhrcook/mustashe/actions"><img src="https://github.com/jhrcook/mustashe/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://codecov.io/gh/jhrcook/mustashe?branch=master"><img src="https://codecov.io/gh/jhrcook/mustashe/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
-<li><a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3"></a></li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small><a href="https://www.r-project.org/Licenses/GPL-3" class="external-link">GPL-3</a></small></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing mustashe</a></li>
+</ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Joshua H Cook <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-9815-6879" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html">More about authors...</a></li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://CRAN.R-project.org/package=mustashe" class="external-link"><img src="https://www.r-pkg.org/badges/version/mustashe" alt="CRAN status"></a></li>
+<li><a href="https://cran.r-project.org/package=mustashe" class="external-link"><img src="http://cranlogs.r-pkg.org/badges/grand-total/mustashe" alt="CRAN downloads"></a></li>
+<li><a href="https://github.com/jhrcook/mustashe/actions" class="external-link"><img src="https://github.com/jhrcook/mustashe/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://codecov.io/gh/jhrcook/mustashe?branch=master" class="external-link"><img src="https://codecov.io/gh/jhrcook/mustashe/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://www.gnu.org/licenses/gpl-3.0" class="external-link"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3"></a></li>
+</ul>
+</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Joshua H Cook.</p>
+  <p></p>
+<p>Developed by Joshua H Cook.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>
@@ -271,6 +476,8 @@
 
   
 
+
+  
 
   </body>
 </html>

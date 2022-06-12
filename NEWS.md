@@ -1,3 +1,11 @@
+# mustashe 0.1.5
+
+- Functions can now be listed as dependencies (@torfason).
+- The results of sourcing a R script can be stashed (@torfason).
+- Improved (fixed) management of environments when assigning evaluation results to variables or searching for dependencies (@torfason).
+- Configuration system for using the 'here' package and default values for `verbose` and `functional` arguments in stashing functions. (Deprecation of `use_here()` and `dont_use_here()`.)
+- Updated documentation and vignettes with the new features.
+
 # mustashe 0.1.4
 
 - Functional and verbose parameters in the 'stash()' function (@traversc).

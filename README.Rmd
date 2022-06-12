@@ -12,8 +12,10 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 
-devtools::install()
+devtools::load_all()
 mustashe::clear_stash()
+
+set.seed(123)
 ```
 
 # mustashe <a href="https://jhrcook.github.io/mustashe/index.html"> <img src="man/figures/logo.png" align="right" alt="" width="120" /> </a>
@@ -21,7 +23,7 @@ mustashe::clear_stash()
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/mustashe)](https://CRAN.R-project.org/package=mustashe)
 [![CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/mustashe)](https://cran.r-project.org/package=mustashe)
-[![R build status](https://github.com/jhrcook/mustashe/workflows/R-CMD-check/badge.svg)](https://github.com/jhrcook/mustashe/actions)
+[![R-CMD-check](https://github.com/jhrcook/mustashe/workflows/R-CMD-check/badge.svg)](https://github.com/jhrcook/mustashe/actions)
 [![Codecov test coverage](https://codecov.io/gh/jhrcook/mustashe/branch/master/graph/badge.svg)](https://codecov.io/gh/jhrcook/mustashe?branch=master)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 <!-- badges: end -->
@@ -30,8 +32,6 @@ The goal of 'mustashe' is to save time on long-running computations by storing a
 The next time the computation is run, instead of evaluating the code, the stashed object is loaded.
 'mustashe' is great for storing intermediate objects in an analysis.
 
-> Note that the CI currently fails because of an issue with how 'mustashe' searches environments for objects and dependencies (Issue [#20](https://github.com/jhrcook/mustashe/issues/20)).
-> The current process works well for standard use, but users may have issues when calling `stash()` within functions.
 
 ## Installation
 
@@ -48,6 +48,7 @@ And the development version from [GitHub](https://github.com/jhrcook/mustashe) w
 devtools::install_github("jhrcook/mustashe")
 ```
 
+
 ## Loading 'mustashe'
 
 The 'mustashe' package is loaded like any other, using the `library()` function.
@@ -55,6 +56,7 @@ The 'mustashe' package is loaded like any other, using the `library()` function.
 ```{r example}
 library(mustashe)
 ```
+
 
 ## Basic example
 
@@ -84,6 +86,7 @@ stash("rnd_vals", {
 })
 tictoc::toc()
 ```
+
 
 ## Dependencies
 
@@ -132,28 +135,162 @@ foo
 ```
 
 
-## Using ['here'](https://here.r-lib.org) to create file paths
+## Other API features
 
-The ['here'](https://here.r-lib.org) package is useful for handling file paths in R projects, particularly when using an RStudio project.
-The main function, `here::here()`, can be used to create the file path for stashing an object by calling `use_here()`.
+### Functional interface
+
+In the examples above, `stash()` does not return a value (actually, it invisibly returns `NULL`), instead assigning the result of the computation to an object named using the `var` argument.
+Frequently, though, a return value is desired.
+This behavior can be induced by setting the argument `functional = TRUE`.
 
 ```{r}
-use_here()
+b <- stash("b", functional = FALSE, {
+  rnorm(5, 0, 1)
+})
+b
+```
+
+```{r}
+b <- stash("b", functional = TRUE, {
+  rnorm(5, 0, 1)
+})
+b
+```
+
+### Functions as dependencies
+
+The `stash()` function can take other functions as dependencies.
+The body and formals components of the function object are checked to see if they have changed.
+(More information on the structure of function objects in R can be found in Hadley Wickham's [*Advanced R* - Functions: Function components](http://adv-r.had.co.nz/Functions.html#function-components).)
+
+As an example, suppose you have a script with the following code.
+It is run, and the value of 5 is stashed for `a` and it is dependent on the function `add_x()`.
+
+```{r}
+add_x <- function(y, x = 2) {
+  y + x
+}
+
+stash("a", depends_on = "add_x", {
+  a <- add_x(3)
+})
+a
+```
+
+You continue working and change the function `add_x()` to use the default value of 5 instead of 2.
+This change will cause the code for `a` to be re-run and `a` will be assigned the value 8.
+Note that the code in the `code` argument for `stash()` did not change, the code was re-run because a dependency changed.
+
+```{r}
+add_x <- function(y, x = 5) {
+  y + x
+}
+
+stash("a", depends_on = "add_x", {
+  a <- add_x(3)
+})
+a
+```
+
+### Using `stash()` in functions
+
+Because of the careful management of R environments, `stash()` can be used inside of functions.
+In the example below, note that the stashed object will depend on the value of the `magic_number` object *in the function*.
+
+```{r}
+magic_number <- 10
+do_data_science <- function() {
+  magic_number <- 5
+  stash("rand_num", depends_on = c("magic_number"), {
+    runif(1, 0, 10)
+  })
+  return(rand_num)
+}
+
+do_data_science()
+```
+
+Changing the value of the `magic_number` object in the global environment will not invalidate the stash.
+
+```{r}
+magic_number <- 11
+do_data_science()
+```
+
+### Stashing results of sourcing a R script
+
+It is also possible to stash the results of sourcing and R script.
+The contents of the script are an implicit dependency for the stash, so if the script changes, it will be re-sourced the next time around.
+It is also possible to include additional dependencies using the `depends_on`
+parameter in the same way as with a regular stash.
+ 
+The natural behavior of the `source()` function is maintained by returning the last evaluated value in the script.
+
+```{r}
+# Write a temporary R script.
+temp_script <- tempfile()
+write("print('Script to get 5 letters'); sample(letters, 5)", temp_script)
+
+x <- stash_script(temp_script)
+x
+```
+
+```{r}
+x2 <- stash_script(temp_script)
+x2
+```
+
+
+## Configuration
+
+### Using ['here'](https://here.r-lib.org) to create file paths
+
+The ['here'](https://here.r-lib.org) package is useful for handling file paths in R projects, particularly when using an RStudio project.
+The main function, `here::here()`, can be used to create the file path for stashing an object by setting the 'mustashe' configuration option with the `config_mustashe()` function.
+
+```{r}
+config_mustashe(use_here = TRUE)
 ```
 
 This behavior can be turned off, too.
 
 ```{r}
-dont_use_here()
+config_mustashe(use_here = FALSE)
 ```
 
+### Other options
+
+Defaults for the `verbose` and `functional` (see above) arguments of stashing functions can also be configured.
+For example, you can have the functions run silently and return the result by default.
+
+```{r}
+config_mustashe(verbose = FALSE, functional = TRUE)
+```
 
 ---
+
+## Acknowledgements
+
+### Contributors
+
+I would like to thank the contributors to this package for their additions of key features and bug squashing:
+
+- [vinayakvsv](https://github.com/vinayakvsv) fixed an annoying bug early on in the development of the library.
+- [jimbrig](https://github.com/jimbrig) replaced the file read/write system with the 'qs' library.
+- [traversc](https://github.com/traversc) introduced the functional API to `stash()`.
+- [torfason](https://github.com/torfason) upgraded R environment management enabling stashing in functions and linking functions as dependencies to a stashed object. He also created `stash_script()`.
 
 ### Attribution
 
 The inspiration for this package came from the `cache()` feature in the ['ProjectTemplate'](http://projecttemplate.net/index.html) package.
 While the functionality and implementation are a bit different, this would have been far more difficult to do without referencing the source code from 'ProjectTemplate'.
+
+---
+
+### Contact
+
+Any issues and feedback  on 'mustashe' can be submitted [here](https://github.com/jhrcook/mustashe/issues).
+Alternatively, I can be reached through the contact form on my [website](https://joshuacook.netlify.app) or on Twitter [\@JoshDoesa](https://twitter.com/JoshDoesa)
 
 ```{r, echo=FALSE}
 unlink(".mustashe", recursive = TRUE)

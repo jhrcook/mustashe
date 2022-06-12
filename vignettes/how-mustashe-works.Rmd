@@ -7,14 +7,16 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+library(digest)
 ```
 
-```{r setup}
+```{r}
 library(mustashe)
 ```
 
@@ -24,44 +26,60 @@ The following is the actual code for the `stash()` function, the main function o
 I have only added a few more comments for clarification.
 
 ```r
-stash <- function(var, code, depends_on = NULL) {
+stash <- function(var,
+                  code,
+                  depends_on = NULL,
+                  functional = NULL,
+                  verbose = NULL) {
+  if (is.null(functional)) functional <- mustashe_functional()
+  if (is.null(verbose)) verbose <- mustashe_verbose()
 
-    # Make sure the stashing directory ".mustashe" is available.
-    check_stash_dir()
+  # Make sure the stashing directory ".mustashe" is available.
+  check_stash_dir()
 
-    # Deparse and format the code.
-    deparsed_code <- deparse(substitute(code))
-    formatted_code <- format_code(deparsed_code)
+  # Deparse and format the code.
+  deparsed_code <- deparse(substitute(code))
+  formatted_code <- format_code(deparsed_code)
 
-    # Make sure the `var` and `code` are not `NULL`.
-    if (is.null(var)) stop("`var` cannot be NULL")
-    if (formatted_code == "NULL") stop("`code` cannot be NULL")
+  # Make sure the `var` and `code` are valid.
+  var <- validate_var(var, functional)
+  if (formatted_code == "NULL") stop("`code` cannot be NULL")
 
-    # Make a new hash table.
-    new_hash_tbl <- make_hash_table(formatted_code, depends_on)
+  # The environment where all code is evaluated and variables assigned.
+  target_env <- parent.frame()
+  # Make a new hash table.
+  new_hash_tbl <- make_hash_table(formatted_code, depends_on, target_env)
 
-    # if the variable has been stashed:
-    #     if the hash tables are equivalent:
-    #         load the stored variable
-    #     else:
-    #         make a new stash
-    # else:
-    #     make a new stash
-    if (has_been_stashed(var)) {
-        old_hash_tbl <- get_hash_table(var)
-        if (hash_tables_are_equivalent(old_hash_tbl, new_hash_tbl)) {
-            message("Loading stashed object.")
-            load_variable(var)
-        } else {
-            message("Updating stash.")
-            new_stash(var, formatted_code, new_hash_tbl)
-        }
+  # if the variable has been stashed:
+  #     if the hash tables are equivalent:
+  #         load the stored variable
+  #     else:
+  #         make a new stash
+  # else:
+  #     make a new stash
+  if (has_been_stashed(var)) {
+    old_hash_tbl <- get_hash_table(var)
+    if (hash_tables_are_equivalent(old_hash_tbl, new_hash_tbl)) {
+      if (verbose) {
+        message("Loading stashed object.")
+      }
+      res <- load_variable(var, functional, target_env)
     } else {
-        message("Stashing object.")
-        new_stash(var, formatted_code, new_hash_tbl)
+      if (verbose) {
+        message("Updating stash.")
+      }
+      res <- new_stash(
+        var, formatted_code, new_hash_tbl, functional, target_env
+      )
     }
+  } else {
+    if (verbose) {
+      message("Stashing object.")
+    }
+    res <- new_stash(var, formatted_code, new_hash_tbl, functional, target_env)
+  }
 
-    invisible(NULL)
+  invisible(res)
 }
 ```
 
@@ -73,8 +91,9 @@ The steps that the `stash()` function follows, further explained in the followin
 3. If the object has previously been stashed, then the new hash table and the stashed one are compared. If they are the same, then the object is loaded from memory.
 4. If the hash tables are different or the object has never been stored, then the code is evaluated and the object and its hash table are stashed.
 
+## The stashing process
 
-## Deparsing and formatting code
+### Deparsing and formatting code
 
 The first step taken by the `stash()` function is to deparse and format the code.
 
@@ -125,7 +144,7 @@ format_code(("x <- 2  # a comment"))
 ```
 
 
-## Making a hash table
+### Making a hash table
 
 The hash table is a two-column table with the name and hash value of the code and any (optional) dependencies.
 
@@ -139,8 +158,7 @@ digest::digest("mustashe")
 A hash value is made for the code and for any of the dependencies linked to the object.
 This process is handled by the `make_hash_table(code, depends_on)` internal function.
 
-
-## Comparing hash tables
+### Comparing hash tables
 
 To tell if the code or dependencies have changed, the new hash table and stashed hashed table are compared.
 The function underlying this process is `all.equal()` from base R.
@@ -156,25 +174,36 @@ df2 <- data.frame(a = c(1, 2, 3), b = c(5, 6, 8))
 # When the two data frames are equivalent.
 all.equal(df1, df1)
 
-# When the two data frmaes are not equivalent.
+# When the two data frames are not equivalent.
 all.equal(df1, df2)
 ```
 
 A word of caution, if using `all.equal()` for a boolean comparison (like in an if-statement), make sure to wrap it with `isTRUE`, otherwise it will return `TRUE` or comments on the differences, but not `FALSE`.
+Below is the actual function `stash()` uses to compare hash tables.
 
+```r
+hash_tables_are_equivalent <- function(tbl1, tbl2) {
+  isTRUE(all.equal(tbl1, tbl2, check.attributes = TRUE, use.names = TRUE))
+}
+```
 
-## Evaluating code and making a stash
+### Evaluating code and making a stash
 
 If the hash tables are different, that means the code must be evaluated, the new object be assigned to the desired name (`var`), and the new hash table and value stashed.
 This is handled by the  internal function `new_stash()`.
 
-```{r}
+```r
 # Make a new stash from a variable, code, and hash table.
-new_stash <- function(var, code, hash_tbl) {
-  val <- evaluate_code(code)
-  assign_value(var, val)
+new_stash <- function(var, code, hash_tbl, functional, target_env) {
+  val <- evaluate_code(code, target_env)
   write_hash_table(var, hash_tbl)
   write_val(var, val)
+  if (functional) {
+    return(val)
+  } else {
+    assign_value(var, val, target_env = target_env)
+    return(NULL)
+  }
 }
 ```
 
@@ -182,29 +211,90 @@ The first step is to evaluate the code with the `evaluate_code(code)` function.
 It uses the `parse()` and `eval()` functions and returns the resulting value.
 
 ```{r}
-# Evaluate the code in a new environment.
-evaluate_code <- function(code) {
-  eval(parse(text = code), envir = new.env())
+evaluate_code <- function(code, target_env) {
+  eval(parse(text = code), envir = new.env(parent = target_env))
 }
 ```
 
 This value is then assigned the desired name in the global environment using the internal `assign_value(var, val)` function, where `.TargetEnv` is a variable in the package pointing to `.GlobalEnv`.
 
 ```{r}
-# Assign the value `val` to the variable `var`.
-assign_value <- function(var, val) {
-  assign(var, val, envir = .TargetEnv)
+assign_value <- function(var, val, target_env) {
+  assign(var, val, envir = target_env)
 }
 ```
 
-Lastly, the hash table  and value are written to file using wrapper functions around `readr::write_tsv()` and `saveRDS()`.
+Lastly, the hash table and value are written to file using wrapper functions around `qs::qsave()`.
+
+## Some details
+
+Below are some implementation details that are useful to know about.
+
+### Environment management
+
+When I first created this library, I just made all assignments to and searched for dependencies in the global environment (`.GlobalEnv`).
+This generally worked for standard use of the package, but could easily result in strange behavior if `stash()` was used within functions.
+In early 2022, Magnus Torfason (GitHub [@torfason](https://github.com/torfason)) addressed this shortcoming by capturing the parent environment in `stash()` and conducting code evaluation and dependency search within that R environment.
+
+### Functions as dependencies
+
+As described in Issue [#8](https://github.com/jhrcook/mustashe/issues/8), using functions as dependencies can be tricky because their hashes change after evaluation.
+
+```{r}
+fxn <- function(x) {
+  x**2
+}
+
+print(digest(fxn))
+print(digest(fxn))
+a <- fxn(2)
+print(digest(fxn))
+a <- fxn(2)
+print(digest(fxn))
+a <- fxn(4)
+print(digest(fxn))
+```
+
+You can actually see a difference in the print-out of a function when in an interactive R session.
+
+```{r}
+fxn <- function(x) {
+  x**2
+}
+
+fxn
+```
+
+```{r}
+a <- fxn(2)
+a <- fxn(2)
+fxn
+```
+
+Therefore, `stash()` uses a specific process for hashing functions.
+As described in the section on ["Functions"](http://adv-r.had.co.nz/Functions.html) by Hadley Wickham in [*Advanced R*](http://adv-r.had.co.nz), "R functions have three parts:
+
+- the `body()`, the code inside the function.
+- the `formals()`, the list of arguments which controls how you can call the function.
+- the `environment()`, the "map" of the location of the function’s variables."
+
+Therefore, `stash()` specifically deparses the code of a function passed as dependency and uses the hash of the resulting string (of the code of the function) as the hash.
+
+```{r}
+fxn_str <- deparse(fxn)
+fxn_str
+```
+
+```{r}
+digest(fxn_str)
+```
 
 ---
 
 ### Contact
 
 Any issues and feedback  on 'mustashe' can be submitted [here](https://github.com/jhrcook/mustashe/issues).
-I can be reached through the contact form on my [website](https://joshuacook.netlify.app) or on Twitter [\@JoshDoesa](https://twitter.com/JoshDoesa).
+Alternatively, I can be reached through the contact form on my [website](https://joshuacook.netlify.app) or on Twitter [\@JoshDoesa](https://twitter.com/JoshDoesa)
 
 ```{r, echo=FALSE}
 unlink(".mustashe", recursive = TRUE)

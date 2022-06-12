@@ -1,13 +1,11 @@
 
 test_that("function deps are invalidated when updated", {
 
-  # A function is defined by three components:
-  # formals(f), body(f), environment(f)
-  # http://adv-r.had.co.nz/Functions.html
-  # Since the environment of a function is generally not identical across
-  # restarts, it is not feasible to rely on it for determining dependencies.
-  # However, updates to either a functions formals() or body() should trigger a
-  # restash.
+  # A function is defined by three components: `formals(f)`, `body(f)`,
+  # `environment(f)`. Since the environment of a function is generally not
+  # identical across restarts, it is not feasible to rely on it for determining
+  # dependencies. However, updates to either a functions `formals()` or `body()`
+  # should trigger a restash. (source: http://adv-r.had.co.nz/Functions.html)
 
   verbose <- FALSE
   unstash("stash_func")
@@ -49,7 +47,7 @@ test_that("function deps are invalidated when updated", {
   )
   expect_true(result_2 != result_3)
 
-  # Changing environement SHOULD NOT trigger a restash
+  # Changing environment SHOULD NOT trigger a restash
   environment(f) <- new.env()
   result_4 <- stash("stash_func",
     {

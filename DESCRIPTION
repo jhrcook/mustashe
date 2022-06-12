@@ -1,7 +1,7 @@
 Type: Package
 Package: mustashe
 Title: Stash and Load Objects
-Version: 0.1.4
+Version: 0.1.5
 Authors@R:
     c(person(given = c("Joshua", "H"),
             family = "Cook",
@@ -46,4 +46,4 @@ VignetteBuilder:
     knitr
 Encoding: UTF-8
 Language: en-US
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
