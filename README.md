@@ -66,7 +66,7 @@ stash("rnd_vals", {
 })
 #> Stashing object.
 tictoc::toc()
-#> random simulation: 3.095 sec elapsed
+#> random simulation: 3.044 sec elapsed
 ```
 
 Now, if we come back tomorrow and continue working on the same analysis,
@@ -82,7 +82,7 @@ stash("rnd_vals", {
 })
 #> Loading stashed object.
 tictoc::toc()
-#> random simulation: 0.03 sec elapsed
+#> random simulation: 0.023 sec elapsed
 ```
 
 ## Dependencies
@@ -249,10 +249,14 @@ do_data_science()
 
 ### Stashing results of sourcing a R script
 
-It is also possible to stash the results of sourcing and R script. If
-the script changes, it will be re-sourced the next time around. Also,
-the natural behavior of the `source()` function is maintained by
-returning the last evaluated value.
+It is also possible to stash the results of sourcing and R script. The
+contents of the script are an implicit dependency for the stash, so if
+the script changes, it will be re-sourced the next time around. It is
+also possible to include additional dependencies using the `depends_on`
+parameter in the same way as with a regular stash.
+
+The natural behavior of the `source()` function is maintained by
+returning the last evaluated value in the script.
 
 ``` r
 # Write a temporary R script.
