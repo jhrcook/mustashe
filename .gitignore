@@ -77,3 +77,6 @@ vignettes/*.pdf
 
 inst/doc
 *.mustashe/
+renv/
+renv.lock
+.Rprofile
